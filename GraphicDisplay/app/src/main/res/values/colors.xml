@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="titlePrimary">#444b59</color>
+    <color name="titleSecondary">#808A87</color>
+    <color name="hintEdit">#f0f1f2</color>
+    <color name="inputEdit">#808A87</color>
+    <color name="borderEditText">#e7eff4</color>
+    <color name="btnLoginUnselected">#5cd3b4</color>
+    <color name="btnLoginSelected">#885cd3b4</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+</resources>
