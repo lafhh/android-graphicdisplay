@@ -6,15 +6,29 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
 import com.js.graphicdisplay.api.Infermation;
+import com.js.graphicdisplay.data.ChartBean;
 import com.js.graphicdisplay.data.Company;
 import com.js.graphicdisplay.data.Group;
 import com.js.graphicdisplay.data.Project;
+import com.js.graphicdisplay.mpchart.DayAxisValueFormatter;
+import com.js.graphicdisplay.mpchart.MyAxisValueFormatter;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by js_gg on 2017/6/17.
@@ -23,33 +37,37 @@ import java.util.ArrayList;
 public class GraphicActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "GraphicActivity";
+    private static final int BAR_CHART_MAX_VALUE_COUNT = 60;
 
     private Spinner spinnerGroup;
     private Spinner spinnerCompany;
     private Spinner spinnerProject;
 
+    private BarChart barChart;
+
     private SpinnerAdapter<Group> groupAdapter;
     private SpinnerAdapter<Company> companyAdapter;
     private SpinnerAdapter<Project> projectAdapter;
 
-    private ArrayList<Group> list = new ArrayList<>();
+    private ArrayList<Group> groups = new ArrayList<>();
+    private ArrayList<ChartBean> chartData = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphic);
 
-        list = initialData();
-        //所有spinner的初始化
+        //spinner
+        initialSpinnerData();
         spinnerGroup = (Spinner) findViewById(R.id.spinner_group);
-        groupAdapter = new SpinnerAdapter<>(this, list);
+        groupAdapter = new SpinnerAdapter<>(this, groups);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGroup.setAdapter(groupAdapter);
         spinnerGroup.setOnItemSelectedListener(this);
 
-        ArrayList<Company> companies = list.get(0).getChild();
+        ArrayList<Company> companies = groups.get(0).getChild();
         spinnerCompany = (Spinner) findViewById(R.id.spinner_company);
-         companyAdapter = new SpinnerAdapter<>(this, companies);
+        companyAdapter = new SpinnerAdapter<>(this, companies);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCompany.setAdapter(companyAdapter);
         spinnerCompany.setOnItemSelectedListener(this);
@@ -60,10 +78,76 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerProject.setAdapter(projectAdapter);
         spinnerProject.setOnItemSelectedListener(this);
+
+        /******** chart start **********/
+        barChart = (BarChart) findViewById(R.id.chart);
+        barChart.setDrawBarShadow(false);
+//        barChart.setDrawValueAboveBar(true);
+
+        barChart.getDescription().setEnabled(false);
+
+        // if more than 60 entries are displayed in the chart, no values will be
+        // drawn
+        barChart.setMaxVisibleValueCount(BAR_CHART_MAX_VALUE_COUNT);
+
+        // scaling can now only be done on x- and y-axis separately
+        barChart.setPinchZoom(false);
+
+        barChart.setDrawGridBackground(false);
+
+        IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(barChart);
+
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTypeface(mTfLight);
+        xAxis.setDrawGridLines(false);
+
+        //Set a minimum interval for the axis when zooming in.
+        // The axis is not allowed to go below that limit.
+        // This can be used to avoid label duplicating when zooming in.
+        xAxis.setGranularity(1f); // only intervals of 1 day
+
+        xAxis.setLabelCount(6);
+        xAxis.setValueFormatter(xAxisFormatter);
+
+        IAxisValueFormatter custom = new MyAxisValueFormatter();
+
+        YAxis leftAxis = barChart.getAxisLeft();
+        leftAxis.setTypeface(mTfLight);
+        leftAxis.setLabelCount(6, false);
+        leftAxis.setValueFormatter(custom);
+        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+        leftAxis.setSpaceTop(15f);
+        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+//        leftAxis.setAxisMaximum(60f);
+
+        YAxis rightAxis = barChart.getAxisRight();
+        rightAxis.setDrawGridLines(false);
+        rightAxis.setTypeface(mTfLight);
+        rightAxis.setLabelCount(6, false); //znn
+        rightAxis.setValueFormatter(custom);
+        rightAxis.setSpaceTop(15f);
+        rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+//        rightAxis.setAxisMaximum(60f);
+
+        Legend l = barChart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        l.setDrawInside(false);
+        l.setForm(Legend.LegendForm.SQUARE);
+        l.setFormSize(9f);
+        l.setTextSize(11f);
+        l.setXEntrySpace(4f);
+
+        initialChartData();
+        int valueCount = chartData.size() - 1;
+        int range = getMaxValue();
+        setData();
+        /******** chart end **********/
     }
 
-    private ArrayList<Group> initialData() {
-        ArrayList<Group> groups = new ArrayList<>();
+    private void initialSpinnerData() {
         for (int i = 0; i < 5; i++) {
             Group group = new Group();
             group.setGroupName("g" + (i + 1));
@@ -85,7 +169,6 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
             project.setProjectName(company + "p" + (i + 1));
             projects.add(project);
         }
-        return groups;
     }
 
     private void getTreeFromGroup(Group group) {
@@ -122,6 +205,7 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Infermation o = (Infermation) parent.getItemAtPosition(position);
+
         if (o instanceof Group) {
             getTreeFromGroup((Group) o);
             ArrayList<Company> c = ((Group) o).getChild();
@@ -132,8 +216,8 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
             projectAdapter.setData(p);
             projectAdapter.notifyDataSetChanged();
             spinnerProject.setSelection(0);
-        }
-        if (o instanceof Company) {
+
+        } else if (o instanceof Company) {
             getChildFromCompany((Company) o);
             ArrayList<Project> p = ((Company) o).getChild();
             projectAdapter.setData(p);
@@ -147,5 +231,86 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 
     }
 
+    private int getMaxValue() {
+        int max = 0;
+        for (Iterator<ChartBean> i = chartData.iterator(); i.hasNext(); ) {
+            ChartBean bean = i.next();
+            int value = bean.getValue();
+            if (value > max) max = value;
+        }
+        return max;
+    }
 
+    private ArrayList<BarEntry> setBarEntryForBarChart() {
+        ArrayList<BarEntry> yvals = new ArrayList<>();
+
+        for (int i = 0; i < chartData.size(); i++) {
+            int value = chartData.get(i).getValue();
+            yvals.add(new BarEntry(i + 1, value));
+        }
+        return yvals;
+    }
+
+    private void setData() {
+        ArrayList<BarEntry> entries = setBarEntryForBarChart();
+
+        BarDataSet barDataSet = new BarDataSet(entries, "The year 2017");
+        barDataSet.setDrawIcons(false);
+        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+
+        ArrayList<IBarDataSet> dataSet = new ArrayList<>();
+        dataSet.add(barDataSet);
+
+        BarData data = new BarData(dataSet);
+        data.setValueTextSize(10f);
+        data.setValueTypeface(mTfLight);
+        data.setBarWidth(0.9f);
+
+        //Enables / disables drawing values (value-text) for all DataSets this data object contains.
+        data.setDrawValues(false);
+
+        barChart.setData(data);
+    }
+
+    private void initialChartData() {
+        ChartBean bean = new ChartBean();
+        bean.setValue(10);
+        chartData.add(bean);
+        bean = new ChartBean();
+        chartData.add(bean);
+        bean.setValue(20);
+        bean = new ChartBean();
+        chartData.add(bean);
+        bean.setValue(46);
+        bean = new ChartBean();
+        chartData.add(bean);
+        bean.setValue(35);
+        bean = new ChartBean();
+        chartData.add(bean);
+        bean.setValue(18);
+        bean = new ChartBean();
+        chartData.add(bean);
+        bean.setValue(9);
+        bean = new ChartBean();
+        bean.setValue(6);
+        chartData.add(bean);
+        bean = new ChartBean();
+        chartData.add(bean);
+        bean.setValue(16);
+        bean = new ChartBean();
+        chartData.add(bean);
+        bean.setValue(2);
+        bean = new ChartBean();
+        bean.setValue(22);
+        chartData.add(bean);
+        bean = new ChartBean();
+        bean.setValue(66);
+        chartData.add(bean);
+        bean = new ChartBean();
+        bean.setValue(46);
+        chartData.add(bean);
+        bean = new ChartBean();
+        bean.setValue(32);
+        chartData.add(bean);
+    }
 }

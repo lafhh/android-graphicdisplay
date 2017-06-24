@@ -1,7 +1,10 @@
 package com.js.graphicdisplay.activity.base;
 
+import android.graphics.Typeface;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import java.lang.ref.WeakReference;
@@ -12,7 +15,14 @@ import java.lang.ref.WeakReference;
 
 public class BaseActivity extends AppCompatActivity {
 
+    protected Typeface mTfLight;
     protected Handler mHandler = new MHandler(this);
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mTfLight = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
+    }
 
     private static class MHandler extends Handler {
         WeakReference<BaseActivity> activity;
