@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h320dp-v13/values-h320dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "/Users/apple/.android/build-cache/b461ea4453fa1a8a3a112e6e7c059a7438e602b1/output/res/values-h320dp/values-h320dp.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 231,
+                        "endColumn": 57,
+                        "endOffset": 284
+                    }
+                }
+            }
+        ]
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v18/values-v18.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 48,
+                    "endOffset": 99
+                },
+                "from": {
+                    "file": "/Users/apple/.android/build-cache/b461ea4453fa1a8a3a112e6e7c059a7438e602b1/output/res/values-v18/values-v18.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 229,
+                        "endColumn": 48,
+                        "endOffset": 273
+                    }
+                }
+            }
+        ]
+    }
+]
