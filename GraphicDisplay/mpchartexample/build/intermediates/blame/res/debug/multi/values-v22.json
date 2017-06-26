@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml",
+        "outputFile": "C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v22\\values-v22.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 125
                 },
                 "from": {
-                    "file": "/Users/apple/.android/build-cache/b461ea4453fa1a8a3a112e6e7c059a7438e602b1/output/res/values-v22/values-v22.xml",
+                    "file": "C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-v22\\values-v22.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 212
                 },
                 "from": {
-                    "file": "/Users/apple/.android/build-cache/b461ea4453fa1a8a3a112e6e7c059a7438e602b1/output/res/values-v22/values-v22.xml",
+                    "file": "C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-v22\\values-v22.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -50,7 +50,7 @@
                     "endOffset": 393
                 },
                 "from": {
-                    "file": "/Users/apple/.android/build-cache/b461ea4453fa1a8a3a112e6e7c059a7438e602b1/output/res/values-v22/values-v22.xml",
+                    "file": "C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-v22\\values-v22.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -71,7 +71,92 @@
                     "endOffset": 586
                 },
                 "from": {
-                    "file": "/Users/apple/.android/build-cache/b461ea4453fa1a8a3a112e6e7c059a7438e602b1/output/res/values-v22/values-v22.xml",
+                    "file": "C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-v22\\values-v22.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 577,
+                        "endLine": 11,
+                        "endColumn": 12,
+                        "endOffset": 765
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v22\\values-v22.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 74,
+                    "endOffset": 125
+                },
+                "from": {
+                    "file": "C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-v22\\values-v22.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 234,
+                        "endColumn": 74,
+                        "endOffset": 304
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 130,
+                    "endColumn": 86,
+                    "endOffset": 212
+                },
+                "from": {
+                    "file": "C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-v22\\values-v22.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 309,
+                        "endColumn": 86,
+                        "endOffset": 391
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 217,
+                    "endLine": 6,
+                    "endColumn": 12,
+                    "endOffset": 393
+                },
+                "from": {
+                    "file": "C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-v22\\values-v22.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 396,
+                        "endLine": 8,
+                        "endColumn": 12,
+                        "endOffset": 572
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 398,
+                    "endLine": 9,
+                    "endColumn": 12,
+                    "endOffset": 586
+                },
+                "from": {
+                    "file": "C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-v22\\values-v22.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,

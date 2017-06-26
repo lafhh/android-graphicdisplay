@@ -1,14 +1,26 @@
 [
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/drawable-nodpi/marker2.png",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/drawable-nodpi/marker2.png"
+        "merged": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\res\\merged\\debug\\drawable-nodpi\\marker.png",
+        "source": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\src\\main\\res\\drawable-nodpi\\marker.png"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/drawable-nodpi/marker.png",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/drawable-nodpi/marker.png"
+        "merged": "C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\res\\merged\\debug\\drawable-nodpi\\radar_marker.png",
+        "source": "C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\src\\main\\res\\drawable-nodpi\\radar_marker.png"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/drawable-nodpi/radar_marker.png",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/drawable-nodpi/radar_marker.png"
+        "merged": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\res\\merged\\debug\\drawable-nodpi\\radar_marker.png",
+        "source": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\src\\main\\res\\drawable-nodpi\\radar_marker.png"
+    },
+    {
+        "merged": "C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\res\\merged\\debug\\drawable-nodpi\\marker.png",
+        "source": "C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\src\\main\\res\\drawable-nodpi\\marker.png"
+    },
+    {
+        "merged": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\res\\merged\\debug\\drawable-nodpi\\marker2.png",
+        "source": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\src\\main\\res\\drawable-nodpi\\marker2.png"
+    },
+    {
+        "merged": "C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\res\\merged\\debug\\drawable-nodpi\\marker2.png",
+        "source": "C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\src\\main\\res\\drawable-nodpi\\marker2.png"
     }
 ]
