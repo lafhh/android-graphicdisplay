@@ -2,6 +2,7 @@ package com.js.graphicdisplay.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -23,12 +24,21 @@ import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.ChartBean;
 import com.js.graphicdisplay.data.Company;
 import com.js.graphicdisplay.data.Group;
+import com.js.graphicdisplay.data.NameValuePair;
 import com.js.graphicdisplay.data.Project;
 import com.js.graphicdisplay.mpchart.DayAxisValueFormatter;
 import com.js.graphicdisplay.mpchart.MyAxisValueFormatter;
+import com.js.graphicdisplay.net.HttpManager;
+import com.js.graphicdisplay.net.NetUtil;
+import com.js.graphicdisplay.net.Request;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * Created by js_gg on 2017/6/17.
@@ -140,11 +150,35 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         l.setTextSize(11f);
         l.setXEntrySpace(4f);
 
-        initialChartData();
+//        initialChartData();
         int valueCount = chartData.size() - 1;
         int range = getMaxValue();
         setData();
         /******** chart end **********/
+
+        ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
+        list.add(new NameValuePair<>(NetUtil.POST_ORGID, "4"));
+        list.add(new NameValuePair<>(NetUtil.POST_DATE, "201701"));
+        HttpManager.doPost(
+                NetUtil.URL_FUNDSTURNEDOVER_ALL_CHART,
+                list,
+                Request.ContentType.KVP,
+                new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        if (response.isSuccessful()) {
+                            Log.d(TAG, "response code : " + response.code());
+                            Log.d(TAG, "body = " + response.body().string());
+                        } else {
+                            throw new IOException("Unexpected code " + response);
+                        }
+                    }
+                });
     }
 
     private void initialSpinnerData() {
@@ -270,47 +304,5 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         data.setDrawValues(false);
 
         barChart.setData(data);
-    }
-
-    private void initialChartData() {
-        ChartBean bean = new ChartBean();
-        bean.setValue(10);
-        chartData.add(bean);
-        bean = new ChartBean();
-        chartData.add(bean);
-        bean.setValue(20);
-        bean = new ChartBean();
-        chartData.add(bean);
-        bean.setValue(46);
-        bean = new ChartBean();
-        chartData.add(bean);
-        bean.setValue(35);
-        bean = new ChartBean();
-        chartData.add(bean);
-        bean.setValue(18);
-        bean = new ChartBean();
-        chartData.add(bean);
-        bean.setValue(9);
-        bean = new ChartBean();
-        bean.setValue(6);
-        chartData.add(bean);
-        bean = new ChartBean();
-        chartData.add(bean);
-        bean.setValue(16);
-        bean = new ChartBean();
-        chartData.add(bean);
-        bean.setValue(2);
-        bean = new ChartBean();
-        bean.setValue(22);
-        chartData.add(bean);
-        bean = new ChartBean();
-        bean.setValue(66);
-        chartData.add(bean);
-        bean = new ChartBean();
-        bean.setValue(46);
-        chartData.add(bean);
-        bean = new ChartBean();
-        bean.setValue(32);
-        chartData.add(bean);
     }
 }
