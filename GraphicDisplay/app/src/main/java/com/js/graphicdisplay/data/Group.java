@@ -1,6 +1,11 @@
 package com.js.graphicdisplay.data;
 
 import com.js.graphicdisplay.api.Infermation;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -35,8 +40,16 @@ public class Group implements Infermation {
 
 
 
-    public static Group fromJson(String json) {
-        return null;
+    public static Group fromJson(JSONObject jGroup, Group group) throws JSONException {
+        if (jGroup == null) return null;
+
+        int groupId = jGroup.getInt("groupId");
+        String groupCode = jGroup.getString("groupCode");
+        String groupName = jGroup.getString("groupName");
+        group.setId(groupId);
+        group.setGroupCode(groupCode);
+        group.setGroupName(groupName);
+        return group;
     }
 
 

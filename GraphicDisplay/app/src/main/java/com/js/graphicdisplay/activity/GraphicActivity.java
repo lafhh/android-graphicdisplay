@@ -1,6 +1,7 @@
 package com.js.graphicdisplay.activity;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +32,10 @@ import com.js.graphicdisplay.mpchart.MyAxisValueFormatter;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -305,5 +310,19 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         data.setDrawValues(false);
 
         barChart.setData(data);
+    }
+
+    protected void handleUIMessage(Message msg) {
+        String json = msg.obj.toString();
+        try {
+            JSONArray jsonArray = new JSONArray(json);
+            Group group = new Group();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
