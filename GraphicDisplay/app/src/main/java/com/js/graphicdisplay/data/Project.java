@@ -7,9 +7,23 @@ import com.js.graphicdisplay.api.Infermation;
  */
 
 public class Project implements Infermation {
-    private int id;
+    private int id; //project id
 
     private String projectName;
+
+    private String projectCode;
+
+
+
+
+
+
+
+
+
+
+
+
 
     public int getId() {
         return id;
@@ -25,5 +39,13 @@ public class Project implements Infermation {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public String getProjectCode() {
+        return projectCode;
+    }
+
+    public void setProjectCode(String projectCode) {
+        this.projectCode = projectCode;
     }
 }

@@ -15,10 +15,13 @@ public class NetUtil {
 
     public static final String URL_FUNDSTURNEDOVER_GROUP_TABLE  = URL_FUNDSTURNEDOVER + "getFundsTurnedOverForGroupTable.do";
     public static final String URL_FUNDSTURNEDOVER_COMP_TABLE   = URL_FUNDSTURNEDOVER + "getFundsTurnedOverForComTable.do";
+
+    //http://192.168.1.193:8081/jsbi/fundsTurnedOver/getAllFundsTurnedOverForChart.do
     public static final String URL_FUNDSTURNEDOVER_ALL_CHART    = URL_FUNDSTURNEDOVER + "getAllFundsTurnedOverForChart.do";
-    public static final String URL_LANDBANKING_QUERYITEM_CHART  = "queryItemsForChart.do";
-    public static final String URL_LANDBANKING_QUERYITEM        = "queryItems.do";
-    public static final String URL_LANDBANKING_QUERYITEM_COMP   = "queryItemsForCom.do";
+
+    public static final String URL_LANDBANKING_QUERYITEM_CHART  = URL_LANDBANKING + "queryItemsForChart.do";
+    public static final String URL_LANDBANKING_QUERYITEM        = URL_LANDBANKING + "queryItems.do";
+    public static final String URL_LANDBANKING_QUERYITEM_COMP   = URL_LANDBANKING + "queryItemsForCom.do";
 
     public static final String POST_ORGID   = "orgId";
     public static final String POST_DATE    = "ym";

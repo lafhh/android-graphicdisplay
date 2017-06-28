@@ -157,8 +157,8 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         /******** chart end **********/
 
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
-        list.add(new NameValuePair<>(NetUtil.POST_ORGID, "4"));
-        list.add(new NameValuePair<>(NetUtil.POST_DATE, "201701"));
+//        list.add(new NameValuePair<>(NetUtil.POST_ORGID, "4"));
+//        list.add(new NameValuePair<>(NetUtil.POST_DATE, "201701"));
         HttpManager.doPost(
                 NetUtil.URL_FUNDSTURNEDOVER_ALL_CHART,
                 list,
@@ -174,6 +174,7 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
                         if (response.isSuccessful()) {
                             Log.d(TAG, "response code : " + response.code());
                             Log.d(TAG, "body = " + response.body().string());
+
                         } else {
                             throw new IOException("Unexpected code " + response);
                         }

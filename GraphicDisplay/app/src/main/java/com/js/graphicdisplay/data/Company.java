@@ -1,7 +1,6 @@
 package com.js.graphicdisplay.data;
 
 import com.js.graphicdisplay.api.Infermation;
-
 import java.util.ArrayList;
 
 /**
@@ -9,11 +8,33 @@ import java.util.ArrayList;
  */
 
 public class Company implements Infermation {
-    private int id;
+    private int id; // company id
 
     private String companyName;
 
+    private String companyCode;
+
     private ArrayList<Project> child;
+
+    private ArrayList<String> months;
+
+    private ArrayList<Data4FundsPerMonth> fundsPerMonth; //每月上缴资金相关数据
+
+    private Data4FundsCumulated fundsCumulated; //累计上缴资金相关数据
+
+    private String descUnfinished; //未完成情况说明
+
+
+
+
+
+
+
+
+
+
+
+
 
     public int getId() {
         return id;
@@ -37,5 +58,45 @@ public class Company implements Infermation {
 
     public void setChild(ArrayList<Project> child) {
         this.child = child;
+    }
+
+    public String getCompanyCode() {
+        return companyCode;
+    }
+
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
+    }
+
+    public ArrayList<String> getMonths() {
+        return months;
+    }
+
+    public void setMonths(ArrayList<String> months) {
+        this.months = months;
+    }
+
+    public ArrayList<Data4FundsPerMonth> getFundsPerMonth() {
+        return fundsPerMonth;
+    }
+
+    public void setFundsPerMonth(ArrayList<Data4FundsPerMonth> fundsPerMonth) {
+        this.fundsPerMonth = fundsPerMonth;
+    }
+
+    public Data4FundsCumulated getFundsCumulated() {
+        return fundsCumulated;
+    }
+
+    public void setFundsCumulated(Data4FundsCumulated fundsCumulated) {
+        this.fundsCumulated = fundsCumulated;
+    }
+
+    public String getDescUnfinished() {
+        return descUnfinished;
+    }
+
+    public void setDescUnfinished(String descUnfinished) {
+        this.descUnfinished = descUnfinished;
     }
 }

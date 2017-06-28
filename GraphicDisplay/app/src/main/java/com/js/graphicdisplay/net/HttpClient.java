@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import android.util.Log;
+import com.js.graphicdisplay.util.StringUtil;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -21,6 +23,7 @@ import com.js.graphicdisplay.net.Request.ContentType;
 
 public class HttpClient {
 
+    private static final String TAG = "HttpClient";
 
     private OkHttpClient client;
 
@@ -48,17 +51,26 @@ public class HttpClient {
 
         switch (type) {
             case JSON:
-                body = createBodyFromJson(req.getBody());
+                String json = req.getBody();
+                if (StringUtil.isNotEmpty(json)) {
+                    body = createBodyFromJson(json);
+                }
                 break;
 
             case KVP:
-                body = createBodyFromKeyValue(req.getData());
+                ArrayList<NameValuePair<String, String>> kvp = req.getData();
+                if (kvp != null && kvp.size() != 0) {
+                    body = createBodyFromKeyValue(kvp);
+                }
                 break;
         }
-        Request request = new Request.Builder()
-                .url(req.getUrl())
-                .post(body)
-                .build();
+
+        Log.d(TAG, "HttpClient#post():URL ======= " + req.getUrl());
+
+        Request.Builder builder = new Request.Builder();
+        builder.url(req.getUrl());
+        if (body != null) builder.post(body);
+        Request request = builder.build();
 
 //        Response response = client.newCall(request).execute();
         client.newCall(request).enqueue(callback);
