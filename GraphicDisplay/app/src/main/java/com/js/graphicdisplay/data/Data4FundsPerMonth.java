@@ -14,6 +14,11 @@ public class Data4FundsPerMonth {
 
     private BigDecimal rateCompletedPerMonth; //每月完成比率
 
+    private BigDecimal indicatrixCumulated; //当月累计指标
+
+    private BigDecimal completionCumulated; //当月累计完成
+
+    private BigDecimal rateCompletedCumulated; //当月累计完成比率
 
 
 
@@ -25,6 +30,29 @@ public class Data4FundsPerMonth {
 
 
 
+    public BigDecimal getIndicatrixCumulated() {
+        return indicatrixCumulated;
+    }
+
+    public void setIndicatrixCumulated(BigDecimal indicatrixCumulated) {
+        this.indicatrixCumulated = indicatrixCumulated;
+    }
+
+    public BigDecimal getCompletionCumulated() {
+        return completionCumulated;
+    }
+
+    public void setCompletionCumulated(BigDecimal completionCumulated) {
+        this.completionCumulated = completionCumulated;
+    }
+
+    public BigDecimal getRateCompletedCumulated() {
+        return rateCompletedCumulated;
+    }
+
+    public void setRateCompletedCumulated(BigDecimal rateCompletedCumulated) {
+        this.rateCompletedCumulated = rateCompletedCumulated;
+    }
 
     public BigDecimal getIndicatrixPerMonth() {
         return indicatrixPerMonth;

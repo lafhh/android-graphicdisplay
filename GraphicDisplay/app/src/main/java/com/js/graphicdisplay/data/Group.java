@@ -2,10 +2,10 @@ package com.js.graphicdisplay.data;
 
 import com.js.graphicdisplay.api.Infermation;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
@@ -13,6 +13,9 @@ import java.util.ArrayList;
  */
 
 public class Group implements Infermation {
+
+    private static final String TAG = "Group";
+
     private int id; //group id
 
     private String groupName;
@@ -25,30 +28,66 @@ public class Group implements Infermation {
 
     private ArrayList<Data4FundsPerMonth> fundsPerMonth; //每月上缴资金相关数据
 
-    private Data4FundsCumulated fundsCumulated; //累计上缴资金相关数据
-
     private String descUnfinished; //未完成情况说明
-
-
-
-
-
-
-
-
-
-
-
 
     public static Group fromJson(JSONObject jGroup, Group group) throws JSONException {
         if (jGroup == null) return null;
 
-        int groupId = jGroup.getInt("groupId");
+        //先不传id
+//        int groupId = -1;
+//        Log.d(TAG, jGroup.get("groupId").toString());
+//
+//        if (jGroup.get("groupId") != null) {
+//            Log.d(TAG, "enter");
+//            groupId = jGroup.getInt("groupId");
+//        }
+
         String groupCode = jGroup.getString("groupCode");
         String groupName = jGroup.getString("groupName");
-        group.setId(groupId);
+
+        String descUnfinished = "";
+        if (jGroup.get("incompleteDescription") != null) {
+            descUnfinished = jGroup.getString("incompleteDescription");
+        }
+
+//        group.setId(groupId);
         group.setGroupCode(groupCode);
         group.setGroupName(groupName);
+        group.setDescUnfinished(descUnfinished);
+
+        ArrayList<String> months = group.getMonths();
+        if (months == null) {
+            months = new ArrayList<>();
+            group.setMonths(months);
+        }
+        months.add(jGroup.getString("ym"));
+
+        ArrayList<Data4FundsPerMonth> fundsPerMonths = group.getFundsPerMonth();
+        if (fundsPerMonths == null) {
+            fundsPerMonths = new ArrayList<>();
+            group.setFundsPerMonth(fundsPerMonths);
+        }
+        Data4FundsPerMonth fundsPerMonth = new Data4FundsPerMonth();
+        fundsPerMonth.setIndicatrixPerMonth(
+                new BigDecimal(jGroup.getDouble("monthIndex"))
+        );
+        fundsPerMonth.setCompletionPerMonth(
+                new BigDecimal(jGroup.getDouble("monthFulfilQuantity"))
+        );
+        fundsPerMonth.setRateCompletedPerMonth(
+                new BigDecimal(jGroup.getDouble("monthAch"))
+        );
+        fundsPerMonth.setIndicatrixCumulated(
+                new BigDecimal(jGroup.getDouble("cumulativeIndex"))
+        );
+        fundsPerMonth.setCompletionCumulated(
+                new BigDecimal(jGroup.getString("cumulativeFulfilQuantity"))
+        );
+        fundsPerMonth.setRateCompletedCumulated(
+                new BigDecimal(jGroup.getDouble("cumulativeAch"))
+        );
+        fundsPerMonths.add(fundsPerMonth);
+
         return group;
     }
 
@@ -99,14 +138,6 @@ public class Group implements Infermation {
 
     public void setFundsPerMonth(ArrayList<Data4FundsPerMonth> fundsPerMonth) {
         this.fundsPerMonth = fundsPerMonth;
-    }
-
-    public Data4FundsCumulated getFundsCumulated() {
-        return fundsCumulated;
-    }
-
-    public void setFundsCumulated(Data4FundsCumulated fundsCumulated) {
-        this.fundsCumulated = fundsCumulated;
     }
 
     public String getDescUnfinished() {

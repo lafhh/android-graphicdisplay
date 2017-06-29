@@ -13,6 +13,7 @@ public class NetUtil {
     public static final String URL_FUNDSTURNEDOVER = BASE_URL + "fundsTurnedOver/";
     public static final String URL_LANDBANKING     = BASE_URL + "landbanking/";
 
+    //http://192.168.1.193:8081/jsbi/fundsTurnedOver/getFundsTurnedOverForGroupTable.do
     public static final String URL_FUNDSTURNEDOVER_GROUP_TABLE  = URL_FUNDSTURNEDOVER + "getFundsTurnedOverForGroupTable.do";
     public static final String URL_FUNDSTURNEDOVER_COMP_TABLE   = URL_FUNDSTURNEDOVER + "getFundsTurnedOverForComTable.do";
 
@@ -25,5 +26,6 @@ public class NetUtil {
 
     public static final String POST_ORGID   = "orgId";
     public static final String POST_DATE    = "ym";
+
 
 }

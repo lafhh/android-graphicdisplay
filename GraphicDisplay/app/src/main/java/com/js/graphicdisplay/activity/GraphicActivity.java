@@ -1,5 +1,6 @@
 package com.js.graphicdisplay.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
@@ -9,15 +10,12 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
@@ -27,8 +25,6 @@ import com.js.graphicdisplay.data.Company;
 import com.js.graphicdisplay.data.Group;
 import com.js.graphicdisplay.data.NameValuePair;
 import com.js.graphicdisplay.data.Project;
-import com.js.graphicdisplay.mpchart.DayAxisValueFormatter;
-import com.js.graphicdisplay.mpchart.MyAxisValueFormatter;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
@@ -39,7 +35,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -58,14 +53,15 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
     private Spinner spinnerCompany;
     private Spinner spinnerProject;
 
-    private BarChart barChart;
+    private BarChart mChart;
 
     private SpinnerAdapter<Group> groupAdapter;
     private SpinnerAdapter<Company> companyAdapter;
     private SpinnerAdapter<Project> projectAdapter;
 
+
     private ArrayList<Group> groups = new ArrayList<>();
-    private ArrayList<ChartBean> chartData = new ArrayList<>();
+    private ArrayList<Group> groups1 = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,12 +71,12 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         //spinner
         initialSpinnerData();
         spinnerGroup = (Spinner) findViewById(R.id.spinner_group);
-        groupAdapter = new SpinnerAdapter<>(this, groups);
+        groupAdapter = new SpinnerAdapter<>(this, groups1);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGroup.setAdapter(groupAdapter);
         spinnerGroup.setOnItemSelectedListener(this);
 
-        ArrayList<Company> companies = groups.get(0).getChild();
+        ArrayList<Company> companies = groups1.get(0).getChild();
         spinnerCompany = (Spinner) findViewById(R.id.spinner_company);
         companyAdapter = new SpinnerAdapter<>(this, companies);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -95,70 +91,58 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         spinnerProject.setOnItemSelectedListener(this);
 
         /******** chart start **********/
-        barChart = (BarChart) findViewById(R.id.chart);
-        barChart.setDrawBarShadow(false);
-//        barChart.setDrawValueAboveBar(true);
-
-        barChart.getDescription().setEnabled(false);
-
-        // if more than 60 entries are displayed in the chart, no values will be
-        // drawn
-        barChart.setMaxVisibleValueCount(BAR_CHART_MAX_VALUE_COUNT);
+        mChart = (BarChart) findViewById(R.id.chart);
+        mChart.getDescription().setEnabled(false);
 
         // scaling can now only be done on x- and y-axis separately
-        barChart.setPinchZoom(false);
+        mChart.setPinchZoom(false);
 
-        barChart.setDrawGridBackground(false);
+        mChart.setDrawBarShadow(false);
 
-        IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(barChart);
+        mChart.setDrawGridBackground(false);
 
-        XAxis xAxis = barChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTypeface(mTfLight);
-        xAxis.setDrawGridLines(false);
-
-        //Set a minimum interval for the axis when zooming in.
-        // The axis is not allowed to go below that limit.
-        // This can be used to avoid label duplicating when zooming in.
-        xAxis.setGranularity(1f); // only intervals of 1 day
-
-        xAxis.setLabelCount(6);
-        xAxis.setValueFormatter(xAxisFormatter);
-
-        IAxisValueFormatter custom = new MyAxisValueFormatter();
-
-        YAxis leftAxis = barChart.getAxisLeft();
-        leftAxis.setTypeface(mTfLight);
-        leftAxis.setLabelCount(6, false);
-        leftAxis.setValueFormatter(custom);
-        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
-        leftAxis.setSpaceTop(15f);
-        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-//        leftAxis.setAxisMaximum(60f);
-
-        YAxis rightAxis = barChart.getAxisRight();
-        rightAxis.setDrawGridLines(false);
-        rightAxis.setTypeface(mTfLight);
-        rightAxis.setLabelCount(6, false); //znn
-        rightAxis.setValueFormatter(custom);
-        rightAxis.setSpaceTop(15f);
-        rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-//        rightAxis.setAxisMaximum(60f);
-
-        Legend l = barChart.getLegend();
+        Legend l = mChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-        l.setDrawInside(false);
         l.setForm(Legend.LegendForm.SQUARE);
-        l.setFormSize(9f);
-        l.setTextSize(11f);
-        l.setXEntrySpace(4f);
+        l.setDrawInside(false);
+        l.setTypeface(mTfLight);
+        l.setYOffset(2f);
+        l.setXOffset(10f);
+        l.setYEntrySpace(0f);
+        l.setTextSize(8f);
 
-//        initialChartData();
-        int valueCount = chartData.size() - 1;
-        int range = getMaxValue();
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.setTypeface(mTfLight);
+        xAxis.setGranularity(1f);
+        xAxis.setCenterAxisLabels(true);
+//        xAxis.setDrawGridLines(false);
+        xAxis.setGridColor(Color.parseColor("#BDBDBD"));
+        xAxis.setDrawAxisLine(false);
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float v, AxisBase axisBase) {
+                Log.d("laf", String.valueOf((int) v));
+                return String.valueOf((int) v);
+            }
+        });
+
+        YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.setTypeface(mTfLight);
+        leftAxis.setValueFormatter(new LargeValueFormatter());
+        leftAxis.setDrawGridLines(false);
+        leftAxis.setDrawZeroLine(true);
+        leftAxis.setZeroLineColor(Color.parseColor("#DCC6D1"));
+        leftAxis.setZeroLineWidth(1f);
+        leftAxis.setAxisLineColor(Color.parseColor("#BDBDBD"));
+//        leftAxis.setSpaceTop(35f);
+        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+
+        mChart.getAxisRight().setEnabled(false);
+
         setData();
+
         /******** chart end **********/
 
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
@@ -169,18 +153,32 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
                 list,
                 Request.ContentType.KVP,
                 new Callback() {
+                    Message msg;
+
                     @Override
                     public void onFailure(Call call, IOException e) {
                         e.printStackTrace();
+                        msg = Message.obtain();
+                        msg.what = MESSAGE_ERROR;
+                        mHandler.sendMessage(msg);
                     }
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         if (response.isSuccessful()) {
+                            String body = response.body().string();
                             Log.d(TAG, "response code : " + response.code());
-                            Log.d(TAG, "body = " + response.body().string());
+                            Log.d(TAG, "body = " + body);
+                            msg = Message.obtain();
+                            msg.what = MESSAGE_SUCCESS;
+                            msg.obj = body;
+                            mHandler.sendMessage(msg);
 
                         } else {
+                            msg = Message.obtain();
+                            msg.what = MESSAGE_FAILED;
+                            msg.obj = response.body().string();
+                            mHandler.sendMessage(msg);
                             throw new IOException("Unexpected code " + response);
                         }
                     }
@@ -191,15 +189,15 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         for (int i = 0; i < 5; i++) {
             Group group = new Group();
             group.setGroupName("g" + (i + 1));
-            groups.add(group);
+            groups1.add(group);
         }
-        String group = groups.get(0).getName();
+        String group = groups1.get(0).getName();
         ArrayList<Company> companies = new ArrayList<>();
-        groups.get(0).setChild(companies);
-        for (int i = 0; i < 10; i++) {
-            Company company = new Company();
-            company.setCompanyName(group + "c" + (i + 1));
-            companies.add(company);
+            groups1.get(0).setChild(companies);
+            for (int i = 0; i < 10; i++) {
+                Company company = new Company();
+                company.setCompanyName(group + "c" + (i + 1));
+                companies.add(company);
         }
         String company = companies.get(0).getName();
         ArrayList<Project> projects = new ArrayList<>();
@@ -271,56 +269,40 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 
     }
 
-    private int getMaxValue() {
-        int max = 0;
-        for (Iterator<ChartBean> i = chartData.iterator(); i.hasNext(); ) {
-            ChartBean bean = i.next();
-            int value = bean.getValue();
-            if (value > max) max = value;
-        }
-        return max;
-    }
-
-    private ArrayList<BarEntry> setBarEntryForBarChart() {
-        ArrayList<BarEntry> yvals = new ArrayList<>();
-
-        for (int i = 0; i < chartData.size(); i++) {
-            int value = chartData.get(i).getValue();
-            yvals.add(new BarEntry(i + 1, value));
-        }
-        return yvals;
-    }
-
-    private void setData() {
-        ArrayList<BarEntry> entries = setBarEntryForBarChart();
-
-        BarDataSet barDataSet = new BarDataSet(entries, "The year 2017");
-        barDataSet.setDrawIcons(false);
-        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-
-        ArrayList<IBarDataSet> dataSet = new ArrayList<>();
-        dataSet.add(barDataSet);
-
-        BarData data = new BarData(dataSet);
-        data.setValueTextSize(10f);
-        data.setValueTypeface(mTfLight);
-        data.setBarWidth(0.9f);
-
-        //Enables / disables drawing values (value-text) for all DataSets this data object contains.
-        data.setDrawValues(false);
-
-        barChart.setData(data);
-    }
-
     protected void handleUIMessage(Message msg) {
-        String json = msg.obj.toString();
+        switch (msg.what) {
+            case MESSAGE_SUCCESS:
+                String json = msg.obj.toString();
+                groupChartFromJson(json);
+                break;
+
+            case MESSAGE_ERROR:
+                break;
+
+            case MESSAGE_FAILED:
+                break;
+        }
+    }
+
+    private void groupChartFromJson(String json) {
         try {
             JSONArray jsonArray = new JSONArray(json);
-            Group group = new Group();
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+            Group group = null;
 
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                String groupCode = jsonObject.getString("groupCode");
+
+                if (group == null || !group.getGroupCode().equals(groupCode)) {
+                    group = new Group();
+                    groups.add(group);
+                }
+
+                Group.fromJson(jsonObject, group);
             }
+
+            Log.d("laf", "end"); //检查数据结构
         } catch (JSONException e) {
             e.printStackTrace();
         }

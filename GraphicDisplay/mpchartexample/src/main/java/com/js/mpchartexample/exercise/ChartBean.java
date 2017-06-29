@@ -1,4 +1,4 @@
-package com.js.graphicdisplay.data;
+package com.js.mpchartexample.exercise;
 
 /**
  * Created by js_gg on 2017/6/22.

@@ -77,7 +77,12 @@ public class BarChartActivity extends DemoBase implements SeekBar.OnSeekBarChang
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTypeface(mTfLight);
         xAxis.setDrawGridLines(false);
+
+        //Set a minimum interval for the axis when zooming in.
+        // The axis is not allowed to go below that limit.
+        // This can be used to avoid label duplicating when zooming in.
         xAxis.setGranularity(1f); // only intervals of 1 day
+
         xAxis.setLabelCount(7); //znn
         xAxis.setValueFormatter(xAxisFormatter);
 

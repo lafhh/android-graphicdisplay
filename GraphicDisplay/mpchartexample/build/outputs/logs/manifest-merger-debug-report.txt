@@ -1,57 +1,57 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:2:1-21:12
+ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:2:1-21:12
 	package
-		ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:3:5-36
-		INJECTED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml
+		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:3:5-36
+		INJECTED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml
+		INJECTED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml
+		INJECTED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml
+		INJECTED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:2:11-69
+		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:2:11-69
 	android:versionCode
-		INJECTED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml
+		INJECTED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml
+		INJECTED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:5:5-80
+ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:5:5-80
 	android:name
-		ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:5:22-78
+		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:5:22-78
 application
-ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:7:5-19:19
-MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\js_gg\.android\build-cache\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.1.1] C:\Users\js_gg\.android\build-cache\d146192b208e2715f206553a273b0a6c9198d652\output\AndroidManifest.xml:22:5-20
+ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:7:5-19:19
+MERGED from [com.android.support:appcompat-v7:23.1.1] /Users/apple/.android/build-cache/b461ea4453fa1a8a3a112e6e7c059a7438e602b1/output/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /Users/apple/.android/build-cache/a4419a293970cb3150687f247e14821b2b38beb4/output/AndroidManifest.xml:22:5-20
 	android:label
-		ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:9:9-41
+		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:9:9-41
 	android:supportsRtl
-		ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:10:9-35
+		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:10:9-35
 	android:allowBackup
-		ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:7:18-44
+		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:7:18-44
 	android:icon
-		ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:8:9-43
+		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:8:9-43
 	android:theme
-		ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:11:9-40
+		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:11:9-40
 activity#com.js.mpchartexample.exercise.PieChartActivity
-ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:12:9-18:20
+ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:12:9-18:20
 	android:name
-		ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:12:19-60
+		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:12:19-60
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:13:13-17:29
+ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:13:13-17:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:14:17-69
+ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:14:17-69
 	android:name
-		ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:14:25-66
+		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:14:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:16:17-77
+ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:16:17-77
 	android:name
-		ADDED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml:16:27-74
+		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:16:27-74
 uses-sdk
-INJECTED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\js_gg\.android\build-cache\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.1.1] C:\Users\js_gg\.android\build-cache\d146192b208e2715f206553a273b0a6c9198d652\output\AndroidManifest.xml:20:5-43
+INJECTED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:23.1.1] /Users/apple/.android/build-cache/b461ea4453fa1a8a3a112e6e7c059a7438e602b1/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /Users/apple/.android/build-cache/a4419a293970cb3150687f247e14821b2b38beb4/output/AndroidManifest.xml:20:5-43
 	android:targetSdkVersion
-		INJECTED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml
+		INJECTED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml
+		INJECTED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\js_gg\work\gitP\android-graphicdisplay\GraphicDisplay\mpchartexample\src\main\AndroidManifest.xml
+		INJECTED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml
+		INJECTED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml

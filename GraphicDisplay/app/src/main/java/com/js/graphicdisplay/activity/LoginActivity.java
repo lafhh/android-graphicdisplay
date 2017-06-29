@@ -27,10 +27,6 @@ public class LoginActivity extends BaseActivity {
 
     private final String TAG = "LoginActivity";
 
-    private final int MESSAGE_ERROR = 0;
-    private final int MESSAGE_FAILED = 1;
-    private final int MESSAGE_SUCCESS = 2;
-
     private EditText editAccount;
     private EditText editPassword;
     private CheckBox chkRemember;

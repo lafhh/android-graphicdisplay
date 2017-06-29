@@ -15,6 +15,10 @@ import java.lang.ref.WeakReference;
 
 public class BaseActivity extends AppCompatActivity {
 
+    public static final int MESSAGE_ERROR = 0;
+    public static final int MESSAGE_FAILED = 1;
+    public static final int MESSAGE_SUCCESS = 2;
+
     protected Typeface mTfLight;
     protected Handler mHandler = new MHandler(this);
 

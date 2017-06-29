@@ -20,8 +20,6 @@ public class Company implements Infermation {
 
     private ArrayList<Data4FundsPerMonth> fundsPerMonth; //每月上缴资金相关数据
 
-    private Data4FundsCumulated fundsCumulated; //累计上缴资金相关数据
-
     private String descUnfinished; //未完成情况说明
 
 
@@ -82,14 +80,6 @@ public class Company implements Infermation {
 
     public void setFundsPerMonth(ArrayList<Data4FundsPerMonth> fundsPerMonth) {
         this.fundsPerMonth = fundsPerMonth;
-    }
-
-    public Data4FundsCumulated getFundsCumulated() {
-        return fundsCumulated;
-    }
-
-    public void setFundsCumulated(Data4FundsCumulated fundsCumulated) {
-        this.fundsCumulated = fundsCumulated;
     }
 
     public String getDescUnfinished() {
