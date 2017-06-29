@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
+        "outputFile": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 327
                 },
                 "from": {
-                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-hdpi\\values-hdpi.xml",
+                    "file": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-hdpi\\values-hdpi.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -26,7 +26,7 @@
         ]
     },
     {
-        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
+        "outputFile": "C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
         "map": [
             {
                 "to": {
@@ -38,7 +38,7 @@
                     "endOffset": 327
                 },
                 "from": {
-                    "file": "/Users/apple/.android/build-cache/b461ea4453fa1a8a3a112e6e7c059a7438e602b1/output/res/values-hdpi/values-hdpi.xml",
+                    "file": "C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-hdpi\\values-hdpi.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -52,7 +52,7 @@
         ]
     },
     {
-        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
+        "outputFile": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
         "map": [
             {
                 "to": {
@@ -64,7 +64,33 @@
                     "endOffset": 327
                 },
                 "from": {
-                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-hdpi\\values-hdpi.xml",
+                    "file": "C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-hdpi\\values-hdpi.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 235,
+                        "endLine": 8,
+                        "endColumn": 13,
+                        "endOffset": 507
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 6,
+                    "endColumn": 13,
+                    "endOffset": 327
+                },
+                "from": {
+                    "file": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-hdpi\\values-hdpi.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

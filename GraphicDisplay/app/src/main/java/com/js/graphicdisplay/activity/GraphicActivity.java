@@ -14,6 +14,10 @@ import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.js.graphicdisplay.R;
@@ -22,6 +26,7 @@ import com.js.graphicdisplay.adapter.SpinnerAdapter;
 import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.ChartBean;
 import com.js.graphicdisplay.data.Company;
+import com.js.graphicdisplay.data.Data4FundsPerMonth;
 import com.js.graphicdisplay.data.Group;
 import com.js.graphicdisplay.data.NameValuePair;
 import com.js.graphicdisplay.data.Project;
@@ -140,9 +145,6 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         mChart.getAxisRight().setEnabled(false);
-
-        setData();
-
         /******** chart end **********/
 
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
@@ -193,11 +195,11 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         }
         String group = groups1.get(0).getName();
         ArrayList<Company> companies = new ArrayList<>();
-            groups1.get(0).setChild(companies);
-            for (int i = 0; i < 10; i++) {
-                Company company = new Company();
-                company.setCompanyName(group + "c" + (i + 1));
-                companies.add(company);
+        groups1.get(0).setChild(companies);
+        for (int i = 0; i < 10; i++) {
+            Company company = new Company();
+            company.setCompanyName(group + "c" + (i + 1));
+            companies.add(company);
         }
         String company = companies.get(0).getName();
         ArrayList<Project> projects = new ArrayList<>();
@@ -274,6 +276,7 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
             case MESSAGE_SUCCESS:
                 String json = msg.obj.toString();
                 groupChartFromJson(json);
+                setChartData();
                 break;
 
             case MESSAGE_ERROR:
@@ -306,5 +309,40 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    //group: a group of bars
+    private void setChartData() {
+        //indicatrixPerMonth & completionPerMonth, two bar per Group(集团)
+        int barCountPerGroup = groups.size() * 2;
+
+        ArrayList<BarEntry> entries1 = null;
+        ArrayList<BarEntry> entries2 = null;
+        BarDataSet set1;
+        BarDataSet set2;
+        BarData barData = new BarData();
+        ArrayList<String> months = groups.get(0).getMonths();
+        for (int i = 0; i < months.size(); i++) {
+            int month = Integer.parseInt(months.get(i));
+
+            for (int j = 0; j < groups.size(); j++) {
+                Data4FundsPerMonth data = groups.get(j).getFundsPerMonth().get(i);
+                String groupName = groups.get(j).getName();
+                if (i == 0) {
+                    entries1 = new ArrayList<>();
+                    entries2 = new ArrayList<>();
+                    set1 = new BarDataSet(entries1, groupName);
+                    set2 = new BarDataSet(entries2, groupName);
+                    barData.addDataSet(set1);
+                    barData.addDataSet(set2);
+                }
+                BarEntry entry1 = new BarEntry(month, data.getIndicatrixPerMonth().floatValue());
+                BarEntry entry2 = new BarEntry(month, data.getCompletionPerMonth().floatValue());
+                entries1.add(entry1);
+                entries2.add(entry2);
+            }
+        }
+
+
     }
 }
