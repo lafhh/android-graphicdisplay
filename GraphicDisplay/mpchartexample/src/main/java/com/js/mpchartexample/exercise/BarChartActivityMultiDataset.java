@@ -90,7 +90,7 @@ public class BarChartActivityMultiDataset extends DemoBase {
         float groupSpace = 0.1f;
         float barSpace = 0.03f; // x3 DataSet
         float barWidth = 0.27f; // x3 DataSet
-        //(0.25 + 0.05) * 3 + 0.1 = 1 -> interval per "group"
+        //(0.25 + 0.05) * 3 + 0.1 = 1.00 -> interval per "group"
 
         int groupCount = 6;
         int startYear = 1980;
@@ -123,9 +123,10 @@ public class BarChartActivityMultiDataset extends DemoBase {
         data.setBarWidth(barWidth);
         data.setValueTypeface(mTfLight);
         mChart.setData(data);
+
         mChart.getXAxis().setAxisMinimum(startYear);
 //        mChart.getXAxis().setAxisMaximum(1986);
-        mChart.getXAxis().setAxisMaximum(startYear + mChart.getData().getGroupWidth(groupSpace, barSpace) * groupCount);
+        mChart.getXAxis().setAxisMaximum(startYear + mChart.getBarData().getGroupWidth(groupSpace, barSpace) * groupCount);
         mChart.groupBars(startYear, groupSpace, barSpace);
 
         mChart.setData(data);

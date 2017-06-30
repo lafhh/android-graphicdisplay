@@ -14,6 +14,7 @@ public class NetUtil {
     public static final String URL_LANDBANKING     = BASE_URL + "landbanking/";
 
     //http://192.168.1.193:8081/jsbi/fundsTurnedOver/getFundsTurnedOverForGroupTable.do
+    //curl -X POST --data "limit=10&offset=0" http://192.168.1.193:8081/jsbi/fundsTurnedOver/getFundsTurnedOverForGroupTable.do
     public static final String URL_FUNDSTURNEDOVER_GROUP_TABLE  = URL_FUNDSTURNEDOVER + "getFundsTurnedOverForGroupTable.do";
     public static final String URL_FUNDSTURNEDOVER_COMP_TABLE   = URL_FUNDSTURNEDOVER + "getFundsTurnedOverForComTable.do";
 

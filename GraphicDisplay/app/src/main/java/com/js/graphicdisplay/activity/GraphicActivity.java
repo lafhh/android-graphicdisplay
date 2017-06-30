@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
-
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
@@ -17,33 +16,25 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
 import com.js.graphicdisplay.api.Infermation;
-import com.js.graphicdisplay.data.ChartBean;
-import com.js.graphicdisplay.data.Company;
-import com.js.graphicdisplay.data.Data4FundsPerMonth;
-import com.js.graphicdisplay.data.Group;
-import com.js.graphicdisplay.data.NameValuePair;
-import com.js.graphicdisplay.data.Project;
+import com.js.graphicdisplay.data.*;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
-
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 /**
  * Created by js_gg on 2017/6/17.
@@ -316,33 +307,47 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         //indicatrixPerMonth & completionPerMonth, two bar per Group(集团)
         int barCountPerGroup = groups.size() * 2;
 
-        ArrayList<BarEntry> entries1 = null;
-        ArrayList<BarEntry> entries2 = null;
-        BarDataSet set1;
-        BarDataSet set2;
+        float groupSpace = 0.07f;
+        float perBarSpaceWidth = (1.00f - groupSpace) / barCountPerGroup;
+        float barSpace = perBarSpaceWidth * 0.12f;
+        float barWidth = perBarSpaceWidth * 0.88f;
+
         BarData barData = new BarData();
         ArrayList<String> months = groups.get(0).getMonths();
+        int startMonth = Integer.parseInt(months.get(0));
+
         for (int i = 0; i < months.size(); i++) {
             int month = Integer.parseInt(months.get(i));
 
             for (int j = 0; j < groups.size(); j++) {
                 Data4FundsPerMonth data = groups.get(j).getFundsPerMonth().get(i);
                 String groupName = groups.get(j).getName();
+
+                BarDataSet set;
                 if (i == 0) {
-                    entries1 = new ArrayList<>();
-                    entries2 = new ArrayList<>();
-                    set1 = new BarDataSet(entries1, groupName);
-                    set2 = new BarDataSet(entries2, groupName);
-                    barData.addDataSet(set1);
-                    barData.addDataSet(set2);
+                    set = new BarDataSet(new ArrayList<BarEntry>(), groupName);
+
+                    //设置颜色两组
+                    int[] colors = new int[] {Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)};
+                    set.setColors(colors);
+//                    set.setColor(Color.rgb(139, 234, 255));
+
+                    barData.addDataSet(set);
+                } else {
+                    set = (BarDataSet) barData.getDataSetByIndex(j);
                 }
-                BarEntry entry1 = new BarEntry(month, data.getIndicatrixPerMonth().floatValue());
-                BarEntry entry2 = new BarEntry(month, data.getCompletionPerMonth().floatValue());
-                entries1.add(entry1);
-                entries2.add(entry2);
+                set.addEntry(new BarEntry(month, data.getIndicatrixPerMonth().floatValue()));
+                set.addEntry(new BarEntry(month, data.getCompletionPerMonth().floatValue()));
             }
         }
+        barData.setBarWidth(barWidth);
+        barData.setValueTypeface(mTfLight);
+        mChart.setData(barData);
 
+        mChart.getXAxis().setAxisMinimum(startMonth);
+        mChart.getXAxis().setAxisMaximum(startMonth + mChart.getBarData().getGroupWidth(groupSpace, barSpace) * months.size());
 
+        mChart.groupBars(startMonth, groupSpace, barSpace);
+        mChart.invalidate();
     }
 }
