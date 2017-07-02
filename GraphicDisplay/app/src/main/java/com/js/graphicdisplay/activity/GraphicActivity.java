@@ -138,6 +138,7 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         mChart.getAxisRight().setEnabled(false);
         /******** chart end **********/
 
+
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
 //        list.add(new NameValuePair<>(NetUtil.POST_ORGID, "4"));
 //        list.add(new NameValuePair<>(NetUtil.POST_DATE, "201701"));
@@ -323,21 +324,22 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
                 Data4FundsPerMonth data = groups.get(j).getFundsPerMonth().get(i);
                 String groupName = groups.get(j).getName();
 
-                BarDataSet set;
+                BarDataSet set1, set2;
                 if (i == 0) {
-                    set = new BarDataSet(new ArrayList<BarEntry>(), groupName);
+                    set1 = new BarDataSet(new ArrayList<BarEntry>(), groupName);
+                    set2 = new BarDataSet(new ArrayList<BarEntry>(), groupName);
 
-                    //设置颜色两组
-                    int[] colors = new int[] {Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)};
-                    set.setColors(colors);
-//                    set.setColor(Color.rgb(139, 234, 255));
+                    set1.setColor(Color.rgb(139, 234, 255));
+                    set2.setColor(Color.rgb(255, 210, 139));
 
-                    barData.addDataSet(set);
+                    barData.addDataSet(set1);
+                    barData.addDataSet(set2);
                 } else {
-                    set = (BarDataSet) barData.getDataSetByIndex(j);
+                    set1 = (BarDataSet) barData.getDataSetByIndex(j * 2);
+                    set2 = (BarDataSet) barData.getDataSetByIndex(j * 2 + 1);
                 }
-                set.addEntry(new BarEntry(month, data.getIndicatrixPerMonth().floatValue()));
-                set.addEntry(new BarEntry(month, data.getCompletionPerMonth().floatValue()));
+                set1.addEntry(new BarEntry(month, data.getIndicatrixPerMonth().floatValue()));
+                set2.addEntry(new BarEntry(month, data.getCompletionPerMonth().floatValue()));
             }
         }
         barData.setBarWidth(barWidth);

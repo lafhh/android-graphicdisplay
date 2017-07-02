@@ -44,4 +44,5 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void handleUIMessage(Message msg) {}
 
+
 }
