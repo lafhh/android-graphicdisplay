@@ -306,12 +306,12 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
     //group: a group of bars
     private void setChartData() {
         //indicatrixPerMonth & completionPerMonth, two bar per Group(集团)
-        int barCountPerGroup = groups.size() * 2;
+        int barCountPerGroup = groups.size();
 
-        float groupSpace = 0.07f;
+        float groupSpace = 0.03f;
         float perBarSpaceWidth = (1.00f - groupSpace) / barCountPerGroup;
-        float barSpace = perBarSpaceWidth * 0.12f;
-        float barWidth = perBarSpaceWidth * 0.88f;
+        float barSpace = perBarSpaceWidth * 0.2f;
+        float barWidth = perBarSpaceWidth * 0.8f;
 
         BarData barData = new BarData();
         ArrayList<String> months = groups.get(0).getMonths();
@@ -324,31 +324,33 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
                 Data4FundsPerMonth data = groups.get(j).getFundsPerMonth().get(i);
                 String groupName = groups.get(j).getName();
 
-                BarDataSet set1, set2;
+                BarDataSet set;
                 if (i == 0) {
-                    set1 = new BarDataSet(new ArrayList<BarEntry>(), groupName);
-                    set2 = new BarDataSet(new ArrayList<BarEntry>(), groupName);
+                    set = new BarDataSet(new ArrayList<BarEntry>(), groupName);
 
-                    set1.setColor(Color.rgb(139, 234, 255));
-                    set2.setColor(Color.rgb(255, 210, 139));
+                    set.setColors(new int[] {Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)});
 
-                    barData.addDataSet(set1);
-                    barData.addDataSet(set2);
+                    set.setStackLabels(new String[]{"Births", "Divorces", });
+
+                    barData.addDataSet(set);
                 } else {
-                    set1 = (BarDataSet) barData.getDataSetByIndex(j * 2);
-                    set2 = (BarDataSet) barData.getDataSetByIndex(j * 2 + 1);
+                    set = (BarDataSet) barData.getDataSetByIndex(j);
                 }
-                set1.addEntry(new BarEntry(month, data.getIndicatrixPerMonth().floatValue()));
-                set2.addEntry(new BarEntry(month, data.getCompletionPerMonth().floatValue()));
+                set.addEntry(new BarEntry(
+                        month,
+                        new float[] {
+                                data.getIndicatrixPerMonth().floatValue(),
+                                data.getCompletionPerMonth().floatValue()}));
             }
         }
+        mChart.setData(barData);
         barData.setBarWidth(barWidth);
         barData.setValueTypeface(mTfLight);
-        mChart.setData(barData);
 
         mChart.getXAxis().setAxisMinimum(startMonth);
         mChart.getXAxis().setAxisMaximum(startMonth + mChart.getBarData().getGroupWidth(groupSpace, barSpace) * months.size());
 
+        mChart.setFitBars(true);
         mChart.groupBars(startMonth, groupSpace, barSpace);
         mChart.invalidate();
     }

@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w360dp-v13\\values-w360dp-v13.xml",
+        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w360dp-v13\\values-w360dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 105
                 },
                 "from": {
-                    "file": "C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-w360dp\\values-w360dp.xml",
+                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-w360dp\\values-w360dp.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -24,7 +24,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w360dp-v13\\values-w360dp-v13.xml",
+        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w360dp-v13/values-w360dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -35,7 +35,7 @@
                     "endOffset": 105
                 },
                 "from": {
-                    "file": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-w360dp\\values-w360dp.xml",
+                    "file": "/Users/apple/.android/build-cache/b461ea4453fa1a8a3a112e6e7c059a7438e602b1/output/res/values-w360dp/values-w360dp.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -48,7 +48,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w360dp-v13\\values-w360dp-v13.xml",
+        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w360dp-v13\\values-w360dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -59,7 +59,7 @@
                     "endOffset": 105
                 },
                 "from": {
-                    "file": "C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-w360dp\\values-w360dp.xml",
+                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-w360dp\\values-w360dp.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -72,7 +72,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w360dp-v13\\values-w360dp-v13.xml",
+        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w360dp-v13\\values-w360dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -83,7 +83,31 @@
                     "endOffset": 105
                 },
                 "from": {
-                    "file": "C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-w360dp\\values-w360dp.xml",
+                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-w360dp\\values-w360dp.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 232,
+                        "endColumn": 54,
+                        "endOffset": 282
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w360dp-v13\\values-w360dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 54,
+                    "endOffset": 105
+                },
+                "from": {
+                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-w360dp\\values-w360dp.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
