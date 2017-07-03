@@ -26,6 +26,8 @@ import com.js.graphicdisplay.data.*;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
+import com.js.graphicdisplay.util.FileUtil;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -33,6 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -142,41 +145,47 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
 //        list.add(new NameValuePair<>(NetUtil.POST_ORGID, "4"));
 //        list.add(new NameValuePair<>(NetUtil.POST_DATE, "201701"));
-        HttpManager.doPost(
-                NetUtil.URL_FUNDSTURNEDOVER_ALL_CHART,
-                list,
-                Request.ContentType.KVP,
-                new Callback() {
-                    Message msg;
+//        HttpManager.doPost(
+//                NetUtil.URL_FUNDSTURNEDOVER_ALL_CHART,
+//                list,
+//                Request.ContentType.KVP,
+//                new Callback() {
+//                    Message msg;
+//
+//                    @Override
+//                    public void onFailure(Call call, IOException e) {
+//                        e.printStackTrace();
+//                        msg = Message.obtain();
+//                        msg.what = MESSAGE_ERROR;
+//                        mHandler.sendMessage(msg);
+//                    }
+//
+//                    @Override
+//                    public void onResponse(Call call, Response response) throws IOException {
+//                        if (response.isSuccessful()) {
+//                            String body = response.body().string();
+//                            Log.d(TAG, "response code : " + response.code());
+//                            Log.d(TAG, "body = " + body);
+//                            msg = Message.obtain();
+//                            msg.what = MESSAGE_SUCCESS;
+//                            msg.obj = body;
+//                            mHandler.sendMessage(msg);
+//
+//                        } else {
+//                            msg = Message.obtain();
+//                            msg.what = MESSAGE_FAILED;
+//                            msg.obj = response.body().string();
+//                            mHandler.sendMessage(msg);
+//                            throw new IOException("Unexpected code " + response);
+//                        }
+//                    }
+//                });
 
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        e.printStackTrace();
-                        msg = Message.obtain();
-                        msg.what = MESSAGE_ERROR;
-                        mHandler.sendMessage(msg);
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        if (response.isSuccessful()) {
-                            String body = response.body().string();
-                            Log.d(TAG, "response code : " + response.code());
-                            Log.d(TAG, "body = " + body);
-                            msg = Message.obtain();
-                            msg.what = MESSAGE_SUCCESS;
-                            msg.obj = body;
-                            mHandler.sendMessage(msg);
-
-                        } else {
-                            msg = Message.obtain();
-                            msg.what = MESSAGE_FAILED;
-                            msg.obj = response.body().string();
-                            mHandler.sendMessage(msg);
-                            throw new IOException("Unexpected code " + response);
-                        }
-                    }
-                });
+        String file = "./chart.txt";
+        String json = FileUtil.readToString(file);
+        Log.d(TAG, "test json from file================" + json);
+        groupChartFromJson(json);
+        setChartData();
     }
 
     private void initialSpinnerData() {
