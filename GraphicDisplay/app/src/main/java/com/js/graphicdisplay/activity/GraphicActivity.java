@@ -18,16 +18,16 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
 import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
+import com.js.graphicdisplay.mpchart.MyAxisValueFormatter;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
-import com.js.graphicdisplay.util.FileUtil;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -35,7 +35,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -139,53 +138,55 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         mChart.getAxisRight().setEnabled(false);
+
         /******** chart end **********/
 
 
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
 //        list.add(new NameValuePair<>(NetUtil.POST_ORGID, "4"));
 //        list.add(new NameValuePair<>(NetUtil.POST_DATE, "201701"));
-//        HttpManager.doPost(
-//                NetUtil.URL_FUNDSTURNEDOVER_ALL_CHART,
-//                list,
-//                Request.ContentType.KVP,
-//                new Callback() {
-//                    Message msg;
-//
-//                    @Override
-//                    public void onFailure(Call call, IOException e) {
-//                        e.printStackTrace();
-//                        msg = Message.obtain();
-//                        msg.what = MESSAGE_ERROR;
-//                        mHandler.sendMessage(msg);
-//                    }
-//
-//                    @Override
-//                    public void onResponse(Call call, Response response) throws IOException {
-//                        if (response.isSuccessful()) {
-//                            String body = response.body().string();
-//                            Log.d(TAG, "response code : " + response.code());
-//                            Log.d(TAG, "body = " + body);
-//                            msg = Message.obtain();
-//                            msg.what = MESSAGE_SUCCESS;
-//                            msg.obj = body;
-//                            mHandler.sendMessage(msg);
-//
-//                        } else {
-//                            msg = Message.obtain();
-//                            msg.what = MESSAGE_FAILED;
-//                            msg.obj = response.body().string();
-//                            mHandler.sendMessage(msg);
-//                            throw new IOException("Unexpected code " + response);
-//                        }
-//                    }
-//                });
+        HttpManager.doPost(
+                NetUtil.URL_FUNDSTURNEDOVER_ALL_CHART,
+                list,
+                Request.ContentType.KVP,
+                new Callback() {
+                    Message msg;
 
-        String file = "./chart.txt";
-        String json = FileUtil.readToString(file);
-        Log.d(TAG, "test json from file================" + json);
-        groupChartFromJson(json);
-        setChartData();
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                        msg = Message.obtain();
+                        msg.what = MESSAGE_ERROR;
+                        mHandler.sendMessage(msg);
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        if (response.isSuccessful()) {
+                            String body = response.body().string();
+                            Log.d(TAG, "response code : " + response.code());
+                            Log.d(TAG, "body = " + body);
+                            msg = Message.obtain();
+                            msg.what = MESSAGE_SUCCESS;
+                            msg.obj = body;
+                            mHandler.sendMessage(msg);
+
+                        } else {
+                            msg = Message.obtain();
+                            msg.what = MESSAGE_FAILED;
+                            msg.obj = response.body().string();
+                            mHandler.sendMessage(msg);
+                            throw new IOException("Unexpected code " + response);
+                        }
+                    }
+                });
+        /*** test ***/
+//        String file = "chart";
+//        String json = FileUtil.readToString(file);
+//        Log.d(TAG, "test json from file================" + json);
+//        groupChartFromJson(json);
+//        setChartData();
+        /*** test ***/
     }
 
     private void initialSpinnerData() {
@@ -322,45 +323,110 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         float barSpace = perBarSpaceWidth * 0.2f;
         float barWidth = perBarSpaceWidth * 0.8f;
 
-        BarData barData = new BarData();
+
+//        BarData barData = new BarData();
+//        ArrayList<String> months = groups.get(0).getMonths();
+//        int startMonth = Integer.parseInt(months.get(0));
+//
+//        for (int i = 0; i < months.size(); i++) {
+//            int month = Integer.parseInt(months.get(i));
+//
+//            for (int j = 0; j < groups.size(); j++) {
+//                Data4FundsPerMonth data = groups.get(j).getFundsPerMonth().get(i);
+//                String groupName = groups.get(j).getName();
+//
+//                BarDataSet set;
+//                if (i == 0) {
+//                    set = new BarDataSet(new ArrayList<BarEntry>(), groupName);
+//
+//                    set.setColors(new int[]{Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)});
+//
+//                    set.setStackLabels(new String[]{"Births", "Divorces",});
+//
+//                    barData.addDataSet(set);
+//                } else {
+//                    set = (BarDataSet) barData.getDataSetByIndex(j);
+//                }
+//                set.addEntry(new BarEntry(
+//                        month,
+//                        new float[]{
+//                                data.getCompletionPerMonth().floatValue(),
+//                                data.getIndicatrixPerMonth().floatValue()}));
+//            }
+//        }
+
         ArrayList<String> months = groups.get(0).getMonths();
         int startMonth = Integer.parseInt(months.get(0));
+
+        BarDataSet set1, set2, set3, set4;
+        ArrayList<BarEntry> vals1 = new ArrayList<>();
+        ArrayList<BarEntry> vals2 = new ArrayList<>();
+        ArrayList<BarEntry> vals3 = new ArrayList<>();
+        ArrayList<BarEntry> vals4 = new ArrayList<>();
 
         for (int i = 0; i < months.size(); i++) {
             int month = Integer.parseInt(months.get(i));
 
-            for (int j = 0; j < groups.size(); j++) {
-                Data4FundsPerMonth data = groups.get(j).getFundsPerMonth().get(i);
-                String groupName = groups.get(j).getName();
+            Group g1 = groups.get(0), g2 = groups.get(1),
+                    g3 = groups.get(2), g4 = groups.get(3);
 
-                BarDataSet set;
-                if (i == 0) {
-                    set = new BarDataSet(new ArrayList<BarEntry>(), groupName);
+            Data4FundsPerMonth data1 = g1.getFundsPerMonth().get(i);
+            String groupName1 = g1.getName();
+            Data4FundsPerMonth data2 = g2.getFundsPerMonth().get(i);
+            String groupName2 = g2.getName();
+            Data4FundsPerMonth data3 = g3.getFundsPerMonth().get(i);
+            String groupName3 = g3.getName();
+            Data4FundsPerMonth data4 = g4.getFundsPerMonth().get(i);
+            String groupName4 = g4.getName();
 
-                    set.setColors(new int[] {Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)});
+            float val11 = data1.getCompletionPerMonth().floatValue();
+            float val12 = data1.getIndicatrixPerMonth().floatValue();
+            vals1.add(new BarEntry(month, new float[]{val11, val12}));
 
-                    set.setStackLabels(new String[]{"Births", "Divorces", });
+            float val21 = data2.getCompletionPerMonth().floatValue();
+            float val22 = data2.getIndicatrixPerMonth().floatValue();
+            vals2.add(new BarEntry(month, new float[]{val21, val22}));
 
-                    barData.addDataSet(set);
-                } else {
-                    set = (BarDataSet) barData.getDataSetByIndex(j);
-                }
-                set.addEntry(new BarEntry(
-                        month,
-                        new float[] {
-                                data.getIndicatrixPerMonth().floatValue(),
-                                data.getCompletionPerMonth().floatValue()}));
-            }
+            float val31 = data3.getCompletionPerMonth().floatValue();
+            float val32 = data3.getIndicatrixPerMonth().floatValue();
+            vals3.add(new BarEntry(month, new float[]{val31, val32}));
+
+            float val41 = data4.getCompletionPerMonth().floatValue();
+            float val42 = data4.getIndicatrixPerMonth().floatValue();
+            vals4.add(new BarEntry(month, new float[]{val41, val42}));
         }
+
+        set1 = new BarDataSet(vals1, "groupName1");
+        set2 = new BarDataSet(vals2, "groupName2");
+        set3 = new BarDataSet(vals3, "groupName3");
+        set4 = new BarDataSet(vals4, "groupName4");
+        set1.setColors(new int[] {Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)});
+        set1.setStackLabels(new String[]{"Births", "Divorces", });
+        set2.setColors(new int[] {Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)});
+        set2.setStackLabels(new String[]{"Births", "Divorces", });
+        set3.setColors(new int[] {Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)});
+        set3.setStackLabels(new String[]{"Births", "Divorces", });
+        set4.setColors(new int[] {Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)});
+        set4.setStackLabels(new String[]{"Births", "Divorces", });
+
+        ArrayList<IBarDataSet> dataSets = new ArrayList<>();
+        dataSets.add(set1);
+        dataSets.add(set2);
+        dataSets.add(set3);
+        dataSets.add(set4);
+
+        BarData barData = new BarData(dataSets);
+
+
         mChart.setData(barData);
-        barData.setBarWidth(barWidth);
-        barData.setValueTypeface(mTfLight);
+        mChart.getBarData().setBarWidth(barWidth);
+        mChart.getBarData().setValueTypeface(mTfLight);
 
         mChart.getXAxis().setAxisMinimum(startMonth);
         mChart.getXAxis().setAxisMaximum(startMonth + mChart.getBarData().getGroupWidth(groupSpace, barSpace) * months.size());
 
-        mChart.setFitBars(true);
         mChart.groupBars(startMonth, groupSpace, barSpace);
+        mChart.setFitBars(true);
         mChart.invalidate();
     }
 }

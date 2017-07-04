@@ -14,7 +14,11 @@ import java.io.UnsupportedEncodingException;
 
 public class FileUtil {
 
-
+    /**
+     *一次性从文件读取
+     * @param fileName
+     * @return
+     */
     public static String readToString(String fileName) {
         String encoding = "UTF-8";
         Log.d("laf", "enter");
