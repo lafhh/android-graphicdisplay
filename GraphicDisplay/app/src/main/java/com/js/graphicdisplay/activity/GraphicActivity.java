@@ -1,6 +1,8 @@
 package com.js.graphicdisplay.activity;
 
+import android.annotation.TargetApi;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
@@ -28,6 +30,7 @@ import com.js.graphicdisplay.mpchart.MyAxisValueFormatter;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
+import com.js.graphicdisplay.util.ColorTemplate;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -320,21 +323,53 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 
         float groupSpace = 0.03f;
         float perBarSpaceWidth = (1.00f - groupSpace) / barCountPerGroup;
-        float barSpace = perBarSpaceWidth * 0.2f;
-        float barWidth = perBarSpaceWidth * 0.8f;
+        float barSpace = 0.02f;
+        float barWidth = perBarSpaceWidth - barSpace;
 
+        BarData barData = new BarData();
+        ArrayList<String> months = groups.get(0).getMonths();
+        int startMonth = Integer.parseInt(months.get(0));
 
-//        BarData barData = new BarData();
-//        ArrayList<String> months = groups.get(0).getMonths();
-//        int startMonth = Integer.parseInt(months.get(0));
-//
-//        for (int i = 0; i < months.size(); i++) {
-//            int month = Integer.parseInt(months.get(i));
-//
-//            for (int j = 0; j < groups.size(); j++) {
-//                Data4FundsPerMonth data = groups.get(j).getFundsPerMonth().get(i);
-//                String groupName = groups.get(j).getName();
-//
+        for (int i = 0; i < months.size(); i++) {
+            int month = Integer.parseInt(months.get(i));
+
+            for (int j = 0; j < groups.size(); j++) {
+                Group group = groups.get(j);
+                Data4FundsPerMonth data = group.getFundsPerMonth().get(i);
+                String groupName = group.getName();
+
+                if (group.getTag() == null) {
+                    group.setTag(new ArrayList<BarEntry>());
+                }
+                ArrayList<BarEntry> barEntries = (ArrayList<BarEntry>) group.getTag();
+
+                //stack bar entry.y = val1 + val2, 每月指标vs每月完成的最大值
+                float val1 = data.getCompletionPerMonth().floatValue();
+                float val2 = data.getIndicatrixPerMonth().floatValue();
+                if (val1 < val2) { //
+                    val2 = val2 - val1;
+                    barEntries.add(new BarEntry(month, new float[] {val1, val2}));
+//                    BarEntry en = new BarEntry(1, 2);
+                } else {
+                    float tmp = val1;
+                    val1 = val2;
+                    val2 = tmp - val2;
+                    barEntries.add(new BarEntry(month, tmp)); //没有测试过
+                }
+
+                BarDataSet set;
+                if (i == months.size() - 1) {
+                    group.setKeyColor((j + 1) % ColorTemplate.TEMPLETE_COLOR.length);
+
+                    group.setTag(null);
+                    set = new BarDataSet(barEntries, groupName);
+                    set.setColors( ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()], ColorTemplate.TEMPLETE_COLOR[0]);
+                    set.setStackLabels(new String[]{"Births", "Divorces",});
+
+                    barData.addDataSet(set);
+//                    set.setDrawValues(false);
+                }
+
 //                BarDataSet set;
 //                if (i == 0) {
 //                    set = new BarDataSet(new ArrayList<BarEntry>(), groupName);
@@ -352,80 +387,21 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 //                        new float[]{
 //                                data.getCompletionPerMonth().floatValue(),
 //                                data.getIndicatrixPerMonth().floatValue()}));
-//            }
-//        }
-
-        ArrayList<String> months = groups.get(0).getMonths();
-        int startMonth = Integer.parseInt(months.get(0));
-
-        BarDataSet set1, set2, set3, set4;
-        ArrayList<BarEntry> vals1 = new ArrayList<>();
-        ArrayList<BarEntry> vals2 = new ArrayList<>();
-        ArrayList<BarEntry> vals3 = new ArrayList<>();
-        ArrayList<BarEntry> vals4 = new ArrayList<>();
-
-        for (int i = 0; i < months.size(); i++) {
-            int month = Integer.parseInt(months.get(i));
-
-            Group g1 = groups.get(0), g2 = groups.get(1),
-                    g3 = groups.get(2), g4 = groups.get(3);
-
-            Data4FundsPerMonth data1 = g1.getFundsPerMonth().get(i);
-            String groupName1 = g1.getName();
-            Data4FundsPerMonth data2 = g2.getFundsPerMonth().get(i);
-            String groupName2 = g2.getName();
-            Data4FundsPerMonth data3 = g3.getFundsPerMonth().get(i);
-            String groupName3 = g3.getName();
-            Data4FundsPerMonth data4 = g4.getFundsPerMonth().get(i);
-            String groupName4 = g4.getName();
-
-            float val11 = data1.getCompletionPerMonth().floatValue();
-            float val12 = data1.getIndicatrixPerMonth().floatValue();
-            vals1.add(new BarEntry(month, new float[]{val11, val12}));
-
-            float val21 = data2.getCompletionPerMonth().floatValue();
-            float val22 = data2.getIndicatrixPerMonth().floatValue();
-            vals2.add(new BarEntry(month, new float[]{val21, val22}));
-
-            float val31 = data3.getCompletionPerMonth().floatValue();
-            float val32 = data3.getIndicatrixPerMonth().floatValue();
-            vals3.add(new BarEntry(month, new float[]{val31, val32}));
-
-            float val41 = data4.getCompletionPerMonth().floatValue();
-            float val42 = data4.getIndicatrixPerMonth().floatValue();
-            vals4.add(new BarEntry(month, new float[]{val41, val42}));
+            }
         }
 
-        set1 = new BarDataSet(vals1, "groupName1");
-        set2 = new BarDataSet(vals2, "groupName2");
-        set3 = new BarDataSet(vals3, "groupName3");
-        set4 = new BarDataSet(vals4, "groupName4");
-        set1.setColors(new int[] {Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)});
-        set1.setStackLabels(new String[]{"Births", "Divorces", });
-        set2.setColors(new int[] {Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)});
-        set2.setStackLabels(new String[]{"Births", "Divorces", });
-        set3.setColors(new int[] {Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)});
-        set3.setStackLabels(new String[]{"Births", "Divorces", });
-        set4.setColors(new int[] {Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)});
-        set4.setStackLabels(new String[]{"Births", "Divorces", });
-
-        ArrayList<IBarDataSet> dataSets = new ArrayList<>();
-        dataSets.add(set1);
-        dataSets.add(set2);
-        dataSets.add(set3);
-        dataSets.add(set4);
-
-        BarData barData = new BarData(dataSets);
-
-
         mChart.setData(barData);
-        mChart.getBarData().setBarWidth(barWidth);
-        mChart.getBarData().setValueTypeface(mTfLight);
+        barData.setBarWidth(barWidth);
+        barData.setValueTypeface(mTfLight);
+//        barData.setDrawValues(false);
 
+//        mChart.setDrawValueAboveBar(false);
         mChart.getXAxis().setAxisMinimum(startMonth);
         mChart.getXAxis().setAxisMaximum(startMonth + mChart.getBarData().getGroupWidth(groupSpace, barSpace) * months.size());
 
         mChart.groupBars(startMonth, groupSpace, barSpace);
+
+
         mChart.setFitBars(true);
         mChart.invalidate();
     }

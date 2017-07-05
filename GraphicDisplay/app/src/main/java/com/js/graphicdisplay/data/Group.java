@@ -30,6 +30,10 @@ public class Group implements Infermation {
 
     private String descUnfinished; //未完成情况说明
 
+    private Object tag = null;
+
+    private int keyColor;
+
     public static Group fromJson(JSONObject jGroup, Group group) throws JSONException {
         if (jGroup == null) return null;
 
@@ -146,5 +150,21 @@ public class Group implements Infermation {
 
     public void setDescUnfinished(String descUnfinished) {
         this.descUnfinished = descUnfinished;
+    }
+
+    public Object getTag() {
+        return tag;
+    }
+
+    public void setTag(Object tag) {
+        this.tag = tag;
+    }
+
+    public int getKeyColor() {
+        return keyColor;
+    }
+
+    public void setKeyColor(int keyColor) {
+        this.keyColor = keyColor;
     }
 }

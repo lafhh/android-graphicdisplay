@@ -88,8 +88,8 @@ public class BarChartActivityMultiDataset extends DemoBase {
 
     private void setData() {
         float groupSpace = 0.1f;
-        float barSpace = 0.03f; // x3 DataSet
-        float barWidth = 0.27f; // x3 DataSet
+        float barSpace = 0.0f; // x3 DataSet
+        float barWidth = 0.3f; // x3 DataSet
         //(0.25 + 0.05) * 3 + 0.1 = 1.00 -> interval per "group"
 
         int groupCount = 6;
