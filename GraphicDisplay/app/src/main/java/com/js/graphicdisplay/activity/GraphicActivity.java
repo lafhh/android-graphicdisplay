@@ -1,8 +1,6 @@
 package com.js.graphicdisplay.activity;
 
-import android.annotation.TargetApi;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
@@ -20,13 +18,11 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
 import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
-import com.js.graphicdisplay.mpchart.MyAxisValueFormatter;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
@@ -113,13 +109,17 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         l.setXOffset(10f);
         l.setYEntrySpace(0f);
         l.setTextSize(8f);
+        l.setWordWrapEnabled(true);
+        l.setMaxSizePercent(0.77f);
+//        l.setFormSize(9f);
+//        l.setXEntrySpace(4f);
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setTypeface(mTfLight);
         xAxis.setGranularity(1f);
         xAxis.setCenterAxisLabels(true);
-//        xAxis.setDrawGridLines(false);
-        xAxis.setGridColor(Color.parseColor("#BDBDBD"));
+//        xAxis.setDrawGridLines(false); //设置垂直网格线
+        xAxis.setGridColor(Color.parseColor("#ECEFF0"));
         xAxis.setDrawAxisLine(false);
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
@@ -132,18 +132,29 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setTypeface(mTfLight);
         leftAxis.setValueFormatter(new LargeValueFormatter());
-        leftAxis.setDrawGridLines(false);
-        leftAxis.setDrawZeroLine(true);
+
+//        leftAxis.setValueFormatter(new IAxisValueFormatter() {
+//            @Override
+//            public String getFormattedValue(float v, AxisBase axisBase) {
+//                Log.d("laf", String.valueOf((int) v));
+//                return String.valueOf((int) v);
+//            }
+//        });
+
+//        leftAxis.setDrawGridLines(false);
+        leftAxis.setGridColor(Color.parseColor("#DCC6D1")); //设置水平网格线
+        leftAxis.setDrawZeroLine(true); //设置坐标为0的水平线
         leftAxis.setZeroLineColor(Color.parseColor("#DCC6D1"));
         leftAxis.setZeroLineWidth(1f);
-        leftAxis.setAxisLineColor(Color.parseColor("#BDBDBD"));
+        leftAxis.setAxisLineColor(Color.parseColor("#DCC6D1"));
+        leftAxis.setAxisLineWidth(1f);
+        leftAxis.setLabelCount(18, false);
 //        leftAxis.setSpaceTop(35f);
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         mChart.getAxisRight().setEnabled(false);
 
         /******** chart end **********/
-
 
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
 //        list.add(new NameValuePair<>(NetUtil.POST_ORGID, "4"));
@@ -321,10 +332,13 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         //indicatrixPerMonth & completionPerMonth, two bar per Group(集团)
         int barCountPerGroup = groups.size();
 
-        float groupSpace = 0.03f;
+        float groupSpace = 0.08f;
         float perBarSpaceWidth = (1.00f - groupSpace) / barCountPerGroup;
-        float barSpace = 0.02f;
+        float barSpace = 0.00f;
         float barWidth = perBarSpaceWidth - barSpace;
+//        float groupSpace = 0.08f;
+//        float barSpace = 0.00f; // x4 DataSet
+//        float barWidth = 0.23f; // x4 DataSet
 
         BarData barData = new BarData();
         ArrayList<String> months = groups.get(0).getMonths();
@@ -354,7 +368,7 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
                     float tmp = val1;
                     val1 = val2;
                     val2 = tmp - val2;
-                    barEntries.add(new BarEntry(month, tmp)); //没有测试过
+                    barEntries.add(new BarEntry(month, tmp)); //没有测试
                 }
 
                 BarDataSet set;
@@ -363,8 +377,10 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 
                     group.setTag(null);
                     set = new BarDataSet(barEntries, groupName);
+//                    set.setBarBorderColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
+//                    set.setBarBorderWidth(0.5f);
                     set.setColors( ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()], ColorTemplate.TEMPLETE_COLOR[0]);
-                    set.setStackLabels(new String[]{"Births", "Divorces",});
+                    set.setStackLabels(new String[]{"已完成", "未完成",});
 
                     barData.addDataSet(set);
 //                    set.setDrawValues(false);
@@ -391,16 +407,18 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         }
 
         mChart.setData(barData);
+
         barData.setBarWidth(barWidth);
         barData.setValueTypeface(mTfLight);
-//        barData.setDrawValues(false);
+        barData.setDrawValues(false); //不显示y轴的值
 
+//        mChart.setDrawGridBackground(true); //设置网格线的背景，好像不能按照分组设置不同颜色
 //        mChart.setDrawValueAboveBar(false);
+
         mChart.getXAxis().setAxisMinimum(startMonth);
         mChart.getXAxis().setAxisMaximum(startMonth + mChart.getBarData().getGroupWidth(groupSpace, barSpace) * months.size());
 
         mChart.groupBars(startMonth, groupSpace, barSpace);
-
 
         mChart.setFitBars(true);
         mChart.invalidate();

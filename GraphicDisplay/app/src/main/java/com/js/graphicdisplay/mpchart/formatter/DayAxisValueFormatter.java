@@ -1,4 +1,4 @@
-package com.js.graphicdisplay.mpchart;
+package com.js.graphicdisplay.mpchart.formatter;
 
 import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.components.AxisBase;
