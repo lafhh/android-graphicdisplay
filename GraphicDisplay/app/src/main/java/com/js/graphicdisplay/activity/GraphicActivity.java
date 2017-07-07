@@ -127,25 +127,26 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 //        xAxis.setDrawGridLines(false); //设置垂直网格线
         xAxis.setGridColor(Color.parseColor("#ECEFF0"));
         xAxis.setDrawAxisLine(false);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float v, AxisBase axisBase) {
-                Log.d("laf", String.valueOf((int) v));
+//                Log.d("laf", String.valueOf((int) v));
                 return String.valueOf((int) v);
             }
         });
 
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setTypeface(mTfLight);
-        leftAxis.setValueFormatter(new LargeValueFormatter());
+//        leftAxis.setValueFormatter(new LargeValueFormatter());
 
-//        leftAxis.setValueFormatter(new IAxisValueFormatter() {
-//            @Override
-//            public String getFormattedValue(float v, AxisBase axisBase) {
-//                Log.d("laf", String.valueOf((int) v));
-//                return String.valueOf((int) v);
-//            }
-//        });
+        leftAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float v, AxisBase axisBase) {
+                Log.d("laf", String.valueOf((int) v));
+                return String.valueOf((int) v);
+            }
+        });
 
 //        leftAxis.setDrawGridLines(false);
         leftAxis.setGridColor(Color.parseColor("#DCC6D1")); //设置水平网格线
@@ -427,6 +428,8 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         mChart.groupBars(startMonth, groupSpace, barSpace);
 
         mChart.setFitBars(true);
+        mChart.animateXY(3000, 3000);
+
         mChart.invalidate();
     }
 }

@@ -31,10 +31,10 @@ MERGED from [com.android.support:support-v4:23.1.1] /Users/apple/.android/build-
 		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:8:9-43
 	android:theme
 		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:11:9-40
-activity#com.js.mpchartexample.BarChartActivity
+activity#com.js.mpchartexample.MultiLineChartActivity
 ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:12:9-18:20
 	android:name
-		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:12:19-51
+		ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:12:19-57
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
 ADDED from /Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/AndroidManifest.xml:13:13-17:29
 action#android.intent.action.MAIN

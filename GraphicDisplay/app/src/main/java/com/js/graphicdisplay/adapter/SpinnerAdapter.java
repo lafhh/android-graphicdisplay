@@ -45,9 +45,9 @@ public class SpinnerAdapter<T extends Infermation> extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
 
-        Log.d("SpinnerAdapter", "getView()");
+//        Log.d("SpinnerAdapter", "getView()");
         if (convertView == null) {
-            Log.d("SpinnerAdapter", "getView()1");
+//            Log.d("SpinnerAdapter", "getView()1");
             LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(android.R.layout.simple_spinner_item, null);
             holder = new ViewHolder((TextView) convertView.findViewById(android.R.id.text1));

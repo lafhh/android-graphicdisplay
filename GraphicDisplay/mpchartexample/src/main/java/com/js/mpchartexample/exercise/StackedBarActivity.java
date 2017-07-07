@@ -89,8 +89,8 @@ public class StackedBarActivity extends DemoBase {
         for (int i = 0; i < 6; i++) {
             float val1 = (float) (Math.random() * mult) + mult / 2;
             float val2 = (float) (Math.random() * mult) + mult / 2;
-            Log.d("laf", "val1 = " + val1);
-            Log.d("laf", "val2 = " + val2);
+//            Log.d("laf", "val1 = " + val1);
+//            Log.d("laf", "val2 = " + val2);
             yVals1.add(new BarEntry(
                     i,
                     new float[]{val1, val2}

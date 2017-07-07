@@ -102,7 +102,7 @@ public class PieChartActivity extends DemoBase {
         // the chart.
         for (int i = 0; i < count; i++) {
             float value = (float) ((Math.random() * mult)); //这里给了随意值，他总能按照百分比划分，不知道是怎么实现的
-            Log.d("laf", "entry value = " + value);
+//            Log.d("laf", "entry value = " + value);
             entries.add(new PieEntry(value,
                     mParties[i % mParties.length]));
         }
