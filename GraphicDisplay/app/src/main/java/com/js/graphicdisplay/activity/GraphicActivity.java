@@ -23,6 +23,7 @@ import com.js.graphicdisplay.activity.base.BaseActivity;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
 import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
+import com.js.graphicdisplay.mpchart.components.FundsMarkerView;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
@@ -97,6 +98,11 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         mChart.setDrawBarShadow(false);
 
         mChart.setDrawGridBackground(false);
+
+
+        FundsMarkerView mv = new FundsMarkerView(this, R.layout.markerview_funds);
+        mv.setChartView(mChart); // For bounds control
+        mChart.setMarker(mv); // Set the marker to the chart
 
         Legend l = mChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);

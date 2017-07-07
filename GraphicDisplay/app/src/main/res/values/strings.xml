@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">GraphicDisplay</string>
+    <string name="funds_indicatrix_permonth">计划上缴：%1$s</string>
+    <string name="funds_completion_permonth">实际上缴：%1$s</string>
+    <string name="funds_balance_permonth">差额：%1$s</string>
 </resources>
