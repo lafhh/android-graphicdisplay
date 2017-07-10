@@ -239,4 +239,7 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
     }
+
+
+
 }

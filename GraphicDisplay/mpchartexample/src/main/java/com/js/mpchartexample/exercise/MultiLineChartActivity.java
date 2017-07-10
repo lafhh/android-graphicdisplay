@@ -9,10 +9,16 @@ import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.formatter.LargeValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.js.mpchartexample.DemoBase;
 import com.js.mpchartexample.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by apple on 2017/7/7.
@@ -20,12 +26,14 @@ import com.js.mpchartexample.R;
 
 public class MultiLineChartActivity extends DemoBase {
 
+    private LineChart mChart;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_linechart);
-        LineChart mChart = (LineChart) findViewById(R.id.chart1);
+        mChart = (LineChart) findViewById(R.id.chart1);
 
         mChart.getDescription().setEnabled(false);
         // scaling can now only be done on x- and y-axis separately
@@ -51,7 +59,7 @@ public class MultiLineChartActivity extends DemoBase {
         XAxis xAxis = mChart.getXAxis();
         xAxis.setTypeface(mTfLight);
         xAxis.setGranularity(1f);
-        xAxis.setCenterAxisLabels(true);
+//        xAxis.setCenterAxisLabels(true);
         xAxis.setDrawGridLines(false); //设置垂直网格线
 //        xAxis.setGridColor(Color.parseColor("#ECEFF0"));
         xAxis.setDrawAxisLine(false);
@@ -79,12 +87,13 @@ public class MultiLineChartActivity extends DemoBase {
         leftAxis.setZeroLineWidth(1f);
         leftAxis.setAxisLineColor(Color.parseColor("#DCC6D1"));
         leftAxis.setAxisLineWidth(1f);
-        leftAxis.setLabelCount(18, false);
+        leftAxis.setLabelCount(10, false);
 //        leftAxis.setSpaceTop(35f);
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         mChart.getAxisRight().setEnabled(false);
 
+        setData();
         /*** test ***/
 //        String file = "chart";
 //        String json = FileUtil.readToString(file);
@@ -93,4 +102,51 @@ public class MultiLineChartActivity extends DemoBase {
 //        setChartData();
         /*** test ***/
     }
+
+    private void setData() {
+        ArrayList<ILineDataSet> dataSet = new ArrayList<>();
+
+        int start = 1981;
+        int count = 6;
+        int end = start + count;
+
+        for (int i = 0; i < 4; i++) {
+            ArrayList<Entry> list = new ArrayList<>();
+
+            for (int j = start; j < end; j++) {
+                double val = (Math.random() * 4) + 4;
+                list.add(new Entry(j, (float) val));
+            }
+            LineDataSet d = new LineDataSet(list, "DataSet " + i + 1);
+            d.setLineWidth(2.5f);
+            d.setCircleRadius(4f);
+
+            int color = mColors[i % mColors.length];
+            d.setColor(color);
+            d.setCircleColor(color);
+            dataSet.add(d);
+        }
+        // make the first DataSet dashed
+        ((LineDataSet) dataSet.get(0)).enableDashedLine(10, 10, 0);
+        ((LineDataSet) dataSet.get(0)).setColors(ColorTemplate.VORDIPLOM_COLORS);
+        ((LineDataSet) dataSet.get(0)).setCircleColors(ColorTemplate.VORDIPLOM_COLORS);
+
+        LineData lineData = new LineData(dataSet);
+        mChart.setData(lineData);
+        lineData.setValueTypeface(mTfLight);
+
+        mChart.getXAxis().setAxisMinimum(start);
+//        mChart.getXAxis().setAxisMaximum();
+
+
+
+        mChart.invalidate();
+
+    }
+
+    private int[] mColors = new int[] {
+            ColorTemplate.VORDIPLOM_COLORS[0],
+            ColorTemplate.VORDIPLOM_COLORS[1],
+            ColorTemplate.VORDIPLOM_COLORS[2]
+    };
 }
