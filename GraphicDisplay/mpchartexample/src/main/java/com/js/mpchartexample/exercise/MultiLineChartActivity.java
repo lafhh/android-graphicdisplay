@@ -147,6 +147,6 @@ public class MultiLineChartActivity extends DemoBase {
     private int[] mColors = new int[] {
             ColorTemplate.VORDIPLOM_COLORS[0],
             ColorTemplate.VORDIPLOM_COLORS[1],
-            ColorTemplate.VORDIPLOM_COLORS[2]
+            ColorTemplate.VORDIPLOM_COLORS[2],
     };
 }

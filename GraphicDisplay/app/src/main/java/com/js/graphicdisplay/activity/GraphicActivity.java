@@ -1,6 +1,5 @@
 package com.js.graphicdisplay.activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
@@ -9,21 +8,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.formatter.LargeValueFormatter;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.*;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
 import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
-import com.js.graphicdisplay.mpchart.components.FundsMarkerView;
+import com.js.graphicdisplay.mpchart.customization.BarChartCustomization;
+import com.js.graphicdisplay.mpchart.customization.LineChartCustomization;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
@@ -51,7 +44,8 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
     private Spinner spinnerCompany;
     private Spinner spinnerProject;
 
-    private BarChart mChart;
+    private BarChart mBarChart;
+    private LineChart mLineChart;
 
     private SpinnerAdapter<Group> groupAdapter;
     private SpinnerAdapter<Company> companyAdapter;
@@ -88,80 +82,13 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         spinnerProject.setAdapter(projectAdapter);
         spinnerProject.setOnItemSelectedListener(this);
 
-        /******** chart start **********/
-        mChart = (BarChart) findViewById(R.id.chart);
-        mChart.getDescription().setEnabled(false);
+        //line chart
+        mLineChart = (LineChart) findViewById(R.id.linechart);
+        LineChartCustomization.customLineChart(mLineChart, mTfLight);
 
-        // scaling can now only be done on x- and y-axis separately
-        mChart.setPinchZoom(false);
-
-        mChart.setDrawBarShadow(false);
-
-        mChart.setDrawGridBackground(false);
-
-
-        FundsMarkerView mv = new FundsMarkerView(this, R.layout.markerview_funds);
-        mv.setChartView(mChart); // For bounds control
-        mChart.setMarker(mv); // Set the marker to the chart
-
-        Legend l = mChart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-        l.setForm(Legend.LegendForm.SQUARE);
-        l.setDrawInside(false);
-        l.setTypeface(mTfLight);
-        l.setYOffset(2f);
-        l.setXOffset(10f);
-        l.setYEntrySpace(0f);
-        l.setTextSize(8f);
-        l.setWordWrapEnabled(true);
-        l.setMaxSizePercent(0.77f);
-//        l.setFormSize(9f);
-//        l.setXEntrySpace(4f);
-
-        XAxis xAxis = mChart.getXAxis();
-        xAxis.setTypeface(mTfLight);
-        xAxis.setGranularity(1f);
-        xAxis.setCenterAxisLabels(true);
-//        xAxis.setDrawGridLines(false); //设置垂直网格线
-        xAxis.setGridColor(Color.parseColor("#ECEFF0"));
-        xAxis.setDrawAxisLine(false);
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setValueFormatter(new IAxisValueFormatter() {
-            @Override
-            public String getFormattedValue(float v, AxisBase axisBase) {
-//                Log.d("laf", String.valueOf((int) v));
-                return String.valueOf((int) v);
-            }
-        });
-
-        YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.setTypeface(mTfLight);
-//        leftAxis.setValueFormatter(new LargeValueFormatter());
-
-        leftAxis.setValueFormatter(new IAxisValueFormatter() {
-            @Override
-            public String getFormattedValue(float v, AxisBase axisBase) {
-                Log.d("laf", String.valueOf((int) v));
-                return String.valueOf((int) v);
-            }
-        });
-
-//        leftAxis.setDrawGridLines(false);
-        leftAxis.setGridColor(Color.parseColor("#DCC6D1")); //设置水平网格线
-        leftAxis.setDrawZeroLine(true); //设置坐标为0的水平线
-        leftAxis.setZeroLineColor(Color.parseColor("#DCC6D1"));
-        leftAxis.setZeroLineWidth(1f);
-        leftAxis.setAxisLineColor(Color.parseColor("#DCC6D1"));
-        leftAxis.setAxisLineWidth(1f);
-        leftAxis.setLabelCount(18, false);
-//        leftAxis.setSpaceTop(35f);
-        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-
-        mChart.getAxisRight().setEnabled(false);
-
-        /******** chart end **********/
+        //bar chart
+        mBarChart = (BarChart) findViewById(R.id.barchart);
+        BarChartCustomization.customBarChart(mBarChart, mTfLight);
 
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
 //        list.add(new NameValuePair<>(NetUtil.POST_ORGID, "4"));
@@ -346,31 +273,75 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 //        float groupSpace = 0.08f;
 //        float barSpace = 0.00f; // x4 DataSet
 //        float barWidth = 0.23f; // x4 DataSet
-
         BarData barData = new BarData();
+        LineData lineData = new LineData();
+
         ArrayList<String> months = groups.get(0).getMonths();
         int startMonth = Integer.parseInt(months.get(0));
 
-        for (int i = 0; i < months.size(); i++) {
-            int month = Integer.parseInt(months.get(i));
+//        for (int i = 0; i < months.size(); i++) {
+//            int month = Integer.parseInt(months.get(i));
+//
+//            for (int j = 0; j < groups.size(); j++) {
+//                Group group = groups.get(j);
+//                Data4FundsPerMonth data = group.getFundsPerMonth().get(i);
+//                String groupName = group.getName();
+//
+//                if (group.getTag() == null) {
+//                    group.setTag(new ArrayList<BarEntry>());
+//                }
+//                ArrayList<BarEntry> barEntries = (ArrayList<BarEntry>) group.getTag();
+//
+//                //stack bar entry.y = val1 + val2, 每月指标vs每月完成的最大值
+//                float val1 = data.getCompletionPerMonth().floatValue();
+//                float val2 = data.getIndicatrixPerMonth().floatValue();
+//                if (val1 < val2) { //
+//                    val2 = val2 - val1;
+//                    barEntries.add(new BarEntry(month, new float[]{val1, val2}));
+////                    BarEntry en = new BarEntry(1, 2);
+//                } else {
+//                    float tmp = val1;
+//                    val1 = val2;
+//                    val2 = tmp - val2;
+//                    barEntries.add(new BarEntry(month, tmp)); //没有测试
+//                }
+//
+//                BarDataSet set;
+//                if (i == months.size() - 1) {
+//                    group.setKeyColor((j + 1) % ColorTemplate.TEMPLETE_COLOR.length);
+//
+//                    group.setTag(null);
+//                    set = new BarDataSet(barEntries, groupName);
+////                    set.setBarBorderColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
+////                    set.setBarBorderWidth(0.5f);
+//                    set.setColors(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()], ColorTemplate.TEMPLETE_COLOR[0]);
+//                    set.setStackLabels(new String[]{"已完成", "未完成",});
+//
+//                    barData.addDataSet(set);
+////                    set.setDrawValues(false);
+//                }
+//            }
+//        }
 
-            for (int j = 0; j < groups.size(); j++) {
-                Group group = groups.get(j);
-                Data4FundsPerMonth data = group.getFundsPerMonth().get(i);
-                String groupName = group.getName();
+        for (int i = 0; i < groups.size(); i++) {
+            Group group = groups.get(i);
+            String name = group.getName();
+            group.setKeyColor((i + 1) % ColorTemplate.TEMPLETE_COLOR.length);
+            ArrayList<Data4FundsPerMonth> datas = group.getFundsPerMonth();
 
-                if (group.getTag() == null) {
-                    group.setTag(new ArrayList<BarEntry>());
-                }
-                ArrayList<BarEntry> barEntries = (ArrayList<BarEntry>) group.getTag();
+            ArrayList<BarEntry> barEntries = new ArrayList<>();
+            ArrayList<Entry> lineEntries = new ArrayList<>();
 
-                //stack bar entry.y = val1 + val2, 每月指标vs每月完成的最大值
-                float val1 = data.getCompletionPerMonth().floatValue();
-                float val2 = data.getIndicatrixPerMonth().floatValue();
+            for (int j = 0; j < months.size(); j++) {
+                int month = Integer.parseInt(months.get(j));
+
+                //stack bar entry.y = val1 + val2,
+                // y应该是每月指标vs每月完成的最大值
+                float val1 = datas.get(j).getCompletionPerMonth().floatValue();
+                float val2 = datas.get(j).getIndicatrixPerMonth().floatValue();
                 if (val1 < val2) { //
                     val2 = val2 - val1;
-                    barEntries.add(new BarEntry(month, new float[] {val1, val2}));
-//                    BarEntry en = new BarEntry(1, 2);
+                    barEntries.add(new BarEntry(month, new float[]{val1, val2}));
                 } else {
                     float tmp = val1;
                     val1 = val2;
@@ -378,58 +349,49 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
                     barEntries.add(new BarEntry(month, tmp)); //没有测试
                 }
 
-                BarDataSet set;
-                if (i == months.size() - 1) {
-                    group.setKeyColor((j + 1) % ColorTemplate.TEMPLETE_COLOR.length);
-
-                    group.setTag(null);
-                    set = new BarDataSet(barEntries, groupName);
-//                    set.setBarBorderColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
-//                    set.setBarBorderWidth(0.5f);
-                    set.setColors( ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()], ColorTemplate.TEMPLETE_COLOR[0]);
-                    set.setStackLabels(new String[]{"已完成", "未完成",});
-
-                    barData.addDataSet(set);
-//                    set.setDrawValues(false);
-                }
-
-//                BarDataSet set;
-//                if (i == 0) {
-//                    set = new BarDataSet(new ArrayList<BarEntry>(), groupName);
-//
-//                    set.setColors(new int[]{Color.rgb(139, 234, 255), Color.rgb(255, 210, 139)});
-//
-//                    set.setStackLabels(new String[]{"Births", "Divorces",});
-//
-//                    barData.addDataSet(set);
-//                } else {
-//                    set = (BarDataSet) barData.getDataSetByIndex(j);
-//                }
-//                set.addEntry(new BarEntry(
-//                        month,
-//                        new float[]{
-//                                data.getCompletionPerMonth().floatValue(),
-//                                data.getIndicatrixPerMonth().floatValue()}));
+                //line entry
+                lineEntries.add(new Entry(month,
+                        datas.get(j).getRateCompletedPerMonth().floatValue()));
             }
+
+            BarDataSet barSet = new BarDataSet(barEntries, name);
+//            set.setBarBorderColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
+//            set.setBarBorderWidth(0.5f);
+            barSet.setColors(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()], ColorTemplate.TEMPLETE_COLOR[0]);
+            barSet.setStackLabels(new String[]{"已完成", "未完成",});
+            barData.addDataSet(barSet);
+
+            LineDataSet lineSet = new LineDataSet(lineEntries, name);
+            lineSet.setLineWidth(2.5f);
+            lineSet.setCircleRadius(4f);
+            lineSet.setColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
+            lineSet.setCircleColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
+            lineData.addDataSet(lineSet);
         }
 
-        mChart.setData(barData);
+        mBarChart.setData(barData);
 
         barData.setBarWidth(barWidth);
         barData.setValueTypeface(mTfLight);
         barData.setDrawValues(false); //不显示y轴的值
 
-//        mChart.setDrawGridBackground(true); //设置网格线的背景，好像不能按照分组设置不同颜色
-//        mChart.setDrawValueAboveBar(false);
+//        mBarChart.setDrawGridBackground(true); //设置网格线的背景，好像不能按照分组设置不同颜色
+//        mBarChart.setDrawValueAboveBar(false);
 
-        mChart.getXAxis().setAxisMinimum(startMonth);
-        mChart.getXAxis().setAxisMaximum(startMonth + mChart.getBarData().getGroupWidth(groupSpace, barSpace) * months.size());
+        mBarChart.getXAxis().setAxisMinimum(startMonth);
+        mBarChart.getXAxis().setAxisMaximum(startMonth + mBarChart.getBarData().getGroupWidth(groupSpace, barSpace) * months.size() - 1);
 
-        mChart.groupBars(startMonth, groupSpace, barSpace);
+        mBarChart.groupBars(startMonth, groupSpace, barSpace);
 
-        mChart.setFitBars(true);
-        mChart.animateXY(3000, 3000);
+        mBarChart.setFitBars(true);
+        mBarChart.animateXY(3000, 3000);
 
-        mChart.invalidate();
+        mBarChart.invalidate();
+
+        mLineChart.setData(lineData);
+        lineData.setValueTypeface(mTfLight);
+        mLineChart.getXAxis().setAxisMinimum(startMonth);
+        mLineChart.getXAxis().setAxisMaximum(startMonth + mBarChart.getBarData().getGroupWidth(groupSpace, barSpace) * months.size() - 1);
+        mLineChart.invalidate();
     }
 }

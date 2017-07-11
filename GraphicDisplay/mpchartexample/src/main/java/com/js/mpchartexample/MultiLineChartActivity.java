@@ -10,7 +10,6 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -57,6 +56,7 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
         mChart.getAxisRight().setDrawGridLines(false);
         mChart.getXAxis().setDrawAxisLine(false);
         mChart.getXAxis().setDrawGridLines(false);
+        mChart.getXAxis().setCenterAxisLabels(false);
 
         // enable touch gestures
         mChart.setTouchEnabled(true);
@@ -71,11 +71,11 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
         mSeekBarX.setProgress(20);
         mSeekBarY.setProgress(100);
 
-        Legend l = mChart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
-        l.setDrawInside(false);
+//        Legend l = mChart.getLegend();
+//        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+//        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+//        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+//        l.setDrawInside(false);
     }
 
     @Override
@@ -194,9 +194,9 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
 
             ArrayList<Entry> values = new ArrayList<Entry>();
 
-            for (int i = 0; i < mSeekBarX.getProgress(); i++) {
+            for (int i = 0; i < 6; i++) {
                 double val = (Math.random() * mSeekBarY.getProgress()) + 3;
-                values.add(new Entry(i, (float) val));
+                values.add(new Entry((201701 + i), (float) val));
             }
 
             LineDataSet d = new LineDataSet(values, "DataSet " + (z + 1));
