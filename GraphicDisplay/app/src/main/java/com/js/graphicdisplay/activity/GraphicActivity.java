@@ -17,6 +17,7 @@ import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
 import com.js.graphicdisplay.mpchart.customization.BarChartCustomization;
 import com.js.graphicdisplay.mpchart.customization.LineChartCustomization;
+import com.js.graphicdisplay.mpchart.impl.OnChartGestureImpl;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
@@ -85,6 +86,7 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         //line chart
         mLineChart = (LineChart) findViewById(R.id.linechart);
         LineChartCustomization.customLineChart(mLineChart, mTfLight);
+        mLineChart.setOnChartGestureListener(new OnChartGestureImpl());
 
         //bar chart
         mBarChart = (BarChart) findViewById(R.id.barchart);
@@ -378,20 +380,25 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 //        mBarChart.setDrawGridBackground(true); //设置网格线的背景，好像不能按照分组设置不同颜色
 //        mBarChart.setDrawValueAboveBar(false);
 
+        float groupWidth = mBarChart.getBarData().getGroupWidth(groupSpace, barSpace); //groupwidth = 1
         mBarChart.getXAxis().setAxisMinimum(startMonth);
-        mBarChart.getXAxis().setAxisMaximum(startMonth + mBarChart.getBarData().getGroupWidth(groupSpace, barSpace) * months.size() - 1);
+        mBarChart.getXAxis().setAxisMaximum(startMonth + groupWidth * months.size());
 
         mBarChart.groupBars(startMonth, groupSpace, barSpace);
-
         mBarChart.setFitBars(true);
-        mBarChart.animateXY(3000, 3000);
-
+        mBarChart.animateXY(2500, 2500);
         mBarChart.invalidate();
 
         mLineChart.setData(lineData);
+        int width = mLineChart.getMeasuredWidth();
+        Log.d(TAG, "linechart width======" + width);
+
         lineData.setValueTypeface(mTfLight);
-        mLineChart.getXAxis().setAxisMinimum(startMonth);
-        mLineChart.getXAxis().setAxisMaximum(startMonth + mBarChart.getBarData().getGroupWidth(groupSpace, barSpace) * months.size() - 1);
+//        mLineChart.getXAxis().setAxisMinimum(startMonth);
+//        mLineChart.getXAxis().setAxisMaximum(startMonth + mBarChart.getBarData().getGroupWidth(groupSpace, barSpace) * months.size() - 1);
+//        mLineChart.getXAxis().setSpaceMax(22f);
+
+        mLineChart.animateX(300);
         mLineChart.invalidate();
     }
 }

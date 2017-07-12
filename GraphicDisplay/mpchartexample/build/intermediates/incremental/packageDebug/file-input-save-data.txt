@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Jul 11 16:04:29 CST 2017
+#Wed Jul 12 17:15:06 CST 2017
 210.set=ANDROID_RESOURCE
 14.set=ANDROID_RESOURCE
 180.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/color-v23/abc_color_highlight_material.xml
@@ -148,7 +148,7 @@
 82.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/activity_piechart_half.xml
 136.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
 188.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
-111.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_0116e553f98c13b44a1eaa743c59a7f4a47657b1
+111.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
 240.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/assets/debug
 163.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
 106.set=ANDROID_RESOURCE
@@ -157,7 +157,7 @@
 152.set=ANDROID_RESOURCE
 199.set=ANDROID_RESOURCE
 36.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
-113.set=ANDROID_RESOURCE
+113.set=DEX
 219.set=ANDROID_RESOURCE
 88.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
 11.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
@@ -200,7 +200,7 @@
 44.set=ASSET
 183.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/abc_action_bar_title_item.xml
 148.set=ANDROID_RESOURCE
-90.set=ASSET
+90.set=DEX
 201.set=ANDROID_RESOURCE
 29.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png
 109.set=ANDROID_RESOURCE
@@ -227,7 +227,7 @@
 37.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
 123.set=ANDROID_RESOURCE
 229.set=ANDROID_RESOURCE
-89.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_34323c028d9425422fdba1d8014abd68af1795e5
+89.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/assets/debug
 12.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
 68.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/abc_action_bar_up_container.xml
 43.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/mipmap-xxhdpi-v4/ic_launcher.png
@@ -279,8 +279,8 @@
 84.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/menu/line.xml
 138.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
 22.set=ANDROID_RESOURCE
-113.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
-90.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/assets/debug
+113.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_0116e553f98c13b44a1eaa743c59a7f4a47657b1
+90.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_34323c028d9425422fdba1d8014abd68af1795e5
 242.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
 165.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
 126.set=ANDROID_RESOURCE
@@ -296,7 +296,7 @@
 44.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/assets/debug/square.txt
 119.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/drawable/abc_switch_thumb_material.xml
 96.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/anim/abc_popup_exit.xml
-89.set=DEX
+89.set=ASSET
 202.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
 71.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/abc_screen_simple_overlay_action_mode.xml
 125.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
@@ -372,7 +372,7 @@
 5.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/abc_list_divider_mtrl_alpha.9.png
 153.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
 180.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
-111.set=DEX
+111.set=ANDROID_RESOURCE
 217.set=ASSET
 26.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
 67.set=ANDROID_RESOURCE
@@ -518,7 +518,7 @@ count=245
 94.set=ANDROID_RESOURCE
 205.set=ANDROID_RESOURCE
 188.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/abc_popup_menu_item_layout.xml
-111.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_0116e553f98c13b44a1eaa743c59a7f4a47657b1/classes.dex
+111.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/notification_template_big_media_narrow.xml
 240.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/assets/debug/OpenSans-LightItalic.ttf
 163.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/drawable/abc_btn_check_material.xml
 194.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
@@ -582,7 +582,7 @@ count=245
 137.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/activity_piechart_noseekbar.xml
 215.set=ANDROID_RESOURCE
 189.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/activity_candlechart.xml
-112.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/notification_template_big_media_narrow.xml
+112.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/abc_list_menu_item_checkbox.xml
 19.set=ANDROID_RESOURCE
 241.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/menu/combined.xml
 164.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/activity_scrollview.xml
@@ -596,7 +596,7 @@ count=245
 26.set=ANDROID_RESOURCE
 37.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/activity_awesomedesign.xml
 68.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
-89.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_34323c028d9425422fdba1d8014abd68af1795e5/classes.dex
+89.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/assets/debug/nlogn.txt
 12.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/activity_bubblechart.xml
 43.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_
 72.set=ANDROID_RESOURCE
@@ -640,9 +640,9 @@ count=245
 215.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/abc_cab_background_top_mtrl_alpha.9.png
 138.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/activity_combined.xml
 225.set=ANDROID_RESOURCE
-113.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/abc_list_menu_item_checkbox.xml
+113.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_0116e553f98c13b44a1eaa743c59a7f4a47657b1/classes.dex
 29.set=ANDROID_RESOURCE
-90.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/assets/debug/nlogn.txt
+90.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_34323c028d9425422fdba1d8014abd68af1795e5/classes.dex
 242.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/layout/abc_select_dialog_material.xml
 165.file=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_/res/drawable-ldrtl-xxhdpi-v4/abc_ic_menu_cut_mtrl_alpha.png
 196.base=/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/resources-debug.ap_

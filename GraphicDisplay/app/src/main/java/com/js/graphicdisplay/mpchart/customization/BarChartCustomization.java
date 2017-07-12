@@ -41,15 +41,15 @@ public class BarChartCustomization {
         l.setDrawInside(false);
         l.setTypeface(typeface);
         l.setYOffset(2f);
-        l.setXOffset(10f);
         l.setYEntrySpace(0f);
-        l.setTextSize(8f);
+        l.setTextSize(10f);
         l.setWordWrapEnabled(true);
-        l.setMaxSizePercent(0.77f);
+        l.setMaxSizePercent(0.88f);
 //        l.setFormSize(9f);
 //        l.setXEntrySpace(4f);
 
         XAxis xAxis = chart.getXAxis();
+        xAxis.setLabelRotationAngle(33f);
         xAxis.setTypeface(typeface);
         xAxis.setGranularity(1f);
         xAxis.setCenterAxisLabels(true);

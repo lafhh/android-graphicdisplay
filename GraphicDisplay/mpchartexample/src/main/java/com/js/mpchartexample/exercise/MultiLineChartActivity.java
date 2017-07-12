@@ -106,7 +106,7 @@ public class MultiLineChartActivity extends DemoBase {
     private void setData() {
         ArrayList<ILineDataSet> dataSet = new ArrayList<>();
 
-        int start = 1981;
+        int start = 201701;
         int count = 6;
         int end = start + count;
 
@@ -135,7 +135,7 @@ public class MultiLineChartActivity extends DemoBase {
         mChart.setData(lineData);
         lineData.setValueTypeface(mTfLight);
 
-        mChart.getXAxis().setAxisMinimum(start);
+//        mChart.getXAxis().setAxisMinimum(start);
 //        mChart.getXAxis().setAxisMaximum();
 
 

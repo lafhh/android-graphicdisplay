@@ -31,18 +31,18 @@ public class LineChartCustomization {
         l.setDrawInside(false);
         l.setTypeface(typeface);
         l.setYOffset(2f);
-        l.setXOffset(10f);
         l.setYEntrySpace(0f);
-        l.setTextSize(8f);
+        l.setTextSize(10f);
         l.setWordWrapEnabled(true);
         l.setMaxSizePercent(0.77f);
 //        l.setFormSize(9f);
 //        l.setXEntrySpace(4f);
 
         XAxis xAxis = chart.getXAxis();
+//        xAxis.setLabelRotationAngle(33f);
         xAxis.setTypeface(typeface);
         xAxis.setGranularity(1f);
-        xAxis.setCenterAxisLabels(true);
+//        xAxis.setCenterAxisLabels(true);
         xAxis.setDrawGridLines(false); //设置垂直网格线
 //        xAxis.setGridColor(Color.parseColor("#ECEFF0"));
         xAxis.setDrawAxisLine(false);

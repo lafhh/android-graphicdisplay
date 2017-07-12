@@ -113,7 +113,6 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.actionToggleValues: {
                 for (IBarDataSet set : mChart.getData().getDataSets())
@@ -258,10 +257,12 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
     @Override
     public void onValueSelected(Entry e, Highlight h) {
         Log.i("Activity", "Selected: " + e.toString() + ", dataSet: " + h.getDataSetIndex());
+
     }
 
     @Override
     public void onNothingSelected() {
         Log.i("Activity", "Nothing selected.");
+
     }
 }
