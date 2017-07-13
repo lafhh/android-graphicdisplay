@@ -1,177 +1,5 @@
 [
     {
-        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w600dp-v13\\values-w600dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 63,
-                    "endOffset": 114
-                },
-                "from": {
-                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-w600dp\\values-w600dp.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 232,
-                        "endColumn": 63,
-                        "endOffset": 291
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 119,
-                    "endColumn": 54,
-                    "endOffset": 169
-                },
-                "from": {
-                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-w600dp\\values-w600dp.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 296,
-                        "endColumn": 54,
-                        "endOffset": 346
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w600dp-v13\\values-w600dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 63,
-                    "endOffset": 114
-                },
-                "from": {
-                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-w600dp\\values-w600dp.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 232,
-                        "endColumn": 63,
-                        "endOffset": 291
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 119,
-                    "endColumn": 54,
-                    "endOffset": 169
-                },
-                "from": {
-                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-w600dp\\values-w600dp.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 296,
-                        "endColumn": 54,
-                        "endOffset": 346
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\Documents\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w600dp-v13\\values-w600dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 63,
-                    "endOffset": 114
-                },
-                "from": {
-                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-w600dp\\values-w600dp.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 232,
-                        "endColumn": 63,
-                        "endOffset": 291
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 119,
-                    "endColumn": 54,
-                    "endOffset": 169
-                },
-                "from": {
-                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\apple\\.android\\build-cache\\b461ea4453fa1a8a3a112e6e7c059a7438e602b1\\output\\res\\values-w600dp\\values-w600dp.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 296,
-                        "endColumn": 54,
-                        "endOffset": 346
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\js_gg\\work\\gitP\\android-graphicdisplay\\GraphicDisplay\\mpchartexample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w600dp-v13\\values-w600dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 63,
-                    "endOffset": 114
-                },
-                "from": {
-                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-w600dp\\values-w600dp.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 232,
-                        "endColumn": 63,
-                        "endOffset": 291
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 119,
-                    "endColumn": 54,
-                    "endOffset": 169
-                },
-                "from": {
-                    "file": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/C:\\Users\\js_gg\\.android\\build-cache\\57c4bceb58d5e29b7eac45876eafe8e8a31f21d4\\output\\res\\values-w600dp\\values-w600dp.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 296,
-                        "endColumn": 54,
-                        "endOffset": 346
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w600dp-v13/values-w600dp-v13.xml",
         "map": [
             {
@@ -183,7 +11,7 @@
                     "endOffset": 114
                 },
                 "from": {
-                    "file": "/Users/apple/.android/build-cache/b461ea4453fa1a8a3a112e6e7c059a7438e602b1/output/res/values-w600dp/values-w600dp.xml",
+                    "file": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/values-w600dp/values-w600dp.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -202,7 +30,7 @@
                     "endOffset": 169
                 },
                 "from": {
-                    "file": "/Users/apple/.android/build-cache/b461ea4453fa1a8a3a112e6e7c059a7438e602b1/output/res/values-w600dp/values-w600dp.xml",
+                    "file": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/values-w600dp/values-w600dp.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,

@@ -139,7 +139,6 @@ public class MultiLineChartActivity extends DemoBase {
 //        mChart.getXAxis().setAxisMaximum();
 
 
-
         mChart.invalidate();
 
     }

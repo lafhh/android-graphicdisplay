@@ -17,7 +17,6 @@ import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
 import com.js.graphicdisplay.mpchart.customization.BarChartCustomization;
 import com.js.graphicdisplay.mpchart.customization.LineChartCustomization;
-import com.js.graphicdisplay.mpchart.impl.OnChartGestureImpl;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
@@ -86,7 +85,7 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         //line chart
         mLineChart = (LineChart) findViewById(R.id.linechart);
         LineChartCustomization.customLineChart(mLineChart, mTfLight);
-        mLineChart.setOnChartGestureListener(new OnChartGestureImpl());
+//        mLineChart.setOnChartGestureListener(new OnChartGestureImpl());
 
         //bar chart
         mBarChart = (BarChart) findViewById(R.id.barchart);

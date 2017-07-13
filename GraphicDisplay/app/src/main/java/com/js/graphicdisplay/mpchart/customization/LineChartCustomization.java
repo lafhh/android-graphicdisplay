@@ -39,7 +39,7 @@ public class LineChartCustomization {
 //        l.setXEntrySpace(4f);
 
         XAxis xAxis = chart.getXAxis();
-//        xAxis.setLabelRotationAngle(33f);
+        xAxis.setLabelRotationAngle(33f);
         xAxis.setTypeface(typeface);
         xAxis.setGranularity(1f);
 //        xAxis.setCenterAxisLabels(true);
@@ -60,7 +60,7 @@ public class LineChartCustomization {
         leftAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float v, AxisBase axisBase) {
-                Log.d("laf", String.valueOf((int) v));
+//                Log.d("laf", String.valueOf((int) v));
                 return String.valueOf((int) v + "%");
             }
         });
@@ -75,7 +75,8 @@ public class LineChartCustomization {
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         chart.getAxisRight().setEnabled(false);
-
+//        chart.setLogEnabled(true);
+        chart.setScaleEnabled(false);
         return chart;
     }
 }
