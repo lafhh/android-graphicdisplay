@@ -1,16 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SortableTableView Example</string>
-    <string name="title_activity_main">SortableTableView Example</string>
 
-    <string name="default_text_ps">180PS</string>
-    <string name="separator">/</string>
-    <string name="default_text_kws">120kW</string>
+    <string name="app_name">TableFixHeaders Samples</string>
+    <string name="simple_adapter">Simple adapter</string>
+    <string name="style_adapter">Style adapter</string>
+    <string name="family_adapter">Family adapter</string>
 
-    <string name="car_producer_image_content_description">Car Producer</string>
-    <string name="kw">kW</string>
-    <string name="ps">PS</string>
-    <string name="brand">Brand</string>
-    <string name="model">Model</string>
-    <string name="power">Power</string>
-    <string name="price">Price</string>
 </resources>

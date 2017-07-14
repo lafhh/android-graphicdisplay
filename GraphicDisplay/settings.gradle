@@ -1,1 +1,1 @@
-include ':app', ':mpchartexample', ':tableexample'
+include ':app', ':mpchartexample', ':tableexample', ':library'
