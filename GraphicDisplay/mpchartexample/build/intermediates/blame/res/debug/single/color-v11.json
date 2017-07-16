@@ -1,7 +1,15 @@
 [
     {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",

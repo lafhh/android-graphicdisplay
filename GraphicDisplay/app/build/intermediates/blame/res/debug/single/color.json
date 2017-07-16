@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/app/build/intermediates/res/merged/debug/color/abc_secondary_text_material_light.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/color/abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_dark.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/app/build/intermediates/res/merged/debug/color/switch_thumb_material_light.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/color/switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_light.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/color/abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/app/build/intermediates/res/merged/debug/color/switch_thumb_material_dark.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/color/switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_light.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/color/abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/app/build/intermediates/res/merged/debug/color/abc_search_url_text.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/color/abc_search_url_text.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/app/build/intermediates/res/merged/debug/color/abc_secondary_text_material_dark.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/color/abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_dark.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/color/abc_primary_text_disable_only_material_dark.xml"
+    }
+]

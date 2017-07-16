@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    }
+]

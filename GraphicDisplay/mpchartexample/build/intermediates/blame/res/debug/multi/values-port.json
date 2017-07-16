@@ -22,5 +22,29 @@
                 }
             }
         ]
+    },
+    {
+        "outputFile": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 55,
+                    "endOffset": 106
+                },
+                "from": {
+                    "file": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/values-port/values-port.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 229,
+                        "endColumn": 55,
+                        "endOffset": 280
+                    }
+                }
+            }
+        ]
     }
 ]

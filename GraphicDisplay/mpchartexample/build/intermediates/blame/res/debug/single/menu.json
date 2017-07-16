@@ -4,10 +4,6 @@
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/bar.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/realm.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/realm.xml"
-    },
-    {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/bubble.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/bubble.xml"
     },
@@ -16,20 +12,20 @@
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/candle.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/main.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/main.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/pie.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/pie.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/draw.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/draw.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/combined.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/combined.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/scatter.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/scatter.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/bubble.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/bubble.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/candle.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/candle.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/radar.xml",
@@ -40,6 +36,50 @@
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/line.xml"
     },
     {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/dynamical.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/dynamical.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/main.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/main.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/draw.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/draw.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/line.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/line.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/realm.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/realm.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/realm.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/realm.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/main.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/main.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/pie.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/pie.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/combined.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/combined.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/scatter.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/scatter.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/radar.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/radar.xml"
+    },
+    {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/realtime.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/realtime.xml"
     },
@@ -48,7 +88,19 @@
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/dynamical.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/draw.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/draw.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/scatter.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/scatter.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/pie.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/pie.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/bar.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/bar.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/realtime.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/realtime.xml"
     }
 ]

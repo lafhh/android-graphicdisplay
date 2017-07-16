@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="55dp"
+                android:layout_height="40dp"
+                android:background="@drawable/marker2">
+
+    <TextView
+            android:id="@+id/tv_funds_indicatrix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textSize="5dp"
+            android:textColor="@android:color/white"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+    />
+
+    <TextView android:id="@+id/tv_funds_completion"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/tv_funds_indicatrix"
+              android:layout_alignParentLeft="true"
+              android:layout_marginLeft="5dp"
+              android:textSize="5dp"
+              android:textColor="@android:color/white"
+              android:ellipsize="end"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+    />
+    <TextView android:id="@+id/tv_funds_balance"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/tv_funds_completion"
+              android:layout_alignParentLeft="true"
+              android:layout_marginLeft="5dp"
+              android:textSize="5dp"
+              android:textColor="@android:color/white"
+              android:ellipsize="end"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+    />
+</RelativeLayout>

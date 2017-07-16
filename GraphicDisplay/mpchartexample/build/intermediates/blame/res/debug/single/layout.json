@@ -4,28 +4,28 @@
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_action_bar_up_container.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_performance_linechart.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_performance_linechart.xml"
-    },
-    {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/radar_markerview.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/radar_markerview.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_activity_chooser_view.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_action_mode_bar.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/frag_simple_bar.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/frag_simple_bar.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_list_menu_item_icon.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_radarchart_noseekbar.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_radarchart_noseekbar.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/select_dialog_singlechoice_material.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_action_bar_title_item.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_piechart_noseekbar.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_piechart_noseekbar.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_barchart_noseekbar.xml",
@@ -40,18 +40,6 @@
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_activity_chooser_view_list_item.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_alert_dialog_material.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_list_menu_item_layout.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_colored_lines.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_colored_lines.xml"
-    },
-    {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/frag_simple_line.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/frag_simple_line.xml"
     },
@@ -62,6 +50,314 @@
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/list_item.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/list_item.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_linechart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_linechart.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_scatterchart_noseekbar.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_scatterchart_noseekbar.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/notification_template_media.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/frag_simple_scatter.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/frag_simple_scatter.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_bubblechart_noseekbar.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_bubblechart_noseekbar.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/notification_template_lines.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_draw_chart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_draw_chart.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_realm_wiki.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_realm_wiki.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/list_item_barchart.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/list_item_barchart.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_bubblechart_noseekbar.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_bubblechart_noseekbar.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_scrollview.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_scrollview.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_linechart_noseekbar.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_linechart_noseekbar.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_bubblechart.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_bubblechart.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_screen_simple.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_barchart_noseekbar.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_barchart_noseekbar.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_piechart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_piechart.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_barchart_sinus.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_barchart_sinus.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_screen_content_include.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/list_item_piechart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/list_item_piechart.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_piechart_noseekbar.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_piechart_noseekbar.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_barchart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_barchart.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_listview_chart.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_listview_chart.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_realm_wiki.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_realm_wiki.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_scatterchart.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_scatterchart.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_bubblechart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_bubblechart.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/radar_markerview.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/radar_markerview.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_combined.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_combined.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_radarchart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_radarchart.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/custom_marker_view.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/custom_marker_view.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_piechart_half.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_piechart_half.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_piechart_half.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_piechart_half.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_linechart_time.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_linechart_time.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_performance_linechart.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_performance_linechart.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_candlechart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_candlechart.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/frag_simple_bar.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/frag_simple_bar.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_radarchart_noseekbar.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_radarchart_noseekbar.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/select_dialog_item_material.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_candlechart_noseekbar.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_candlechart_noseekbar.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_listview_chart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_listview_chart.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/frag_simple_pie.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/frag_simple_pie.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_colored_lines.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_colored_lines.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/support_simple_spinner_dropdown_item.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
@@ -80,8 +376,8 @@
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_horizontalbarchart_noseekbar.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_scatterchart_noseekbar.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_scatterchart_noseekbar.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/notification_template_part_time.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_barchart.xml",
@@ -92,16 +388,24 @@
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_candlechart.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_bubblechart_noseekbar.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_bubblechart_noseekbar.xml"
-    },
-    {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_action_bar_view_list_nav_layout.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/custom_marker_view.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/custom_marker_view.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/frag_simple_line.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/frag_simple_line.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_expanded_menu_layout.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
@@ -112,88 +416,104 @@
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_screen_simple.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_alert_dialog_button_bar_material.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_alert_dialog_button_bar_material.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/notification_media_action.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_select_dialog_material.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_horizontalbarchart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_horizontalbarchart.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_popup_menu_item_layout.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_realm_wiki.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_realm_wiki.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_age_distribution.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_age_distribution.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_action_menu_layout.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/list_item_barchart.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/list_item_barchart.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/list_item_barchart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/list_item_barchart.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_linechart_time.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_linechart_time.xml"
     },
     {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_performance_linechart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_performance_linechart.xml"
+    },
+    {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_horizontalbarchart.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_horizontalbarchart.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_linechart_noseekbar.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_linechart_noseekbar.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/list_item_linechart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/list_item_linechart.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_age_distribution.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_age_distribution.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_action_menu_item_layout.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_bubblechart.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_bubblechart.xml"
-    },
-    {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_list_menu_item_icon.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/notification_media_cancel_action.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_screen_toolbar.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/frag_simple_pie.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/frag_simple_pie.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/select_dialog_singlechoice_material.xml"
-    },
-    {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_linechart.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_linechart.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_colored_lines.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_colored_lines.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/frag_simple_bar.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/frag_simple_bar.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/frag_simple_scatter.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/frag_simple_scatter.xml"
     },
     {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_scatterchart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_scatterchart.xml"
+    },
+    {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_list_menu_item_radio.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_action_mode_close_item_material.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/list_item.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/list_item.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_linechart_noseekbar.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_linechart_noseekbar.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_piechart.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_piechart.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_horizontalbarchart_noseekbar.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_horizontalbarchart_noseekbar.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_scrollview.xml",
@@ -208,68 +528,52 @@
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_screen_toolbar.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_piechart_noseekbar.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_piechart_noseekbar.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/notification_template_part_time.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_list_menu_item_radio.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_draw_chart.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_draw_chart.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_expanded_menu_layout.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_search_view.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_radarchart_noseekbar.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_radarchart_noseekbar.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/select_dialog_item_material.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_listview_chart.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_listview_chart.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_alert_dialog_button_bar_material.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/abc_alert_dialog_button_bar_material.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/notification_template_big_media.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_action_mode_bar.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_list_menu_item_checkbox.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_realtime_linechart.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_realtime_linechart.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_awesomedesign.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_awesomedesign.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_scatterchart.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_scatterchart.xml"
-    },
-    {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/support_simple_spinner_dropdown_item.xml"
-    },
-    {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_search_dropdown_item_icons_2line.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_main.xml",
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_main.xml"
     },
     {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/notification_template_media.xml"
+    },
+    {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_scatterchart_noseekbar.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_scatterchart_noseekbar.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_barchart_sinus.xml",
@@ -288,6 +592,10 @@
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/notification_template_part_chronometer.xml"
     },
     {
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_awesomedesign.xml",
+        "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_awesomedesign.xml"
+    },
+    {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/select_dialog_multichoice_material.xml"
     },
@@ -304,7 +612,7 @@
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/layout/abc_screen_content_include.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/activity_piechart_half.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/layout/activity_piechart_half.xml"
+        "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/layout/notification_template_part_chronometer.xml"
     }
 ]
