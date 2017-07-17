@@ -4,12 +4,12 @@
         "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/drawable/abc_seekbar_thumb_material.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_light.xml",
-        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/drawable/abc_dialog_material_background_light.xml"
-    },
-    {
         "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/drawable/abc_spinner_textfield_background_material.xml",
         "source": "/home/laf/.android/build-cache/6b5f2e042c74da0eb78cef623dc1579113be9bee/output/res/drawable/abc_spinner_textfield_background_material.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_light.xml",
+        "source": "/Users/apple/.android/build-cache/f24db75b6e34ec2c1cd8efae9726387ccd70d443/output/res/drawable/abc_dialog_material_background_light.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/drawable/abc_edit_text_material.xml",

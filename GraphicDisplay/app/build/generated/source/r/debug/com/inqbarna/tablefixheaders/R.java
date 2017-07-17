@@ -15,10 +15,10 @@ public final class R {
         public static final int shadow_size = 0x7f08004b;
     }
     public static final class drawable {
-        public static final int shadow_bottom = 0x7f02004e;
-        public static final int shadow_left = 0x7f02004f;
-        public static final int shadow_right = 0x7f020050;
-        public static final int shadow_top = 0x7f020051;
+        public static final int shadow_bottom = 0x7f020051;
+        public static final int shadow_left = 0x7f020052;
+        public static final int shadow_right = 0x7f020053;
+        public static final int shadow_top = 0x7f020054;
     }
     public static final class id {
         public static final int tag_column = 0x7f0d0008;

@@ -8,12 +8,12 @@
         "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/bubble.xml"
     },
     {
-        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/candle.xml",
-        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/candle.xml"
-    },
-    {
         "merged": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/draw.xml",
         "source": "/home/laf/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/draw.xml"
+    },
+    {
+        "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/candle.xml",
+        "source": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/src/main/res/menu/candle.xml"
     },
     {
         "merged": "/Users/apple/Documents/gitP/android-graphicdisplay/GraphicDisplay/mpchartexample/build/intermediates/res/merged/debug/menu/combined.xml",

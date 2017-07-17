@@ -20,14 +20,18 @@ public class Data4FundsPerMonth {
 
     private BigDecimal rateCompletedCumulated; //当月累计完成比率
 
+    public final String[] data;
 
-
-
-
-
-
-
-
+    public Data4FundsPerMonth(double indicatrixPerMonth, double completionPerMonth, double rateCompletedPerMonth, double indicatrixCumulated, double completionCumulated, double rateCompletedCumulated) {
+        data = new String[]{
+                String.valueOf(indicatrixPerMonth),
+                String.valueOf(completionPerMonth),
+                String.valueOf(rateCompletedPerMonth),
+                String.valueOf(indicatrixCumulated),
+                String.valueOf(completionCumulated),
+                String.valueOf(rateCompletedCumulated),
+        };
+    }
 
 
     public BigDecimal getIndicatrixCumulated() {
