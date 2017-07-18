@@ -44,7 +44,8 @@ public class FamilyTable extends Activity {
 					api,
 					storage,
 					inches,
-					ram };
+					ram
+			};
 		}
 	}
 
