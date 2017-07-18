@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.inqbarna.tablefixheaders.adapters.BaseTableAdapter;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.TableActivity;
+import com.js.graphicdisplay.data.Group;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ import java.util.ArrayList;
  */
 
 public class TableAdapter extends BaseTableAdapter {
+    private static final String TAG = "TableAdapter";
 
     private String[] titles = {
             "集团",
@@ -40,13 +42,13 @@ public class TableAdapter extends BaseTableAdapter {
             110,
     };
 
-    private ArrayList<TableActivity.Group> list;
+    private ArrayList<Group> list;
     private Context context;
     private final float density;
     private LayoutInflater inflater;
 
-    public MyAdapter(Context context) {
-        list = initData();
+    public TableAdapter(Context context) {
+//        list = initData();
         this.context = context;
         density = context.getResources().getDisplayMetrics().density;
         inflater = LayoutInflater.from(context);
@@ -140,7 +142,7 @@ public class TableAdapter extends BaseTableAdapter {
             convertView = inflater.inflate(R.layout.item_table_first, parent, false);
         }
         TextView txtView = (TextView) convertView.findViewById(R.id.txt_first);
-        txtView.setText(list.get(row + 1).name);
+//        txtView.setText(list.get(row + 1).name);
         return convertView;
     }
 
@@ -149,10 +151,6 @@ public class TableAdapter extends BaseTableAdapter {
             convertView = inflater.inflate(R.layout.item_table, parent, false);
         }
         TextView txtView = (TextView) convertView.findViewById(R.id.txt_first);
-
-    }
-
-    private TableActivity.Group getRow(int row) {
-
+        return convertView;
     }
 }

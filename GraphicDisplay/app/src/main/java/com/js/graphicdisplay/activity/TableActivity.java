@@ -35,6 +35,7 @@ public class TableActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table);
         table = (TableFixHeaders) findViewById(R.id.table);
+        table.setAdapter(new MyAdapter(this));
 
     }
 
@@ -48,7 +49,7 @@ public class TableActivity extends Activity {
                 "累计指标(万)",
                 "累计完成数(万)",
                 "累计达成率",
-                "完成说明"
+//                "完成说明"
         };
 
         private final int[] widths = {
@@ -60,6 +61,7 @@ public class TableActivity extends Activity {
                 110,
                 140,
                 110,
+//                160
         };
 
         private ArrayList<Group> list;
@@ -105,8 +107,10 @@ public class TableActivity extends Activity {
                 case 3:
                     view = getBody(row, column, convertView, parent);
                     break;
+                default:
+                    throw new RuntimeException("wtf?");
             }
-            return null;
+            return view;
         }
 
         @Override
@@ -183,20 +187,22 @@ public class TableActivity extends Activity {
             if (column == 0) {
                 txtView.setText(list.get(index).getMonths().get(row));
             } else {
-                txtView.setText(list.get(index).getFundsPerMonth().get(row).data[column - 1]);//znn
+                txtView.setText(list.get(index).getFundsPerMonth().get(row).data[column - 1]);
             }
+
+            return convertView;
         }
 
         private Tuple2 getRow(int row) {
             int index = 0;
 
             while (row >= 0) {
-                row = row - list.get(index).getMonths().size(); // 5 6 3 7
+                row -= list.get(index).getMonths().size(); // 5 6 3 7
                 index++;
             }
             index--;
 
-            Tuple2 t2 = new Tuple2(index, row);
+            Tuple2 t2 = new Tuple2(index, row + list.get(index).getMonths().size());
             return t2;
         }
 
@@ -207,52 +213,72 @@ public class TableActivity extends Activity {
         ArrayList<Group> list = new ArrayList<>();
         Group g1 = new Group();
         g1.setGroupName("安徽集团");
+        g1.setDescUnfinished("未完成未完成未完成未完成未完成");
         g1.setMonths(new ArrayList<String>());
         g1.setFundsPerMonth(new ArrayList<Data4FundsPerMonth>());
         for (int i = 0; i < 5; i++) {
             g1.getMonths().add("20170" + (i + 1));
-            Data4FundsPerMonth data = new Data4FundsPerMonth();
-            data.setCompletionPerMonth(new BigDecimal(1010 + i));
+            Data4FundsPerMonth data = new Data4FundsPerMonth(700 + i, 1010 + i, 10 + i, 1010 + i, 700 + i, 10 + i);
             data.setIndicatrixPerMonth(new BigDecimal(700 + i));
+            data.setCompletionPerMonth(new BigDecimal(1010 + i));
+            data.setRateCompletedPerMonth(new BigDecimal(10 + i));
+            data.setIndicatrixCumulated(new BigDecimal(1010 + i));
+            data.setCompletionCumulated(new BigDecimal(700 + i));
+            data.setRateCompletedCumulated(new BigDecimal(10 + i));
             g1.getFundsPerMonth().add(data);
         }
         list.add(g1);
 
         Group g2 = new Group();
         g2.setGroupName("航程集团");
+        g1.setDescUnfinished("未完成未完成未完成未完成未完成");
         g2.setMonths(new ArrayList<String>());
         g2.setFundsPerMonth(new ArrayList<Data4FundsPerMonth>());
         for (int i = 0; i < 6; i++) {
             g2.getMonths().add("20170" + (i + 1));
-            Data4FundsPerMonth data = new Data4FundsPerMonth();
-            data.setCompletionPerMonth(new BigDecimal(1010 + i));
-            data.setIndicatrixPerMonth(new BigDecimal(700 + i));
+            Data4FundsPerMonth data = new Data4FundsPerMonth(800 + i, 2010 + i, 30 + i, 3010 + i, 800 + i, 10 + i);
+            data.setIndicatrixPerMonth(new BigDecimal(800 + i));
+            data.setCompletionPerMonth(new BigDecimal(2010 + i));
+            data.setRateCompletedPerMonth(new BigDecimal(30 + i));
+            data.setIndicatrixCumulated(new BigDecimal(3010 + i));
+            data.setCompletionCumulated(new BigDecimal(800 + i));
+            data.setRateCompletedCumulated(new BigDecimal(40 + i));
             g2.getFundsPerMonth().add(data);
         }
         list.add(g2);
 
         Group g3 = new Group();
         g3.setGroupName("上海集团");
+        g1.setDescUnfinished("未完成未完成未完成未完成未完成");
         g3.setMonths(new ArrayList<String>());
         g3.setFundsPerMonth(new ArrayList<Data4FundsPerMonth>());
         for (int i = 0; i < 3; i++) {
             g3.getMonths().add("20170" + (i + 1));
-            Data4FundsPerMonth data = new Data4FundsPerMonth();
-            data.setCompletionPerMonth(new BigDecimal(1010 + i));
+            Data4FundsPerMonth data = new Data4FundsPerMonth(700 + i, 1010 + i, 10 + i, 1010 + i, 700 + i, 10 + i);
             data.setIndicatrixPerMonth(new BigDecimal(700 + i));
+            data.setCompletionPerMonth(new BigDecimal(1010 + i));
+            data.setRateCompletedPerMonth(new BigDecimal(10 + i));
+            data.setIndicatrixCumulated(new BigDecimal(1010 + i));
+            data.setCompletionCumulated(new BigDecimal(700 + i));
+            data.setRateCompletedCumulated(new BigDecimal(10 + i));
             g3.getFundsPerMonth().add(data);
         }
         list.add(g3);
 
         Group g4 = new Group();
         g4.setGroupName("航程集团");
+        g1.setDescUnfinished("未完成未完成未完成未完成未完成");
         g4.setMonths(new ArrayList<String>());
         g4.setFundsPerMonth(new ArrayList<Data4FundsPerMonth>());
         for (int i = 0; i < 7; i++) {
             g4.getMonths().add("20170" + (i + 1));
-            Data4FundsPerMonth data = new Data4FundsPerMonth();
-            data.setCompletionPerMonth(new BigDecimal(1010 + i));
-            data.setIndicatrixPerMonth(new BigDecimal(700 + i));
+            Data4FundsPerMonth data = new Data4FundsPerMonth(800 + i, 9010 + i, 10 + i, 4010 + i, 800 + i, 20 + i);
+            data.setIndicatrixPerMonth(new BigDecimal(800 + i));
+            data.setCompletionPerMonth(new BigDecimal(9010 + i));
+            data.setRateCompletedPerMonth(new BigDecimal(10 + i));
+            data.setIndicatrixCumulated(new BigDecimal(4010 + i));
+            data.setCompletionCumulated(new BigDecimal(800 + i));
+            data.setRateCompletedCumulated(new BigDecimal(20 + i));
             g4.getFundsPerMonth().add(data);
         }
         list.add(g4);

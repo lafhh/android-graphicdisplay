@@ -1,7 +1,6 @@
 package com.js.graphicdisplay.data;
 
 import com.js.graphicdisplay.api.Infermation;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -71,29 +70,40 @@ public class Group implements Infermation {
             fundsPerMonths = new ArrayList<>();
             group.setFundsPerMonth(fundsPerMonths);
         }
-        Data4FundsPerMonth fundsPerMonth = new Data4FundsPerMonth();
+        double monthIndex = jGroup.getDouble("monthIndex");
+        double monthfulfilQuantity = jGroup.getDouble("monthFulfilQuantity");
+        double monthAch = jGroup.getDouble("monthAch");
+        double cumulativeIndex = jGroup.getDouble("cumulativeIndex");
+        double cumulativeFulfilQuantity = jGroup.getDouble("cumulativeFulfilQuantity");
+        double cumulativeAch = jGroup.getDouble("cumulativeAch");
+
+        Data4FundsPerMonth fundsPerMonth = new Data4FundsPerMonth(
+            monthIndex, monthfulfilQuantity, monthAch, cumulativeIndex, cumulativeFulfilQuantity, cumulativeAch
+        );
         fundsPerMonth.setIndicatrixPerMonth(
-                new BigDecimal(jGroup.getDouble("monthIndex"))
-        );
+                new BigDecimal(monthIndex));
         fundsPerMonth.setCompletionPerMonth(
-                new BigDecimal(jGroup.getDouble("monthFulfilQuantity"))
-        );
+                new BigDecimal(monthfulfilQuantity));
         fundsPerMonth.setRateCompletedPerMonth(
-                new BigDecimal(jGroup.getDouble("monthAch"))
-        );
+                new BigDecimal(monthAch));
         fundsPerMonth.setIndicatrixCumulated(
-                new BigDecimal(jGroup.getDouble("cumulativeIndex"))
-        );
+                new BigDecimal(cumulativeIndex));
         fundsPerMonth.setCompletionCumulated(
-                new BigDecimal(jGroup.getString("cumulativeFulfilQuantity"))
-        );
+                new BigDecimal(cumulativeFulfilQuantity));
         fundsPerMonth.setRateCompletedCumulated(
-                new BigDecimal(jGroup.getDouble("cumulativeAch"))
-        );
+                new BigDecimal(cumulativeAch));
         fundsPerMonths.add(fundsPerMonth);
 
         return group;
     }
+
+
+
+
+
+
+
+
 
 
     public int getId() {
