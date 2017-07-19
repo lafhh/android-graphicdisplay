@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.data.Data4FundsPerMonth;
 import com.js.graphicdisplay.data.Group;
 import com.js.graphicdisplay.data.Tuple2;
+import com.js.graphicdisplay.impl.SortHeaderListener;
 import com.js.graphicdisplay.util.SortState;
 import com.js.graphicdisplay.util.SortStateViewProvider;
 
@@ -72,11 +74,16 @@ public class TableActivity extends Activity {
         private final float density;
         private LayoutInflater inflater;
 
+        public static final int SORT_STATE = 0;
+        private final SparseArray<ImageView> sortViews = new SparseArray<>();
+        private SortHeaderListener listener;
+
         public MyAdapter(Context context) {
             list = initData();
             this.context = context;
             density = context.getResources().getDisplayMetrics().density;
             inflater = LayoutInflater.from(context);
+            listener = new SortHeaderListener(sortViews);
             Log.d(TAG, "density: " + density);
         }
 
@@ -99,7 +106,7 @@ public class TableActivity extends Activity {
             final View view;
             switch(getItemViewType(row, column)) {
                 case 0:
-                    view = getFirstHeader(convertView, parent);
+                    view = getFirstHeader(column, convertView, parent);
                     break;
                 case 1:
                     view = getHeader(row, column, convertView, parent);
@@ -150,12 +157,14 @@ public class TableActivity extends Activity {
             return 4;
         }
 
-        private View getFirstHeader(View convertView, ViewGroup parent) {
+        private View getFirstHeader(int column, View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.item_table_header_first, parent, false);
                 ImageView sortView = (ImageView) convertView.findViewById(R.id.img_sort);
                 sortView.setImageResource(SortStateViewProvider.getSortStateViewResource(SortState.SORTED_ASC));
-                convertView.setOnClickListener();
+                sortViews.put(column, sortView);
+                sortView.setTag(SORT_STATE, SortState.SORTED_ASC);
+                convertView.setOnClickListener(listener);
             }
             TextView txtView = (TextView) convertView.findViewById(R.id.txt_header_first);
             txtView.setText(titles[0]);
@@ -165,6 +174,7 @@ public class TableActivity extends Activity {
         private View getHeader(int row, int column, View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.item_table_header, parent, false);
+                convertView.setOnClickListener(listener);
             }
             TextView txtView = (TextView) convertView.findViewById(R.id.txt_header);
             txtView.setText(titles[column + 1]);
@@ -203,7 +213,7 @@ public class TableActivity extends Activity {
             int index = 0;
 
             while (row >= 0) {
-                row -= list.get(index).getMonths().size(); // 5 6 3 7
+                row -= list.get(index).getMonths().size();
                 index++;
             }
             index--;
