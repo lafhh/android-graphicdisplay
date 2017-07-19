@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.inqbarna.tablefixheaders.TableFixHeaders;
@@ -16,6 +17,8 @@ import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.data.Data4FundsPerMonth;
 import com.js.graphicdisplay.data.Group;
 import com.js.graphicdisplay.data.Tuple2;
+import com.js.graphicdisplay.util.SortState;
+import com.js.graphicdisplay.util.SortStateViewProvider;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -27,7 +30,6 @@ import java.util.zip.Inflater;
 
 public class TableActivity extends Activity {
     private final String TAG = "TableActivity";
-    String[] months = {"201701", "201702", "201703", "201704", "201705", "201706", "201707",};
     private TableFixHeaders table;
 
     @Override
@@ -39,6 +41,7 @@ public class TableActivity extends Activity {
 
     }
 
+    /********* adapter ********************************************************************/
     public class MyAdapter extends BaseTableAdapter {
         private String[] titles = {
                 "集团",
@@ -150,6 +153,9 @@ public class TableActivity extends Activity {
         private View getFirstHeader(View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.item_table_header_first, parent, false);
+                ImageView sortView = (ImageView) convertView.findViewById(R.id.img_sort);
+                sortView.setImageResource(SortStateViewProvider.getSortStateViewResource(SortState.SORTED_ASC));
+                convertView.setOnClickListener();
             }
             TextView txtView = (TextView) convertView.findViewById(R.id.txt_header_first);
             txtView.setText(titles[0]);
@@ -207,7 +213,7 @@ public class TableActivity extends Activity {
         }
 
     }
-
+    /********* adapter ********************************************************************/
 
     public ArrayList<Group> initData() {
         ArrayList<Group> list = new ArrayList<>();
@@ -216,7 +222,7 @@ public class TableActivity extends Activity {
         g1.setDescUnfinished("未完成未完成未完成未完成未完成");
         g1.setMonths(new ArrayList<String>());
         g1.setFundsPerMonth(new ArrayList<Data4FundsPerMonth>());
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 30; i++) {
             g1.getMonths().add("20170" + (i + 1));
             Data4FundsPerMonth data = new Data4FundsPerMonth(700 + i, 1010 + i, 10 + i, 1010 + i, 700 + i, 10 + i);
             data.setIndicatrixPerMonth(new BigDecimal(700 + i));
@@ -230,11 +236,11 @@ public class TableActivity extends Activity {
         list.add(g1);
 
         Group g2 = new Group();
-        g2.setGroupName("航程集团");
+        g2.setGroupName("狮子集团");
         g1.setDescUnfinished("未完成未完成未完成未完成未完成");
         g2.setMonths(new ArrayList<String>());
         g2.setFundsPerMonth(new ArrayList<Data4FundsPerMonth>());
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 26; i++) {
             g2.getMonths().add("20170" + (i + 1));
             Data4FundsPerMonth data = new Data4FundsPerMonth(800 + i, 2010 + i, 30 + i, 3010 + i, 800 + i, 10 + i);
             data.setIndicatrixPerMonth(new BigDecimal(800 + i));
@@ -252,7 +258,7 @@ public class TableActivity extends Activity {
         g1.setDescUnfinished("未完成未完成未完成未完成未完成");
         g3.setMonths(new ArrayList<String>());
         g3.setFundsPerMonth(new ArrayList<Data4FundsPerMonth>());
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 11; i++) {
             g3.getMonths().add("20170" + (i + 1));
             Data4FundsPerMonth data = new Data4FundsPerMonth(700 + i, 1010 + i, 10 + i, 1010 + i, 700 + i, 10 + i);
             data.setIndicatrixPerMonth(new BigDecimal(700 + i));
@@ -270,7 +276,7 @@ public class TableActivity extends Activity {
         g1.setDescUnfinished("未完成未完成未完成未完成未完成");
         g4.setMonths(new ArrayList<String>());
         g4.setFundsPerMonth(new ArrayList<Data4FundsPerMonth>());
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 10; i++) {
             g4.getMonths().add("20170" + (i + 1));
             Data4FundsPerMonth data = new Data4FundsPerMonth(800 + i, 9010 + i, 10 + i, 4010 + i, 800 + i, 20 + i);
             data.setIndicatrixPerMonth(new BigDecimal(800 + i));
@@ -285,4 +291,6 @@ public class TableActivity extends Activity {
 
         return list;
     }
+
+
 }

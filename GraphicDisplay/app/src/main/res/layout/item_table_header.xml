@@ -11,9 +11,18 @@
         android:layout_weight="1"
         android:gravity="center" />
 
+    <ImageView
+            android:id="@+id/img_sort"
+            android:layout_width="10dp"
+            android:layout_height="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/ic_dark_sortable"
+            android:contentDescription="@string/sortable_indicator_content_description"
+    />
     <View
         android:layout_width="1dip"
         android:layout_height="match_parent"
-        android:background="@drawable/separator_table_column_header" />
-
+        android:background="@drawable/separator_table_column_header"
+    />
 </LinearLayout>
