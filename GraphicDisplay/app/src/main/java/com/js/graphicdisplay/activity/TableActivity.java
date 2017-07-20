@@ -45,17 +45,7 @@ public class TableActivity extends Activity {
 
     /********* adapter ********************************************************************/
     public class MyAdapter extends BaseTableAdapter {
-        private String[] titles = {
-                "集团",
-                "年月",
-                "当月指标(万)",
-                "当月完成数(万)",
-                "指标达成率",
-                "累计指标(万)",
-                "累计完成数(万)",
-                "累计达成率",
-//                "完成说明"
-        };
+
 
         private final int[] widths = {
                 120,
