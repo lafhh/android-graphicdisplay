@@ -104,7 +104,7 @@ public class TableActivity extends Activity {
         @Override
         public View getView(int row, int column, View convertView, ViewGroup parent) {
             final View view;
-            switch(getItemViewType(row, column)) {
+            switch (getItemViewType(row, column)) {
                 case 0:
                     view = getFirstHeader(column, convertView, parent);
                     break;
@@ -135,7 +135,7 @@ public class TableActivity extends Activity {
             Log.d(TAG, "getHeight()====row: " + row);
             int height;
             if (row == -1) height = 44;
-            else           height = 32;
+            else height = 32;
             return Math.round(height * density);
         }
 
@@ -144,10 +144,10 @@ public class TableActivity extends Activity {
             final int itemViewType;
             if (row == -1) {
                 if (column == -1) itemViewType = 0;
-                else              itemViewType = 1;
+                else itemViewType = 1;
             } else {
                 if (column == -1) itemViewType = 2;
-                else              itemViewType = 3;
+                else itemViewType = 3;
             }
             return itemViewType;
         }
@@ -160,12 +160,14 @@ public class TableActivity extends Activity {
         private View getFirstHeader(int column, View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.item_table_header_first, parent, false);
+                convertView.setOnClickListener(listener);
+
                 ImageView sortView = (ImageView) convertView.findViewById(R.id.img_sort);
                 sortView.setImageResource(SortStateViewProvider.getSortStateViewResource(SortState.SORTED_ASC));
                 sortViews.put(column, sortView);
-                sortView.setTag(SORT_STATE, SortState.SORTED_ASC);
-                convertView.setOnClickListener(listener);
+                sortView.setTag(R.id.sort_state, SortState.SORTED_ASC);
             }
+            convertView.setTag(R.id.header_column, column);
             TextView txtView = (TextView) convertView.findViewById(R.id.txt_header_first);
             txtView.setText(titles[0]);
             return convertView;
@@ -175,9 +177,19 @@ public class TableActivity extends Activity {
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.item_table_header, parent, false);
                 convertView.setOnClickListener(listener);
+
+                ImageView sortView = (ImageView) convertView.findViewById(R.id.img_sort);
+                sortView.setTag(R.id.sort_state, SortState.SORTABLE);
+                TextView txtView = (TextView) convertView.findViewById(R.id.txt_header);
+
+                convertView.setTag(R.id.header_child,
+                        new ViewHolder()
+                                .setImgView(sortView)
+                                .setTxtView(txtView));
             }
-            TextView txtView = (TextView) convertView.findViewById(R.id.txt_header);
-            txtView.setText(titles[column + 1]);
+            convertView.setTag(R.id.header_column, column);
+            ViewHolder holder = (ViewHolder) convertView.getTag(R.id.header_child);
+            holder.getTxtView().setText(titles[column + 1]);
             return convertView;
         }
 
@@ -222,7 +234,31 @@ public class TableActivity extends Activity {
             return t2;
         }
 
+        private class ViewHolder {
+            private TextView txtView;
+
+            public TextView getTxtView() {
+                return txtView;
+            }
+
+            public ViewHolder setTxtView(TextView txtView) {
+                this.txtView = txtView;
+                return this;
+            }
+
+            public ImageView getImgView() {
+                return imgView;
+            }
+
+            public ViewHolder setImgView(ImageView imgView) {
+                this.imgView = imgView;
+                return this;
+            }
+
+            private ImageView imgView;
+        }
     }
+
     /********* adapter ********************************************************************/
 
     public ArrayList<Group> initData() {

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="sort_state"/>
+    <item type="id" name="header_column"/>
+    <item type="id" name="header_child"/>
+</resources>
