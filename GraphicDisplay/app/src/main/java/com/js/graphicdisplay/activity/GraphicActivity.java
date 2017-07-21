@@ -10,8 +10,10 @@ import android.widget.Spinner;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.*;
+import com.inqbarna.tablefixheaders.TableFixHeaders;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
+import com.js.graphicdisplay.adapter.FundsTableAdapter;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
 import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
@@ -47,9 +49,12 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
     private BarChart mBarChart;
     private LineChart mLineChart;
 
+    private TableFixHeaders table;
+
     private SpinnerAdapter<Group> groupAdapter;
     private SpinnerAdapter<Company> companyAdapter;
     private SpinnerAdapter<Project> projectAdapter;
+    private FundsTableAdapter tableAdapter;
 
 
     private ArrayList<Group> groups = new ArrayList<>();
@@ -90,6 +95,10 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         //bar chart
         mBarChart = (BarChart) findViewById(R.id.barchart);
         BarChartCustomization.customBarChart(mBarChart, mTfLight);
+
+        table = (TableFixHeaders) findViewById(R.id.table_funds);
+        tableAdapter = new FundsTableAdapter(this, groups);
+        table.setAdapter(tableAdapter);
 
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
 //        list.add(new NameValuePair<>(NetUtil.POST_ORGID, "4"));
