@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.api.Infermation;
 
 import java.util.ArrayList;
@@ -49,8 +50,8 @@ public class SpinnerAdapter<T extends Infermation> extends BaseAdapter {
         if (convertView == null) {
 //            Log.d("SpinnerAdapter", "getView()1");
             LayoutInflater inflater = LayoutInflater.from(mContext);
-            convertView = inflater.inflate(android.R.layout.simple_spinner_item, null);
-            holder = new ViewHolder((TextView) convertView.findViewById(android.R.id.text1));
+            convertView = inflater.inflate(R.layout.item_selector, null);
+            holder = new ViewHolder((TextView) convertView.findViewById(R.id.txt_name));
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

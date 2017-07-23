@@ -1,6 +1,7 @@
 package com.js.graphicdisplay.activity;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -23,6 +24,8 @@ import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
 import com.js.graphicdisplay.util.ColorTemplate;
+import com.js.graphicdisplay.util.FileUtil;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -30,6 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -44,7 +48,7 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 
     private Spinner spinnerGroup;
     private Spinner spinnerCompany;
-    private Spinner spinnerProject;
+    private Spinner spinnerDate;
 
     private BarChart mBarChart;
     private LineChart mLineChart;
@@ -53,176 +57,178 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 
     private SpinnerAdapter<Group> groupAdapter;
     private SpinnerAdapter<Company> companyAdapter;
-    private SpinnerAdapter<Project> projectAdapter;
+    private SpinnerAdapter<SpinnerDate> dateAdapter;
     private FundsTableAdapter tableAdapter;
 
-
     private ArrayList<Group> groups = new ArrayList<>();
-    private ArrayList<Group> groups1 = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphic);
 
-        //spinner
-        initialSpinnerData();
+        File file = Environment.getExternalStorageDirectory();
+        String path = file.getAbsolutePath() + "/Download/newchart.txt";
+        String json = FileUtil.readToString(path);
+        groupChartFromJson(json);
+
         spinnerGroup = (Spinner) findViewById(R.id.spinner_group);
-        groupAdapter = new SpinnerAdapter<>(this, groups1);
+        spinnerDate = (Spinner) findViewById(R.id.spinner_date);
+        mLineChart = (LineChart) findViewById(R.id.linechart);
+        mBarChart = (BarChart) findViewById(R.id.barchart);
+        table = (TableFixHeaders) findViewById(R.id.table_funds);
+
+        //spinner
+        groupAdapter = new SpinnerAdapter<>(this, groups);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGroup.setAdapter(groupAdapter);
         spinnerGroup.setOnItemSelectedListener(this);
 
-        ArrayList<Company> companies = groups1.get(0).getChild();
-        spinnerCompany = (Spinner) findViewById(R.id.spinner_company);
-        companyAdapter = new SpinnerAdapter<>(this, companies);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCompany.setAdapter(companyAdapter);
-        spinnerCompany.setOnItemSelectedListener(this);
+//        ArrayList<Company> companies = groups.get(0).getChild();
+//        spinnerCompany = (Spinner) findViewById(R.id.spinner_company);
+//        companyAdapter = new SpinnerAdapter<>(this, companies);
+////        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinnerCompany.setAdapter(companyAdapter);
+//        spinnerCompany.setOnItemSelectedListener(this);
 
-        ArrayList<Project> projects = companies.get(0).getChild();
-        spinnerProject = (Spinner) findViewById(R.id.spinner_project);
-        projectAdapter = new SpinnerAdapter<>(this, projects);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerProject.setAdapter(projectAdapter);
-        spinnerProject.setOnItemSelectedListener(this);
+//        ArrayList<SpinnerDate> dates = SpinnerDate.month2Infermation(groups.get(0).getMonths());
+//        dateAdapter = new SpinnerAdapter<>(this, dates);
+////        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinnerDate.setAdapter(dateAdapter);
+//        Log.d("lAF", "DSFSDF");
+//        spinnerDate.setOnItemSelectedListener(this);
 
         //line chart
-        mLineChart = (LineChart) findViewById(R.id.linechart);
         LineChartCustomization.customLineChart(mLineChart, mTfLight);
 //        mLineChart.setOnChartGestureListener(new OnChartGestureImpl());
 
         //bar chart
-        mBarChart = (BarChart) findViewById(R.id.barchart);
         BarChartCustomization.customBarChart(mBarChart, mTfLight);
 
-        table = (TableFixHeaders) findViewById(R.id.table_funds);
         tableAdapter = new FundsTableAdapter(this, groups);
         table.setAdapter(tableAdapter);
 
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
 //        list.add(new NameValuePair<>(NetUtil.POST_ORGID, "4"));
 //        list.add(new NameValuePair<>(NetUtil.POST_DATE, "201701"));
-        HttpManager.doPost(
-                NetUtil.URL_FUNDSTURNEDOVER_ALL_CHART,
-                list,
-                Request.ContentType.KVP,
-                new Callback() {
-                    Message msg;
-
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        e.printStackTrace();
-                        msg = Message.obtain();
-                        msg.what = MESSAGE_ERROR;
-                        mHandler.sendMessage(msg);
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        if (response.isSuccessful()) {
-                            String body = response.body().string();
-                            Log.d(TAG, "response code : " + response.code());
-                            Log.d(TAG, "body = " + body);
-                            msg = Message.obtain();
-                            msg.what = MESSAGE_SUCCESS;
-                            msg.obj = body;
-                            mHandler.sendMessage(msg);
-
-                        } else {
-                            msg = Message.obtain();
-                            msg.what = MESSAGE_FAILED;
-                            msg.obj = response.body().string();
-                            mHandler.sendMessage(msg);
-                            throw new IOException("Unexpected code " + response);
-                        }
-                    }
-                });
+//        HttpManager.doPost(
+//                NetUtil.URL_FUNDSTURNEDOVER_ALL_CHART,
+//                list,
+//                Request.ContentType.KVP,
+//                new Callback() {
+//                    Message msg;
+//
+//                    @Override
+//                    public void onFailure(Call call, IOException e) {
+//                        e.printStackTrace();
+//                        msg = Message.obtain();
+//                        msg.what = MESSAGE_ERROR;
+//                        mHandler.sendMessage(msg);
+//                    }
+//
+//                    @Override
+//                    public void onResponse(Call call, Response response) throws IOException {
+//                        if (response.isSuccessful()) {
+//                            String body = response.body().string();
+//                            Log.d(TAG, "response code : " + response.code());
+//                            Log.d(TAG, "body = " + body);
+//                            msg = Message.obtain();
+//                            msg.what = MESSAGE_SUCCESS;
+//                            msg.obj = body;
+//                            mHandler.sendMessage(msg);
+//
+//                        } else {
+//                            msg = Message.obtain();
+//                            msg.what = MESSAGE_FAILED;
+//                            msg.obj = response.body().string();
+//                            mHandler.sendMessage(msg);
+//                            throw new IOException("Unexpected code " + response);
+//                        }
+//                    }
+//                });
         /*** test ***/
-//        String file = "chart";
-//        String json = FileUtil.readToString(file);
-//        Log.d(TAG, "test json from file================" + json);
-//        groupChartFromJson(json);
-//        setChartData();
+
+//        Log.d(TAG, json);
+        setChartData();
         /*** test ***/
     }
 
-    private void initialSpinnerData() {
-        for (int i = 0; i < 5; i++) {
-            Group group = new Group();
-            group.setGroupName("g" + (i + 1));
-            groups1.add(group);
-        }
-        String group = groups1.get(0).getName();
-        ArrayList<Company> companies = new ArrayList<>();
-        groups1.get(0).setChild(companies);
-        for (int i = 0; i < 10; i++) {
-            Company company = new Company();
-            company.setCompanyName(group + "c" + (i + 1));
-            companies.add(company);
-        }
-        String company = companies.get(0).getName();
-        ArrayList<Project> projects = new ArrayList<>();
-        companies.get(0).setChild(projects);
-        for (int i = 0; i < 10; i++) {
-            Project project = new Project();
-            project.setProjectName(company + "p" + (i + 1));
-            projects.add(project);
-        }
-    }
-
-    private void getTreeFromGroup(Group group) {
-        ArrayList<Company> companies = new ArrayList<>();
-        String name = group.getName();
-        group.setChild(companies);
-        for (int i = 0; i < 10; i++) {
-            Company company = new Company();
-            company.setCompanyName(name + "c" + (i + 1));
-            companies.add(company);
-        }
-        ArrayList<Project> projects = new ArrayList<>();
-        companies.get(0).setChild(projects);
-        name = companies.get(0).getName();
-        for (int i = 0; i < 10; i++) {
-            Project project = new Project();
-            project.setProjectName(name + "p" + (i + 1));
-            projects.add(project);
-        }
-
-    }
-
-    private void getChildFromCompany(Company company) {
-        String name = company.getName();
-        ArrayList<Project> projects = new ArrayList<>();
-        company.setChild(projects);
-        for (int i = 0; i < 10; i++) {
-            Project project = new Project();
-            project.setProjectName(name + "p" + (i + 1));
-            projects.add(project);
-        }
-    }
+//    private void initialSpinnerData() {
+//        for (int i = 0; i < 5; i++) {
+//            Group group = new Group();
+//            group.setGroupName("g" + (i + 1));
+//            groups1.add(group);
+//        }
+//        String group = groups1.get(0).getName();
+//        ArrayList<Company> companies = new ArrayList<>();
+//        groups1.get(0).setChild(companies);
+//        for (int i = 0; i < 10; i++) {
+//            Company company = new Company();
+//            company.setCompanyName(group + "c" + (i + 1));
+//            companies.add(company);
+//        }
+//        String company = companies.get(0).getName();
+//        ArrayList<Project> projects = new ArrayList<>();
+//        companies.get(0).setChild(projects);
+//        for (int i = 0; i < 10; i++) {
+//            Project project = new Project();
+//            project.setProjectName(company + "p" + (i + 1));
+//            projects.add(project);
+//        }
+//    }
+//
+//    private void getTreeFromGroup(Group group) {
+//        ArrayList<Company> companies = new ArrayList<>();
+//        String name = group.getName();
+//        group.setChild(companies);
+//        for (int i = 0; i < 10; i++) {
+//            Company company = new Company();
+//            company.setCompanyName(name + "c" + (i + 1));
+//            companies.add(company);
+//        }
+//        ArrayList<Project> projects = new ArrayList<>();
+//        companies.get(0).setChild(projects);
+//        name = companies.get(0).getName();
+//        for (int i = 0; i < 10; i++) {
+//            Project project = new Project();
+//            project.setProjectName(name + "p" + (i + 1));
+//            projects.add(project);
+//        }
+//
+//    }
+//
+//    private void getChildFromCompany(Company company) {
+//        String name = company.getName();
+//        ArrayList<Project> projects = new ArrayList<>();
+//        company.setChild(projects);
+//        for (int i = 0; i < 10; i++) {
+//            Project project = new Project();
+//            project.setProjectName(name + "p" + (i + 1));
+//            projects.add(project);
+//        }
+//    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Infermation o = (Infermation) parent.getItemAtPosition(position);
 
         if (o instanceof Group) {
-            getTreeFromGroup((Group) o);
-            ArrayList<Company> c = ((Group) o).getChild();
-            companyAdapter.setData(c);
-            companyAdapter.notifyDataSetChanged();
-            spinnerCompany.setSelection(0);
-            ArrayList<Project> p = c.get(0).getChild();
-            projectAdapter.setData(p);
-            projectAdapter.notifyDataSetChanged();
-            spinnerProject.setSelection(0);
+//            getTreeFromGroup((Group) o);
+//            ArrayList<Company> c = ((Group) o).getChild();
+//            companyAdapter.setData(c);
+//            companyAdapter.notifyDataSetChanged();
+//            spinnerCompany.setSelection(0);
+//            ArrayList<Project> p = c.get(0).getChild();
+//            projectAdapter.setData(p);
+//            projectAdapter.notifyDataSetChanged();
+//            spinnerProject.setSelection(0);
 
         } else if (o instanceof Company) {
-            getChildFromCompany((Company) o);
-            ArrayList<Project> p = ((Company) o).getChild();
-            projectAdapter.setData(p);
-            projectAdapter.notifyDataSetChanged();
-            spinnerProject.setSelection(0);
+//            getChildFromCompany((Company) o);
+//            ArrayList<Project> p = ((Company) o).getChild();
+//            projectAdapter.setData(p);
+//            projectAdapter.notifyDataSetChanged();
+//            spinnerProject.setSelection(0);
         }
     }
 
@@ -247,6 +253,17 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         }
     }
 
+    private void setData() {
+        if (groupAdapter == null) {
+            groupAdapter = new SpinnerAdapter<>(this, groups);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerGroup.setAdapter(groupAdapter);
+            spinnerGroup.setOnItemSelectedListener(this);
+        }
+
+
+    }
+
     private void groupChartFromJson(String json) {
         try {
             JSONArray jsonArray = new JSONArray(json);
@@ -265,7 +282,7 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
                 Group.fromJson(jsonObject, group);
             }
 
-            Log.d("laf", "end"); //检查数据结构
+//            Log.d("laf", "end"); //检查数据结构
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -286,52 +303,8 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         BarData barData = new BarData();
         LineData lineData = new LineData();
 
-        ArrayList<String> months = groups.get(0).getMonths();
-        int startMonth = Integer.parseInt(months.get(0));
-
-//        for (int i = 0; i < months.size(); i++) {
-//            int month = Integer.parseInt(months.get(i));
-//
-//            for (int j = 0; j < groups.size(); j++) {
-//                Group group = groups.get(j);
-//                Data4FundsPerMonth data = group.getFundsPerMonth().get(i);
-//                String groupName = group.getName();
-//
-//                if (group.getTag() == null) {
-//                    group.setTag(new ArrayList<BarEntry>());
-//                }
-//                ArrayList<BarEntry> barEntries = (ArrayList<BarEntry>) group.getTag();
-//
-//                //stack bar entry.y = val1 + val2, 每月指标vs每月完成的最大值
-//                float val1 = data.getCompletionPerMonth().floatValue();
-//                float val2 = data.getIndicatrixPerMonth().floatValue();
-//                if (val1 < val2) { //
-//                    val2 = val2 - val1;
-//                    barEntries.add(new BarEntry(month, new float[]{val1, val2}));
-////                    BarEntry en = new BarEntry(1, 2);
-//                } else {
-//                    float tmp = val1;
-//                    val1 = val2;
-//                    val2 = tmp - val2;
-//                    barEntries.add(new BarEntry(month, tmp)); //没有测试
-//                }
-//
-//                BarDataSet set;
-//                if (i == months.size() - 1) {
-//                    group.setKeyColor((j + 1) % ColorTemplate.TEMPLETE_COLOR.length);
-//
-//                    group.setTag(null);
-//                    set = new BarDataSet(barEntries, groupName);
-////                    set.setBarBorderColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
-////                    set.setBarBorderWidth(0.5f);
-//                    set.setColors(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()], ColorTemplate.TEMPLETE_COLOR[0]);
-//                    set.setStackLabels(new String[]{"已完成", "未完成",});
-//
-//                    barData.addDataSet(set);
-////                    set.setDrawValues(false);
-//                }
-//            }
-//        }
+        int startMonth = 201701;
+        int maxSize = 0;
 
         for (int i = 0; i < groups.size(); i++) {
             Group group = groups.get(i);
@@ -342,21 +315,27 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
             ArrayList<BarEntry> barEntries = new ArrayList<>();
             ArrayList<Entry> lineEntries = new ArrayList<>();
 
+            ArrayList<String> months = group.getMonths();
+            if (maxSize < months.size()) maxSize = months.size();
             for (int j = 0; j < months.size(); j++) {
                 int month = Integer.parseInt(months.get(j));
 
                 //stack bar entry.y = val1 + val2,
-                // y应该是每月指标vs每月完成的最大值
+                // y 每月指标vs每月完成量的最大值
                 float val1 = datas.get(j).getCompletionPerMonth().floatValue();
                 float val2 = datas.get(j).getIndicatrixPerMonth().floatValue();
-                if (val1 < val2) { //
+                if (val1 < val2) {
                     val2 = val2 - val1;
                     barEntries.add(new BarEntry(month, new float[]{val1, val2}));
+
+                } else if (val1 == val2) {
+                    val2 = 0;
+                    barEntries.add(new BarEntry(month, new float[]{val1, val2}));
                 } else {
-                    float tmp = val1;
-                    val1 = val2;
-                    val2 = tmp - val2;
-                    barEntries.add(new BarEntry(month, tmp)); //没有测试
+//                    float tmp = val1;
+//                    val1 = val2;
+//                    val2 = tmp - val2;
+//                    barEntries.add(new BarEntry(month, tmp));
                 }
 
                 //line entry
@@ -368,7 +347,7 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 //            set.setBarBorderColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
 //            set.setBarBorderWidth(0.5f);
             barSet.setColors(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()], ColorTemplate.TEMPLETE_COLOR[0]);
-            barSet.setStackLabels(new String[]{"已完成", "未完成",});
+            barSet.setStackLabels(new String[]{"已完成数额", "未完成数额",});
             barData.addDataSet(barSet);
 
             LineDataSet lineSet = new LineDataSet(lineEntries, name);
@@ -390,7 +369,7 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 
         float groupWidth = mBarChart.getBarData().getGroupWidth(groupSpace, barSpace); //groupwidth = 1
         mBarChart.getXAxis().setAxisMinimum(startMonth);
-        mBarChart.getXAxis().setAxisMaximum(startMonth + groupWidth * months.size());
+        mBarChart.getXAxis().setAxisMaximum(startMonth + groupWidth * maxSize);
 
         mBarChart.groupBars(startMonth, groupSpace, barSpace);
         mBarChart.setFitBars(true);
@@ -399,7 +378,7 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 
         mLineChart.setData(lineData);
         int width = mLineChart.getMeasuredWidth();
-        Log.d(TAG, "linechart width======" + width);
+//        Log.d(TAG, "linechart width======" + width);
 
         lineData.setValueTypeface(mTfLight);
 //        mLineChart.getXAxis().setAxisMinimum(startMonth);

@@ -72,7 +72,7 @@ public class BarChartCustomization {
         leftAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float v, AxisBase axisBase) {
-                Log.d("laf", String.valueOf((int) v));
+//                Log.d("laf", String.valueOf((int) v));
                 return String.valueOf((int) v);
             }
         });

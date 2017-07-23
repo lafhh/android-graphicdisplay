@@ -82,14 +82,14 @@ public class FundsTableAdapter extends BaseTableAdapter {
 
     @Override
     public int getWidth(int column) {
-        Log.d(TAG, "getWidth()====column: " + column);
+//        Log.d(TAG, "getWidth()====column: " + column);
         int width = Math.round(tableData.getWidth(column + 1) * density);
         return width;
     }
 
     @Override
     public int getHeight(int row) {
-        Log.d(TAG, "getHeight()====row: " + row);
+//        Log.d(TAG, "getHeight()====row: " + row);
         int height;
         if (row == -1) height = 44;
         else height = 32;

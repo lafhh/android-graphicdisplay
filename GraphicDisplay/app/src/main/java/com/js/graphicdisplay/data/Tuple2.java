@@ -1,10 +1,12 @@
 package com.js.graphicdisplay.data;
 
+import java.io.Serializable;
+
 /**
  * Created by apple on 2017/7/17.
  */
 
-public class Tuple2 <T, K> {
+public class Tuple2 <T extends Serializable, K extends Serializable> {
 
     public final T _1;
 

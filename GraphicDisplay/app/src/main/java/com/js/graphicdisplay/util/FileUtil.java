@@ -1,7 +1,5 @@
 package com.js.graphicdisplay.util;
 
-import android.util.Log;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,7 +19,6 @@ public class FileUtil {
      */
     public static String readToString(String fileName) {
         String encoding = "UTF-8";
-        Log.d("laf", "enter");
         File file = new File(fileName);
         Long fileLength = file.length();
         byte[] fileContent = new byte[fileLength.intValue()];

@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">GraphicDisplay</string>
+
+    <string name="select_group">集团</string>
+    <string name="select_company">公司</string>
+    <string name="select_date">年月</string>
+
     <string name="funds_indicatrix_permonth">计划上缴：%1$s</string>
     <string name="funds_completion_permonth">实际上缴：%1$s</string>
     <string name="funds_balance_permonth">差额：%1$s</string>
