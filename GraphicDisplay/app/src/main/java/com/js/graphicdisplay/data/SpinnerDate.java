@@ -12,7 +12,18 @@ public class SpinnerDate implements Infermation {
 
     private String month;
 
-    public static ArrayList<SpinnerDate> month2Infermation(ArrayList<String> months) {
+    public static ArrayList<SpinnerDate> replace(ArrayList<String> months, ArrayList<SpinnerDate> dates) {
+        if (dates != null && dates.size() != 0) dates.clear();
+
+        for (int i = 0; i < months.size(); i++) {
+            SpinnerDate date = new SpinnerDate();
+            date.setMonth(months.get(i));
+            dates.add(date);
+        }
+        return dates;
+    }
+
+    public static ArrayList<SpinnerDate> toSpinnerDate(ArrayList<String> months) {
         ArrayList<SpinnerDate> dates = new ArrayList<>();
 
         for (int i = 0; i < months.size(); i++) {

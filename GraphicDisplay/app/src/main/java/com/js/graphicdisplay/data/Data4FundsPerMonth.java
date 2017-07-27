@@ -20,9 +20,11 @@ public class Data4FundsPerMonth {
 
     private BigDecimal rateCompletedCumulated; //当月累计完成比率
 
+    private String descUnfinished; //未完成情况说明
+
     public final String[] data;
 
-    public Data4FundsPerMonth(double indicatrixPerMonth, double completionPerMonth, double rateCompletedPerMonth, double indicatrixCumulated, double completionCumulated, double rateCompletedCumulated) {
+    public Data4FundsPerMonth(double indicatrixPerMonth, double completionPerMonth, double rateCompletedPerMonth, double indicatrixCumulated, double completionCumulated, double rateCompletedCumulated, String descUnfinished) {
         data = new String[]{
                 String.valueOf(indicatrixPerMonth),
                 String.valueOf(completionPerMonth),
@@ -30,6 +32,7 @@ public class Data4FundsPerMonth {
                 String.valueOf(indicatrixCumulated),
                 String.valueOf(completionCumulated),
                 String.valueOf(rateCompletedCumulated),
+                descUnfinished
         };
     }
 
@@ -80,5 +83,12 @@ public class Data4FundsPerMonth {
 
     public void setRateCompletedPerMonth(BigDecimal rateCompletedPerMonth) {
         this.rateCompletedPerMonth = rateCompletedPerMonth;
+    }
+    public String getDescUnfinished() {
+        return descUnfinished;
+    }
+
+    public void setDescUnfinished(String descUnfinished) {
+        this.descUnfinished = descUnfinished;
     }
 }

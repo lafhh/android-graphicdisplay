@@ -1,10 +1,8 @@
 package com.js.graphicdisplay.activity;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -18,22 +16,17 @@ import com.js.graphicdisplay.adapter.FundsTableAdapter;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
 import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
+import com.js.graphicdisplay.jsonutil.GroupJsonParser;
 import com.js.graphicdisplay.mpchart.customization.BarChartCustomization;
 import com.js.graphicdisplay.mpchart.customization.LineChartCustomization;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
 import com.js.graphicdisplay.util.ColorTemplate;
-import com.js.graphicdisplay.util.FileUtil;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -47,8 +40,8 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
     private static final int BAR_CHART_MAX_VALUE_COUNT = 60;
 
     private Spinner spinnerGroup;
-    private Spinner spinnerCompany;
-    private Spinner spinnerDate;
+//    private Spinner spinnerCompany;
+//    private Spinner spinnerDate;
 
     private BarChart mBarChart;
     private LineChart mLineChart;
@@ -60,26 +53,30 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
     private SpinnerAdapter<SpinnerDate> dateAdapter;
     private FundsTableAdapter tableAdapter;
 
-    private ArrayList<Group> groups = new ArrayList<>();
+    private ArrayList<Group> chartData = new ArrayList<>();
+    private ArrayList<Group> tableData = new ArrayList<>();
+//    private HashMap<String, ArrayList<Company>> companies = new HashMap<>();
+
+    private int totalRows;
+    private int page;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphic);
 
-        File file = Environment.getExternalStorageDirectory();
-        String path = file.getAbsolutePath() + "/Download/newchart.txt";
-        String json = FileUtil.readToString(path);
-        groupChartFromJson(json);
+//        File file = Environment.getExternalStorageDirectory();
+//        String path = file.getAbsolutePath() + "/Download/newchart.txt";
+//        String json = FileUtil.readToString(path);
+//        groupChartFromJson(json);
 
         spinnerGroup = (Spinner) findViewById(R.id.spinner_group);
-        spinnerDate = (Spinner) findViewById(R.id.spinner_date);
         mLineChart = (LineChart) findViewById(R.id.linechart);
         mBarChart = (BarChart) findViewById(R.id.barchart);
         table = (TableFixHeaders) findViewById(R.id.table_funds);
 
-        //spinner
-        groupAdapter = new SpinnerAdapter<>(this, groups);
+        //spinner //interface
+        groupAdapter = new SpinnerAdapter<>(this, chartData);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGroup.setAdapter(groupAdapter);
         spinnerGroup.setOnItemSelectedListener(this);
@@ -91,13 +88,6 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 //        spinnerCompany.setAdapter(companyAdapter);
 //        spinnerCompany.setOnItemSelectedListener(this);
 
-//        ArrayList<SpinnerDate> dates = SpinnerDate.month2Infermation(groups.get(0).getMonths());
-//        dateAdapter = new SpinnerAdapter<>(this, dates);
-////        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinnerDate.setAdapter(dateAdapter);
-//        Log.d("lAF", "DSFSDF");
-//        spinnerDate.setOnItemSelectedListener(this);
-
         //line chart
         LineChartCustomization.customLineChart(mLineChart, mTfLight);
 //        mLineChart.setOnChartGestureListener(new OnChartGestureImpl());
@@ -105,123 +95,64 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         //bar chart
         BarChartCustomization.customBarChart(mBarChart, mTfLight);
 
-        tableAdapter = new FundsTableAdapter(this, groups);
-        table.setAdapter(tableAdapter);
 
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
-//        list.add(new NameValuePair<>(NetUtil.POST_ORGID, "4"));
-//        list.add(new NameValuePair<>(NetUtil.POST_DATE, "201701"));
-//        HttpManager.doPost(
-//                NetUtil.URL_FUNDSTURNEDOVER_ALL_CHART,
-//                list,
-//                Request.ContentType.KVP,
-//                new Callback() {
-//                    Message msg;
-//
-//                    @Override
-//                    public void onFailure(Call call, IOException e) {
-//                        e.printStackTrace();
-//                        msg = Message.obtain();
-//                        msg.what = MESSAGE_ERROR;
-//                        mHandler.sendMessage(msg);
-//                    }
-//
-//                    @Override
-//                    public void onResponse(Call call, Response response) throws IOException {
-//                        if (response.isSuccessful()) {
-//                            String body = response.body().string();
-//                            Log.d(TAG, "response code : " + response.code());
-//                            Log.d(TAG, "body = " + body);
-//                            msg = Message.obtain();
-//                            msg.what = MESSAGE_SUCCESS;
-//                            msg.obj = body;
-//                            mHandler.sendMessage(msg);
-//
-//                        } else {
-//                            msg = Message.obtain();
-//                            msg.what = MESSAGE_FAILED;
-//                            msg.obj = response.body().string();
-//                            mHandler.sendMessage(msg);
-//                            throw new IOException("Unexpected code " + response);
-//                        }
-//                    }
-//                });
-        /*** test ***/
+        list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(10)));
+        list.add(new NameValuePair<>(NetUtil.KEY_OFFSET, String.valueOf(0)));
+        list.add(new NameValuePair<>(NetUtil.KEY_ORDER, "asc"));
+        list.add(new NameValuePair<>(NetUtil.KEY_SORT, NetUtil.GROUPNAME));
+        HttpManager.doPost(
+                NetUtil.URL_FUNDSTURNEDOVER_GROUP_TABLE,
+                list,
+                Request.ContentType.KVP,
+                new Callback() {
 
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                        sendEmptyMessage(MESSAGE_ERROR);
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String body = response.body().string();
+                        if (response.isSuccessful()) {
+                            totalRows = GroupJsonParser.tableFromJson(body, tableData);
+                            sendMessage(MESSAGE_TABLE, body);
+                            //再发网络请求
+
+                        } else {
+                            sendMessage(MESSAGE_FAILED, body);
+                            throw new IOException("Unexpected code " + response);
+                        }
+                    }
+                });
+
+        /*** test ***/
 //        Log.d(TAG, json);
         setChartData();
         /*** test ***/
     }
-
-//    private void initialSpinnerData() {
-//        for (int i = 0; i < 5; i++) {
-//            Group group = new Group();
-//            group.setGroupName("g" + (i + 1));
-//            groups1.add(group);
-//        }
-//        String group = groups1.get(0).getName();
-//        ArrayList<Company> companies = new ArrayList<>();
-//        groups1.get(0).setChild(companies);
-//        for (int i = 0; i < 10; i++) {
-//            Company company = new Company();
-//            company.setCompanyName(group + "c" + (i + 1));
-//            companies.add(company);
-//        }
-//        String company = companies.get(0).getName();
-//        ArrayList<Project> projects = new ArrayList<>();
-//        companies.get(0).setChild(projects);
-//        for (int i = 0; i < 10; i++) {
-//            Project project = new Project();
-//            project.setProjectName(company + "p" + (i + 1));
-//            projects.add(project);
-//        }
-//    }
-//
-//    private void getTreeFromGroup(Group group) {
-//        ArrayList<Company> companies = new ArrayList<>();
-//        String name = group.getName();
-//        group.setChild(companies);
-//        for (int i = 0; i < 10; i++) {
-//            Company company = new Company();
-//            company.setCompanyName(name + "c" + (i + 1));
-//            companies.add(company);
-//        }
-//        ArrayList<Project> projects = new ArrayList<>();
-//        companies.get(0).setChild(projects);
-//        name = companies.get(0).getName();
-//        for (int i = 0; i < 10; i++) {
-//            Project project = new Project();
-//            project.setProjectName(name + "p" + (i + 1));
-//            projects.add(project);
-//        }
-//
-//    }
-//
-//    private void getChildFromCompany(Company company) {
-//        String name = company.getName();
-//        ArrayList<Project> projects = new ArrayList<>();
-//        company.setChild(projects);
-//        for (int i = 0; i < 10; i++) {
-//            Project project = new Project();
-//            project.setProjectName(name + "p" + (i + 1));
-//            projects.add(project);
-//        }
-//    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Infermation o = (Infermation) parent.getItemAtPosition(position);
 
         if (o instanceof Group) {
-//            getTreeFromGroup((Group) o);
-//            ArrayList<Company> c = ((Group) o).getChild();
-//            companyAdapter.setData(c);
-//            companyAdapter.notifyDataSetChanged();
+//            //month
+//            ArrayList<SpinnerDate> sdate = dateAdapter.getData();
+//            SpinnerDate.replace(((Group) o).getMonths(), sdate);
+//            dateAdapter.notifyDataSetChanged();
+            //month selection
+
+            //company
+            ArrayList<Company> c = companies.get(((Group) o).getGroupCode());
+            companyAdapter.setData(c);
+            companyAdapter.notifyDataSetChanged();
+            //company selection
 //            spinnerCompany.setSelection(0);
-//            ArrayList<Project> p = c.get(0).getChild();
-//            projectAdapter.setData(p);
-//            projectAdapter.notifyDataSetChanged();
-//            spinnerProject.setSelection(0);
+
+            //通知table,chart
 
         } else if (o instanceof Company) {
 //            getChildFromCompany((Company) o);
@@ -229,7 +160,10 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 //            projectAdapter.setData(p);
 //            projectAdapter.notifyDataSetChanged();
 //            spinnerProject.setSelection(0);
+        } else if (o instanceof SpinnerDate) {
+
         }
+
     }
 
     @Override
@@ -239,10 +173,8 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 
     protected void handleUIMessage(Message msg) {
         switch (msg.what) {
-            case MESSAGE_SUCCESS:
-                String json = msg.obj.toString();
-                groupChartFromJson(json);
-                setChartData();
+            case MESSAGE_TABLE:
+                setTableData();
                 break;
 
             case MESSAGE_ERROR:
@@ -255,7 +187,7 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 
     private void setData() {
         if (groupAdapter == null) {
-            groupAdapter = new SpinnerAdapter<>(this, groups);
+            groupAdapter = new SpinnerAdapter<>(this, chartData);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerGroup.setAdapter(groupAdapter);
             spinnerGroup.setOnItemSelectedListener(this);
@@ -264,34 +196,19 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 
     }
 
-    private void groupChartFromJson(String json) {
-        try {
-            JSONArray jsonArray = new JSONArray(json);
-            Group group = null;
+    private void setTableData() {
+        if (tableAdapter == null) {
+            tableAdapter = new FundsTableAdapter(this, tableData);
+            table.setAdapter(tableAdapter);
+        } else {
 
-            for (int i = 0; i < jsonArray.length(); i++) {
-
-                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                String groupCode = jsonObject.getString("groupCode");
-
-                if (group == null || !group.getGroupCode().equals(groupCode)) {
-                    group = new Group();
-                    groups.add(group);
-                }
-
-                Group.fromJson(jsonObject, group);
-            }
-
-//            Log.d("laf", "end"); //检查数据结构
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 
     //group: a group of bars
-    private void setChartData() {
+    private void setChartData(ArrayList<Group> chartData) {
         //indicatrixPerMonth & completionPerMonth, two bar per Group(集团)
-        int barCountPerGroup = groups.size();
+        int barCountPerGroup = chartData.size();
 
         float groupSpace = 0.08f;
         float perBarSpaceWidth = (1.00f - groupSpace) / barCountPerGroup;
@@ -306,16 +223,17 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         int startMonth = 201701;
         int maxSize = 0;
 
-        for (int i = 0; i < groups.size(); i++) {
-            Group group = groups.get(i);
+        for (int i = 0; i < chartData.size(); i++) {
+            Group group = chartData.get(i);
             String name = group.getName();
             group.setKeyColor((i + 1) % ColorTemplate.TEMPLETE_COLOR.length);
-            ArrayList<Data4FundsPerMonth> datas = group.getFundsPerMonth();
+            FundsData fundsData = group.getFundsData();
+            ArrayList<Data4FundsPerMonth> datas = fundsData.getFundsPerMonth();
 
             ArrayList<BarEntry> barEntries = new ArrayList<>();
             ArrayList<Entry> lineEntries = new ArrayList<>();
 
-            ArrayList<String> months = group.getMonths();
+            ArrayList<String> months = fundsData.getMonths();
             if (maxSize < months.size()) maxSize = months.size();
             for (int j = 0; j < months.size(); j++) {
                 int month = Integer.parseInt(months.get(j));
@@ -388,4 +306,6 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         mLineChart.animateX(300);
         mLineChart.invalidate();
     }
+
+
 }

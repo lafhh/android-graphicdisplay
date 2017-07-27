@@ -18,6 +18,7 @@ public class BaseActivity extends AppCompatActivity {
     public static final int MESSAGE_ERROR = 0;
     public static final int MESSAGE_FAILED = 1;
     public static final int MESSAGE_SUCCESS = 2;
+    public static final int MESSAGE_TABLE = 3;
 
     protected Typeface mTfLight;
     protected Handler mHandler = new MHandler(this);
@@ -44,5 +45,15 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void handleUIMessage(Message msg) {}
 
+    protected void sendEmptyMessage(int what) {
+        mHandler.sendEmptyMessage(what);
+    }
+
+    protected void sendMessage(int what, Object obj) {
+        Message msg = Message.obtain();
+        msg.what = what;
+        msg.obj = obj;
+        mHandler.sendMessage(msg);
+    }
 
 }

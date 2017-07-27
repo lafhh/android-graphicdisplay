@@ -14,13 +14,9 @@ public class Company implements Infermation {
 
     private String companyCode;
 
-    private ArrayList<Project> child;
+//    private ArrayList<Project> child;
 
-    private ArrayList<String> months;
-
-    private ArrayList<Data4FundsPerMonth> fundsPerMonth; //每月上缴资金相关数据
-
-    private String descUnfinished; //未完成情况说明
+    private FundsData fundsData;
 
 
 
@@ -50,14 +46,6 @@ public class Company implements Infermation {
         this.companyName = companyName;
     }
 
-    public ArrayList<Project> getChild() {
-        return child;
-    }
-
-    public void setChild(ArrayList<Project> child) {
-        this.child = child;
-    }
-
     public String getCompanyCode() {
         return companyCode;
     }
@@ -66,27 +54,11 @@ public class Company implements Infermation {
         this.companyCode = companyCode;
     }
 
-    public ArrayList<String> getMonths() {
-        return months;
+    public FundsData getFundsData() {
+        return fundsData;
     }
 
-    public void setMonths(ArrayList<String> months) {
-        this.months = months;
-    }
-
-    public ArrayList<Data4FundsPerMonth> getFundsPerMonth() {
-        return fundsPerMonth;
-    }
-
-    public void setFundsPerMonth(ArrayList<Data4FundsPerMonth> fundsPerMonth) {
-        this.fundsPerMonth = fundsPerMonth;
-    }
-
-    public String getDescUnfinished() {
-        return descUnfinished;
-    }
-
-    public void setDescUnfinished(String descUnfinished) {
-        this.descUnfinished = descUnfinished;
+    public void setFundsData(FundsData fundsData) {
+        this.fundsData = fundsData;
     }
 }

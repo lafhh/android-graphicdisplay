@@ -74,4 +74,8 @@ public class SpinnerAdapter<T extends Infermation> extends BaseAdapter {
     public void setData(ArrayList<T> list) {
         mData = list;
     }
+
+    public ArrayList<T> getData() {
+        return mData;
+    }
 }
