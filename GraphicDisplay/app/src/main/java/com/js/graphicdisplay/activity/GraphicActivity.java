@@ -5,7 +5,9 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.*;
@@ -34,7 +36,7 @@ import java.util.ArrayList;
  * Created by js_gg on 2017/6/17.
  */
 
-public class GraphicActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
+public class GraphicActivity extends BaseActivity {
 
     private static final String TAG = "GraphicActivity";
     private static final int BAR_CHART_MAX_VALUE_COUNT = 60;
@@ -42,6 +44,8 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
     private Spinner spinnerGroup;
 //    private Spinner spinnerCompany;
 //    private Spinner spinnerDate;
+
+    private Spinner spinnerPageNum;
 
     private BarChart mBarChart;
     private LineChart mLineChart;
@@ -55,10 +59,11 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 
     private ArrayList<Group> chartData = new ArrayList<>();
     private ArrayList<Group> tableData = new ArrayList<>();
-//    private HashMap<String, ArrayList<Company>> companies = new HashMap<>();
 
     private int totalRows;
-    private int page;
+    private final int pageSize = 10;
+    private int pageIndex = 1;
+    private int offset;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,15 +76,15 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
 //        groupChartFromJson(json);
 
         spinnerGroup = (Spinner) findViewById(R.id.spinner_group);
+        spinnerPageNum = (Spinner) findViewById(R.id.spinner_pagenum);
         mLineChart = (LineChart) findViewById(R.id.linechart);
         mBarChart = (BarChart) findViewById(R.id.barchart);
         table = (TableFixHeaders) findViewById(R.id.table_funds);
 
-        //spinner //interface
-        groupAdapter = new SpinnerAdapter<>(this, chartData);
+//        groupAdapter = new SpinnerAdapter<>(this, chartData);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerGroup.setAdapter(groupAdapter);
-        spinnerGroup.setOnItemSelectedListener(this);
+//        spinnerGroup.setAdapter(groupAdapter);
+//        spinnerGroup.setOnItemSelectedListener(this);
 
 //        ArrayList<Company> companies = groups.get(0).getChild();
 //        spinnerCompany = (Spinner) findViewById(R.id.spinner_company);
@@ -95,9 +100,9 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         //bar chart
         BarChartCustomization.customBarChart(mBarChart, mTfLight);
 
-
+        //请求表格接口，拿到总记录数后，再次请求获取全部数据
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
-        list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(10)));
+        list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(pageSize)));
         list.add(new NameValuePair<>(NetUtil.KEY_OFFSET, String.valueOf(0)));
         list.add(new NameValuePair<>(NetUtil.KEY_ORDER, "asc"));
         list.add(new NameValuePair<>(NetUtil.KEY_SORT, NetUtil.GROUPNAME));
@@ -116,10 +121,10 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         String body = response.body().string();
+
                         if (response.isSuccessful()) {
                             totalRows = GroupJsonParser.tableFromJson(body, tableData);
-                            sendMessage(MESSAGE_TABLE, body);
-                            //再发网络请求
+                            sendEmptyMessage(MESSAGE_TABLE);
 
                         } else {
                             sendMessage(MESSAGE_FAILED, body);
@@ -128,53 +133,70 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
                     }
                 });
 
+
         /*** test ***/
-//        Log.d(TAG, json);
-        setChartData();
+//        setChartData();
         /*** test ***/
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Infermation o = (Infermation) parent.getItemAtPosition(position);
-
-        if (o instanceof Group) {
-//            //month
-//            ArrayList<SpinnerDate> sdate = dateAdapter.getData();
-//            SpinnerDate.replace(((Group) o).getMonths(), sdate);
-//            dateAdapter.notifyDataSetChanged();
-            //month selection
-
-            //company
-            ArrayList<Company> c = companies.get(((Group) o).getGroupCode());
-            companyAdapter.setData(c);
-            companyAdapter.notifyDataSetChanged();
-            //company selection
-//            spinnerCompany.setSelection(0);
-
-            //通知table,chart
-
-        } else if (o instanceof Company) {
-//            getChildFromCompany((Company) o);
-//            ArrayList<Project> p = ((Company) o).getChild();
-//            projectAdapter.setData(p);
-//            projectAdapter.notifyDataSetChanged();
-//            spinnerProject.setSelection(0);
-        } else if (o instanceof SpinnerDate) {
-
-        }
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     protected void handleUIMessage(Message msg) {
         switch (msg.what) {
             case MESSAGE_TABLE:
-                setTableData();
+
+                if (totalRows == 0) {
+                    Toast.makeText(this, "没有任何数据", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    //拿到totalrow，再次通过table接口获取全部数据，供chart使用
+                    ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
+                    list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(totalRows)));
+                    list.add(new NameValuePair<>(NetUtil.KEY_OFFSET, String.valueOf(0)));
+                    HttpManager.doPost(
+                            NetUtil.URL_FUNDSTURNEDOVER_GROUP_TABLE,
+                            list,
+                            Request.ContentType.KVP,
+                            new Callback() {
+
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+                                    e.printStackTrace();
+                                    sendEmptyMessage(MESSAGE_ERROR);
+                                }
+
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+                                    String body = response.body().string();
+
+                                    if (response.isSuccessful()) {
+                                        totalRows = GroupJsonParser.tableFromJson(body, chartData);
+                                        sendEmptyMessage(MESSAGE_CHART);
+
+                                    } else {
+                                        sendMessage(MESSAGE_FAILED, body);
+                                        throw new IOException("Unexpected code " + response);
+                                    }
+                                }
+                            });
+
+                    setSpinnerPagingInfo(); //绘制分页
+                    setTableData();  //绘制表格
+                }
+                break;
+
+            case MESSAGE_PAGING:
+                if (totalRows == 0) {
+                    Toast.makeText(this, "已经到最后一页了", Toast.LENGTH_SHORT).show();
+                } else {
+                    ArrayList<Group> gList = (ArrayList<Group>) msg.obj;
+                    tableData.clear();
+                    tableData.addAll(gList);
+                    setTableData();
+                }
+                break;
+
+            case MESSAGE_CHART:
+                setChartData(chartData);
+                setSpinnerGroupData();
                 break;
 
             case MESSAGE_ERROR:
@@ -185,15 +207,47 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
         }
     }
 
-    private void setData() {
+    private void setSpinnerGroupData() {
         if (groupAdapter == null) {
             groupAdapter = new SpinnerAdapter<>(this, chartData);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerGroup.setAdapter(groupAdapter);
-            spinnerGroup.setOnItemSelectedListener(this);
+            spinnerGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    Infermation o = (Infermation) parent.getItemAtPosition(position);
+
+                    if (o instanceof Group) {
+//            //month
+//            ArrayList<SpinnerDate> sdate = dateAdapter.getData();
+//            SpinnerDate.replace(((Group) o).getMonths(), sdate);
+//            dateAdapter.notifyDataSetChanged();
+                        //month selection
+
+                        //company
+//            ArrayList<Company> c = companies.get(((Group) o).getGroupCode());
+//            companyAdapter.setData(c);
+//            companyAdapter.notifyDataSetChanged();
+                        //company selection
+//            spinnerCompany.setSelection(0);
+
+                        //通知table,chart
+
+                    } else if (o instanceof Company) {
+//            getChildFromCompany((Company) o);
+//            ArrayList<Project> p = ((Company) o).getChild();
+//            projectAdapter.setData(p);
+//            projectAdapter.notifyDataSetChanged();
+//            spinnerProject.setSelection(0);
+                    } else if (o instanceof SpinnerDate) {
+
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {}
+            });
         }
-
-
     }
 
     private void setTableData() {
@@ -201,8 +255,68 @@ public class GraphicActivity extends BaseActivity implements AdapterView.OnItemS
             tableAdapter = new FundsTableAdapter(this, tableData);
             table.setAdapter(tableAdapter);
         } else {
-
+            tableAdapter.notifyDataSetChanged();
         }
+    }
+
+    private void setSpinnerPagingInfo() {
+        int totalPages = totalRows / pageSize + 1;
+        Integer[] pageIndexs = new Integer[totalPages];
+        for (int i = 0; i < totalPages; i++) {
+            pageIndexs[i] = i + 1;
+        }
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, pageIndexs);
+        spinnerPageNum.setAdapter(adapter);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerPageNum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int curr = (int) parent.getItemAtPosition(position);
+                if (pageIndex == curr) return;
+
+                pageIndex = curr;
+                offset = pageSize * (pageIndex - 1);
+
+                //集团分页，只要不是当前页，每次都进行网络请求
+                ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
+                list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(pageSize)));
+                list.add(new NameValuePair<>(NetUtil.KEY_OFFSET, String.valueOf(offset)));
+                list.add(new NameValuePair<>(NetUtil.KEY_ORDER, "asc"));
+                list.add(new NameValuePair<>(NetUtil.KEY_SORT, NetUtil.GROUPNAME));
+                HttpManager.doPost(
+                        NetUtil.URL_FUNDSTURNEDOVER_GROUP_TABLE,
+                        list,
+                        Request.ContentType.KVP,
+                        new Callback() {
+
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+                                e.printStackTrace();
+                                sendEmptyMessage(MESSAGE_ERROR);
+                            }
+
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                String body = response.body().string();
+
+                                if (response.isSuccessful()) {
+                                    ArrayList<Group> gList = new ArrayList<>();
+                                    totalRows = GroupJsonParser.tableFromJson(body, gList);
+                                    sendMessage(MESSAGE_PAGING, gList);
+
+                                } else {
+                                    sendMessage(MESSAGE_FAILED, body);
+                                    throw new IOException("Unexpected code " + response);
+                                }
+                            }
+                        });
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     //group: a group of bars

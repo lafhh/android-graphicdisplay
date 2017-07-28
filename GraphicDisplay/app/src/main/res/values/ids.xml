@@ -2,5 +2,6 @@
 <resources>
     <item type="id" name="sort_state"/>
     <item type="id" name="header_column"/>
-    <item type="id" name="header_child"/>
+    <item type="id" name="child"/>
+    <item type="id" name="row"/>
 </resources>

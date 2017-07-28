@@ -1,7 +1,6 @@
 package com.js.graphicdisplay.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.inqbarna.tablefixheaders.adapters.BaseTableAdapter;
 import com.js.graphicdisplay.R;
-import com.js.graphicdisplay.data.FundsTableData;
+import com.js.graphicdisplay.data.FundsTableMateData;
 import com.js.graphicdisplay.data.Group;
 import com.js.graphicdisplay.data.Tuple2;
+import com.js.graphicdisplay.impl.FirstColumnOnClickListener;
 import com.js.graphicdisplay.impl.SortHeaderListener;
 import com.js.graphicdisplay.util.SortState;
 import com.js.graphicdisplay.util.SortStateViewProvider;
@@ -31,7 +31,7 @@ public class FundsTableAdapter extends BaseTableAdapter {
     private float density;
     private LayoutInflater inflater;
 
-    private FundsTableData tableData = new FundsTableData();
+    private FundsTableMateData tableMetaData = new FundsTableMateData();
     private final SparseArray<ImageView> sortViews = new SparseArray<>();
     private SortHeaderListener listener;
 
@@ -40,22 +40,21 @@ public class FundsTableAdapter extends BaseTableAdapter {
         this.context = context;
         density = context.getResources().getDisplayMetrics().density;
         inflater = LayoutInflater.from(context);
-        listener = new SortHeaderListener(sortViews, tableData);
-        Log.d(TAG, "density: " + density);
+        listener = new SortHeaderListener(sortViews, tableMetaData);
     }
 
     @Override
     public int getRowCount() {
         int size = 0;
         for (int i = 0; i < list.size(); i++) {
-            size += list.get(i).getMonths().size();
+            size += list.get(i).getFundsData().getMonths().size();
         }
         return size;
     }
 
     @Override
     public int getColumnCount() {
-        return tableData.getlabelLength()- 1;
+        return tableMetaData.getlabelLength() - 1;
     }
 
     @Override
@@ -83,7 +82,7 @@ public class FundsTableAdapter extends BaseTableAdapter {
     @Override
     public int getWidth(int column) {
 //        Log.d(TAG, "getWidth()====column: " + column);
-        int width = Math.round(tableData.getWidth(column + 1) * density);
+        int width = Math.round(tableMetaData.getWidth(column + 1) * density);
         return width;
     }
 
@@ -126,7 +125,7 @@ public class FundsTableAdapter extends BaseTableAdapter {
         }
         convertView.setTag(R.id.header_column, column);
         TextView txtView = (TextView) convertView.findViewById(R.id.txt_header_first);
-        txtView.setText(tableData.getLabel(0));
+        txtView.setText(tableMetaData.getLabel(0));
         return convertView;
     }
 
@@ -139,16 +138,16 @@ public class FundsTableAdapter extends BaseTableAdapter {
             sortView.setTag(R.id.sort_state, SortState.SORTABLE);
             TextView txtView = (TextView) convertView.findViewById(R.id.txt_header);
 
-            convertView.setTag(R.id.header_child,
+            convertView.setTag(R.id.child,
                     new ViewHolder()
                             .setImgView(sortView)
                             .setTxtView(txtView));
         }
         convertView.setTag(R.id.header_column, column);
-        ViewHolder holder = (ViewHolder) convertView.getTag(R.id.header_child);
-        holder.getTxtView().setText(tableData.getLabel(column + 1));
+        ViewHolder holder = (ViewHolder) convertView.getTag(R.id.child);
+        holder.getTxtView().setText(tableMetaData.getLabel(column + 1));
 
-        SortState sortState = tableData.getSortState(column + 1);
+        SortState sortState = tableMetaData.getSortState(column + 1);
         holder.getImgView().setImageResource(SortStateViewProvider.getSortStateViewResource(sortState));
         return convertView;
     }
@@ -156,41 +155,54 @@ public class FundsTableAdapter extends BaseTableAdapter {
     private View getFirstBody(int row, int column, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_table_first, parent, false);
+            convertView.setOnClickListener(new FirstColumnOnClickListener());
+            TextView txtView = (TextView) convertView.findViewById(R.id.txt_first);
+
+            convertView.setTag(R.id.child,
+                    new ViewHolder()
+                            .setTxtView(txtView));
+
         }
-        TextView txtView = (TextView) convertView.findViewById(R.id.txt_first);
+        convertView.setTag(R.id.row, row); //记住自己是当前页的第几行
         int index = (int) getRow(row)._1;
-        txtView.setText(list.get(index).getName());
+
+        ViewHolder holder = (ViewHolder) convertView.getTag();
+        holder.getTxtView().setText(list.get(index).getName());
         return convertView;
     }
 
     private View getBody(int row, int column, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_table, parent, false);
-        }
+            TextView txtView = (TextView) convertView.findViewById(R.id.txt_table);
 
-        TextView txtView = (TextView) convertView.findViewById(R.id.txt_table);
+            convertView.setTag(R.id.child,
+                    new ViewHolder()
+                            .setTxtView(txtView));
+        }
+        TextView txtView = ((ViewHolder) convertView.getTag()).getTxtView();
         int index = (int) getRow(row)._1;
         row = (int) getRow(row)._2;
 
         if (column == 0) {
-            txtView.setText(list.get(index).getMonths().get(row));
+            txtView.setText(list.get(index).getFundsData().getMonths().get(row));
         } else {
-            txtView.setText(list.get(index).getFundsPerMonth().get(row).data[column - 1]);
+            txtView.setText(list.get(index).getFundsData().getFundsPerMonth().get(row).data[column - 1]);
         }
 
         return convertView;
     }
 
     private Tuple2 getRow(int row) {
-        int index = 0;
+        int groupIndex = 0;
 
         while (row >= 0) {
-            row -= list.get(index).getMonths().size();
-            index++;
+            row -= list.get(groupIndex).getFundsData().getMonths().size();
+            groupIndex++;
         }
-        index--;
+        groupIndex--;
 
-        Tuple2 t2 = new Tuple2(index, row + list.get(index).getMonths().size());
+        Tuple2 t2 = new Tuple2(groupIndex, row + list.get(groupIndex).getFundsData().getMonths().size());
         return t2;
     }
 
@@ -215,6 +227,5 @@ public class FundsTableAdapter extends BaseTableAdapter {
             this.imgView = imgView;
             return this;
         }
-
     }
 }

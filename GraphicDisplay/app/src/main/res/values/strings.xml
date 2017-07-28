@@ -9,11 +9,13 @@
     <string name="funds_completion_permonth">实际上缴：%1$s</string>
     <string name="funds_balance_permonth">差额：%1$s</string>
 
-    <string name="title_activity_main">SortableTableView Example</string>
+    <string name="paging">显示第%1$d到第%2$d条记录，一共%3$d条记录</string>
 
-    <string name="default_text_ps">180PS</string>
-    <string name="separator">/</string>
-    <string name="default_text_kws">120kW</string>
+    <!--<string name="title_activity_main">SortableTableView Example</string>-->
+
+    <!--<string name="default_text_ps">180PS</string>-->
+    <!--<string name="separator">/</string>-->
+    <!--<string name="default_text_kws">120kW</string>-->
 
     <!--<string name="car_producer_image_content_description">Car Producer</string>-->
     <!--<string name="kw">kW</string>-->

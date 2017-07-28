@@ -8,7 +8,7 @@ import static com.js.graphicdisplay.util.SortState.SORTABLE;
  * Created by laf on 17-7-20.
  */
 
-public class FundsTableData {
+public class FundsTableMateData {
 
     private String[] labels = {
             "集团",

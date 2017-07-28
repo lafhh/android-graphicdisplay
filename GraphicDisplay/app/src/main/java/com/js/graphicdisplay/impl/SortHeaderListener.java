@@ -5,12 +5,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.js.graphicdisplay.R;
-import com.js.graphicdisplay.activity.TableActivity;
-import com.js.graphicdisplay.data.FundsTableData;
+import com.js.graphicdisplay.data.FundsTableMateData;
 import com.js.graphicdisplay.util.SortState;
 import com.js.graphicdisplay.util.SortStateViewProvider;
-
-import javax.xml.parsers.SAXParser;
 
 import static com.js.graphicdisplay.util.SortState.SORTABLE;
 import static com.js.graphicdisplay.util.SortState.SORTED_ASC;
@@ -23,9 +20,9 @@ import static com.js.graphicdisplay.util.SortState.SORTED_DESC;
 public class SortHeaderListener implements View.OnClickListener {
 
     private final SparseArray<ImageView> sortViews;
-    private final FundsTableData tableData;
+    private final FundsTableMateData tableData;
 
-    public SortHeaderListener(SparseArray<ImageView> views, FundsTableData tableData) {
+    public SortHeaderListener(SparseArray<ImageView> views, FundsTableMateData tableData) {
         sortViews = views;
         this.tableData = tableData;
     }

@@ -19,6 +19,8 @@ public class BaseActivity extends AppCompatActivity {
     public static final int MESSAGE_FAILED = 1;
     public static final int MESSAGE_SUCCESS = 2;
     public static final int MESSAGE_TABLE = 3;
+    public static final int MESSAGE_PAGING = 4;
+    public static final int MESSAGE_CHART = 5;
 
     protected Typeface mTfLight;
     protected Handler mHandler = new MHandler(this);

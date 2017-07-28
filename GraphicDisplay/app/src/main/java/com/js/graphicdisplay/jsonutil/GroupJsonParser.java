@@ -49,10 +49,11 @@ public class GroupJsonParser {
      *
      * @param json
      * @param groups
-     * @return 0:如果没有任何数据;
+     * @return 返回json当中保存总记录数的total字段的值；0:如果没有返回任何数据;
      */
     public static int tableFromJson(String json, ArrayList<Group> groups) {
         int totalRows;
+
         try {
             JSONObject obj = new JSONObject(json);
             JSONArray rows = obj.getJSONArray("rows");
@@ -62,7 +63,6 @@ public class GroupJsonParser {
             String jsonString = rows.toString();
             Log.d(TAG, "tableFromJson() json = " + json);
             chartFromJson(jsonString, groups);
-
 
         } catch (JSONException e) {
             e.printStackTrace();
