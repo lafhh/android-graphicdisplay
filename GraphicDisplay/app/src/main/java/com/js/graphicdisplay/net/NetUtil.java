@@ -18,7 +18,8 @@ public class NetUtil {
     public static final String URL_MAIN                 = BASE_URL + "main/";
 
     /**
-     *
+     * 查询各[集团]资金月度上缴情况表(用于表格展示数据)
+     * 
      * orgId=&ym=&limit=10&offset=0&order=&sort=
      * 按集团排序 sort=groupName
      *
@@ -57,6 +58,8 @@ public class NetUtil {
     public static final String URL_FUNDSTURNEDOVER_GROUP_TABLE  = URL_FUNDSTURNEDOVER + "getFundsTurnedOverForGroupTable.do";
 
     /**
+     * 查询各[公司]资金资金月度上缴情况表(用于表格展示数据)
+     * 
      * orgId=4&compId=68&ym=&limit=5&offset=0&order=&sort=
      *
      * curl -X POST --data "orgId=2&ym=201701&limit=10&offset=0&order=asc&sort=compName" http://192.168.1.193:8081/jsbi/fundsTurnedOver/getFundsTurnedOverForComTable.do
@@ -93,6 +96,8 @@ public class NetUtil {
     public static final String URL_FUNDSTURNEDOVER_COMP_TABLE   = URL_FUNDSTURNEDOVER + "getFundsTurnedOverForComTable.do";
 
     /**
+     * 查询各集团资金月度上缴情况表数据(用于图形展示)
+     * 
      * orgId=&ym=
      * orgId和ym都为空为查询所有数据
      * curl -X POST --data "orgId=2&ym=201701" http://192.168.1.193:8081/jsbi/fundsTurnedOver/getAllFundsTurnedOverForChart.do
@@ -126,6 +131,8 @@ public class NetUtil {
 
 
     /**
+     * 查询各[集团]土地储备情况表数据(用于图形展示)
+     * 
      * orgId=&ym=
      *
      * orgId和ym都为空为查询所有数据
@@ -176,6 +183,7 @@ public class NetUtil {
     public static final String URL_LANDBANKING_QUERYITEM_CHART  = URL_LANDBANKING + "queryItemsForChart.do";
 
     /**
+     * 查询各[集团]土地储备情况表数据(用于表格展示)
      * orgId=&ym=&limit=5&offset=0&order=&sort=
      * 按集团排序 sort=orgName
      *
@@ -229,6 +237,7 @@ public class NetUtil {
     public static final String URL_LANDBANKING_QUERYITEM = URL_LANDBANKING + "queryItems.do";
 
     /**
+     * 查询各[公司]土地储备情况表数据(用于表格展示)
      * cgId=&comId=&ym=&limit=5&offset=0&order=&sort=
      *
      * curl -X POST --data "limit=5&offset=0&order=asc&sort=orgName" http://192.168.1.193:8081/jsbi/landbanking/queryItemsForCom.do
@@ -282,6 +291,8 @@ public class NetUtil {
     public static final String URL_LANDBANKING_QUERYITEM_COMP   = URL_LANDBANKING + "queryItemsForCom.do";
 
     /**
+     * 查询各集团回款达成率数据(用于图形展示)
+     * 
      * orgId=&ym=
      * curl -X POST http://192.168.1.193:8081/jsbi/receivedPayments/queryItemsForChart.do
      [
@@ -312,6 +323,8 @@ public class NetUtil {
     public static final String URL_RECEIVEDPAYMENTS_CHART = URL_RECEIVEDPAYMENTS + "queryItemsForChart.do";
 
     /**
+     * 查询各[集团]回款达成率数据(用于表格展示)
+     * 
      * orgId=&ym=&limit=&offset=&sort=&order=
      *
      * curl -X POST --data "limit=10&offset=0&order=asc&sort=orgName" http://192.168.1.193:8081/jsbi/receivedPayments/queryItems.do
@@ -347,6 +360,8 @@ public class NetUtil {
     public static final String URL_RECEIVEDPAYMENTS_TABLE_GROUP = URL_RECEIVEDPAYMENTS + "queryItems.do";
 
     /**
+     * 查询各[公司]回款达成率数据(用于表格展示)
+     * 
      * compId=&ym=&limit=10&offset=0&sort=orgName&order=asc&groupId=2
      * curl -X POST --data "limit=10&offset=0&order=asc&sort=orgName" http://192.168.1.193:8081/jsbi/receivedPayments/queryItemsForCom.do
      {
@@ -381,6 +396,8 @@ public class NetUtil {
 
 
     /**
+     * 查询各集团销售情况表数据(用于图形展示)
+     * 
      * orgId=&ymd=
      * curl -X POST http://192.168.1.193:8081/jsbi/sales/getAllSalesForChart.do
      [
@@ -416,6 +433,8 @@ public class NetUtil {
     public static final String URL_SALES_CHART = URL_SALES + "getAllSalesForChart.do";
 
     /**
+     * 查询各[集团]销售情况表数据(用于表格展示)
+     * 
      * orgId=&ymd=&limit=10&offset=0&order=&sort=
      * curl -X POST --data "limit=10&offset=0" http://192.168.1.193:8081/jsbi/sales/getSalesForGroupTable.do
      {
@@ -454,6 +473,8 @@ public class NetUtil {
     public static final String URL_SALES_TABLE_GROUP = URL_SALES + "getSalesForGroupTable.do";
 
     /**
+     * 查询各[公司]销售情况表数据(用于表格展示)
+     * 
      * groupId=2&compId=&ymd=&limit=10&offset=0&order=&sort=
      * curl -X POST --data "limit=10&offset=0" http://192.168.1.193:8081/jsbi/sales/getSalesForComTable.do
      {
@@ -492,6 +513,7 @@ public class NetUtil {
     public static final String URL_SALES_TABLE_COMP = URL_SALES + "getSalesForComTable.do";
 
     /**
+     * 查询各集团不动产出租情况表数据(用于图形展示)
      * groupId=&ym=
      * curl -X POST http://192.168.1.193:8081/jsbi/realEstateRental/queryRealEstateRentalForChart.do
      [
@@ -529,6 +551,7 @@ public class NetUtil {
     public static final String URL_REALESTATERENTAL_CHART = URL_REALESTATERENTAL + "queryRealEstateRentalForChart.do";
 
     /**
+     * 查询各[集团]不动产出租情况表数据(用于表格展示)
      * groupId=&ym=&limit=10&offset=0&order=&sort=
      * @link curl -X POST --data "limit=10&offset=0" http://192.168.1.193:8081/jsbi/realEstateRental/getRealEstateRentalForGroupTable.do
      {
@@ -569,6 +592,7 @@ public class NetUtil {
     public static final String URL_REALESTATERENTAL_TABLE_GROUP = URL_REALESTATERENTAL + "getRealEstateRentalForGroupTable.do";
 
     /**
+     * 查询各[公司]不动产出租情况表数据(用于表格展示)
      * groupId=&ym=&limit=10&offset=0&order=&sort=&propertyType=0&fmt=house
      * curl -X POST --data "limit=10&offset=0" http://192.168.1.193:8081/jsbi/realEstateRental/queryRealEstateRentalForFmtTable.do
      {
@@ -713,6 +737,7 @@ public class NetUtil {
     public static final String URL_QUERYOWNPROPERTY = URL_MAIN + "queryOwnProperty.do";
 
     /**
+     * 
      * groupId=4
      * curl -X POST --data "groupId=4" http://192.168.1.193:8081/jsbi/main/queryItemsByGroupId.do
      [

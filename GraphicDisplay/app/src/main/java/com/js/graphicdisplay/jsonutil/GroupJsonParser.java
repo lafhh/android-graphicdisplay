@@ -3,7 +3,7 @@ package com.js.graphicdisplay.jsonutil;
 import android.util.Log;
 import com.js.graphicdisplay.data.FundsData;
 import com.js.graphicdisplay.data.Group;
-import com.js.graphicdisplay.data.Tuple2;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class GroupJsonParser {
     private static final String TAG = "GroupJsonParser";
 
-    public static ArrayList<Group> chartFromJson(String json, ArrayList<Group> groups) {
+    public static ArrayList<Group> parseJsonArray(String json, ArrayList<Group> groups) {
         try {
             JSONArray jsonArray = new JSONArray(json);
             if (jsonArray.length() == 0) return null;
@@ -62,7 +62,7 @@ public class GroupJsonParser {
             totalRows = obj.getInt("total");
             String jsonString = rows.toString();
             Log.d(TAG, "tableFromJson() json = " + json);
-            chartFromJson(jsonString, groups);
+            parseJsonArray(jsonString, groups);
 
         } catch (JSONException e) {
             e.printStackTrace();

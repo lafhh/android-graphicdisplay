@@ -1,6 +1,7 @@
 package com.js.graphicdisplay.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 public class FundsTableAdapter extends BaseTableAdapter {
     private static final String TAG = "FundsTableAdapter";
 
-    private ArrayList<Group> list;
+    private ArrayList<Group> groups;
     private Context context;
     private float density;
     private LayoutInflater inflater;
@@ -36,24 +37,27 @@ public class FundsTableAdapter extends BaseTableAdapter {
     private SortHeaderListener listener;
 
     public FundsTableAdapter(Context context, ArrayList<Group> list) {
-        this.list = list;
+        this.groups = list;
         this.context = context;
         density = context.getResources().getDisplayMetrics().density;
         inflater = LayoutInflater.from(context);
         listener = new SortHeaderListener(sortViews, tableMetaData);
     }
-
+    int _2;
     @Override
     public int getRowCount() {
+        Log.d(TAG, "getRowCount() " + ++_2);
         int size = 0;
-        for (int i = 0; i < list.size(); i++) {
-            size += list.get(i).getFundsData().getMonths().size();
+        for (int i = 0; i < groups.size(); i++) {
+            size += groups.get(i).getFundsData().getMonths().size();
         }
         return size;
     }
 
+    int _1;
     @Override
     public int getColumnCount() {
+        Log.d(TAG, "getColumnCount() " + ++_1);
         return tableMetaData.getlabelLength() - 1;
     }
 
@@ -78,17 +82,17 @@ public class FundsTableAdapter extends BaseTableAdapter {
         }
         return view;
     }
-
+    int _3;
     @Override
     public int getWidth(int column) {
-//        Log.d(TAG, "getWidth()====column: " + column);
+        Log.d(TAG, "getWidth() " + ++_3);
         int width = Math.round(tableMetaData.getWidth(column + 1) * density);
         return width;
     }
-
+    int _4;
     @Override
     public int getHeight(int row) {
-//        Log.d(TAG, "getHeight()====row: " + row);
+        Log.d(TAG, "getWidth() " + ++_4);
         int height;
         if (row == -1) height = 44;
         else height = 32;
@@ -163,11 +167,12 @@ public class FundsTableAdapter extends BaseTableAdapter {
                             .setTxtView(txtView));
 
         }
-        convertView.setTag(R.id.row, row); //记住自己是当前页的第几行
         int index = (int) getRow(row)._1;
 
-        ViewHolder holder = (ViewHolder) convertView.getTag();
-        holder.getTxtView().setText(list.get(index).getName());
+        ViewHolder holder = (ViewHolder) convertView.getTag(R.id.child);
+        holder.getTxtView().setText(groups.get(index).getName());
+        convertView.setTag(R.id.item_value, groups.get(index).getId());
+
         return convertView;
     }
 
@@ -180,14 +185,14 @@ public class FundsTableAdapter extends BaseTableAdapter {
                     new ViewHolder()
                             .setTxtView(txtView));
         }
-        TextView txtView = ((ViewHolder) convertView.getTag()).getTxtView();
+        TextView txtView = ((ViewHolder) convertView.getTag(R.id.child)).getTxtView();
         int index = (int) getRow(row)._1;
         row = (int) getRow(row)._2;
 
         if (column == 0) {
-            txtView.setText(list.get(index).getFundsData().getMonths().get(row));
+            txtView.setText(groups.get(index).getFundsData().getMonths().get(row));
         } else {
-            txtView.setText(list.get(index).getFundsData().getFundsPerMonth().get(row).data[column - 1]);
+            txtView.setText(groups.get(index).getFundsData().getFundsPerMonth().get(row).data[column - 1]);
         }
 
         return convertView;
@@ -197,12 +202,12 @@ public class FundsTableAdapter extends BaseTableAdapter {
         int groupIndex = 0;
 
         while (row >= 0) {
-            row -= list.get(groupIndex).getFundsData().getMonths().size();
+            row -= groups.get(groupIndex).getFundsData().getMonths().size();
             groupIndex++;
         }
         groupIndex--;
 
-        Tuple2 t2 = new Tuple2(groupIndex, row + list.get(groupIndex).getFundsData().getMonths().size());
+        Tuple2 t2 = new Tuple2(groupIndex, row + groups.get(groupIndex).getFundsData().getMonths().size());
         return t2;
     }
 

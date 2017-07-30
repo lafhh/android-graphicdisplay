@@ -15,7 +15,10 @@ public class Group implements Infermation {
 
     private static final String TAG = "Group";
 
-    private int id; //group id
+    /**
+     * group id
+     */
+    private int id;
 
     private String groupName;
 
@@ -23,10 +26,19 @@ public class Group implements Infermation {
 
 //    private ArrayList<Company> child;
 
+    /**
+     * 集团上缴资金数据
+     */
     private FundsData fundsData;
 
+    /**
+     *
+     */
     private Object tag = null;
 
+    /**
+     *
+     */
     private int keyColor;
 
 
