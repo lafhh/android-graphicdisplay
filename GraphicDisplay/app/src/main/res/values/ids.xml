@@ -3,5 +3,5 @@
     <item type="id" name="sort_state"/>
     <item type="id" name="header_column"/>
     <item type="id" name="child"/>
-    <item type="id" name="row"/>
+    <item type="id" name="item_value"/>
 </resources>

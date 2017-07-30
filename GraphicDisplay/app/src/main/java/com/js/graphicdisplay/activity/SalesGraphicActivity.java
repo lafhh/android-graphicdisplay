@@ -27,7 +27,6 @@ import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
 import com.js.graphicdisplay.util.ColorTemplate;
 import com.js.graphicdisplay.util.FileUtil;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -38,9 +37,9 @@ import java.util.ArrayList;
 
 /**
  * Created by js_gg on 2017/6/17.
+ * 销售情况表
  */
-
-public class GraphicActivity extends BaseActivity {
+public class SalesGraphicActivity extends BaseActivity {
 
     private static final String TAG = "GraphicActivity";
     private static final int BAR_CHART_MAX_VALUE_COUNT = 60;
@@ -161,7 +160,7 @@ public class GraphicActivity extends BaseActivity {
                     list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(totalRows)));
                     list.add(new NameValuePair<>(NetUtil.KEY_OFFSET, String.valueOf(0)));
                     HttpManager.doPost(
-                            NetUtil.URL_FUNDSTURNEDOVER_GROUP_TABLE,
+                            NetUtil.URL_SALES_TABLE_GROUP,
                             list,
                             Request.ContentType.KVP,
                             new Callback() {
@@ -294,7 +293,7 @@ public class GraphicActivity extends BaseActivity {
                 list.add(new NameValuePair<>(NetUtil.KEY_ORDER, "asc"));
                 list.add(new NameValuePair<>(NetUtil.KEY_SORT, NetUtil.GROUPNAME));
                 HttpManager.doPost(
-                        NetUtil.URL_FUNDSTURNEDOVER_GROUP_TABLE,
+                        NetUtil.URL_SALES_TABLE_GROUP,
                         list,
                         Request.ContentType.KVP,
                         new Callback() {
