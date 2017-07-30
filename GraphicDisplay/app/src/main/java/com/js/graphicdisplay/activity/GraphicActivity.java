@@ -1,24 +1,26 @@
 package com.js.graphicdisplay.activity;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.*;
 import com.inqbarna.tablefixheaders.TableFixHeaders;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
-import com.js.graphicdisplay.adapter.FundsTableAdapter;
+import com.js.graphicdisplay.adapter.TableAdapter;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
 import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
+import com.js.graphicdisplay.jsonutil.CompanyJsonParser;
 import com.js.graphicdisplay.jsonutil.GroupJsonParser;
 import com.js.graphicdisplay.mpchart.customization.BarChartCustomization;
 import com.js.graphicdisplay.mpchart.customization.LineChartCustomization;
@@ -26,15 +28,14 @@ import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
 import com.js.graphicdisplay.util.ColorTemplate;
-import com.js.graphicdisplay.util.FileUtil;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by js_gg on 2017/6/17.
@@ -49,6 +50,7 @@ public class GraphicActivity extends BaseActivity {
 //    private Spinner spinnerCompany;
 //    private Spinner spinnerDate;
 
+    private TextView txtLabel;
     private Spinner spinnerPageNum;
 
     private BarChart mBarChart;
@@ -59,11 +61,13 @@ public class GraphicActivity extends BaseActivity {
     private SpinnerAdapter<Group> groupAdapter;
     private SpinnerAdapter<Company> companyAdapter;
     private SpinnerAdapter<SpinnerDate> dateAdapter;
-    private FundsTableAdapter tableAdapter;
+    private TableAdapter tableAdapter;
 
     private ArrayList<Group> chartData = new ArrayList<>();
-    private ArrayList<Group> tableData = new ArrayList<>();
-    private ArrayList<Company> companies = new ArrayList<>();
+    //    private ArrayList<Group> tableData = new ArrayList<>();
+    private HashMap<String, Object> groups = new HashMap<>();
+    private HashMap<String, Object> companies = new HashMap<>();
+    private Tuple2<String, Integer> t2;
 
     private int totalRows;
     private final int pageSize = 10;
@@ -75,9 +79,8 @@ public class GraphicActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphic);
 
-
-
         spinnerGroup = (Spinner) findViewById(R.id.spinner_group);
+        txtLabel = (TextView) findViewById(R.id.txt_name);
         spinnerPageNum = (Spinner) findViewById(R.id.spinner_pagenum);
         mLineChart = (LineChart) findViewById(R.id.linechart);
         mBarChart = (BarChart) findViewById(R.id.barchart);
@@ -108,43 +111,75 @@ public class GraphicActivity extends BaseActivity {
         list.add(new NameValuePair<>(NetUtil.KEY_OFFSET, String.valueOf(0)));
         list.add(new NameValuePair<>(NetUtil.KEY_ORDER, "asc"));
         list.add(new NameValuePair<>(NetUtil.KEY_SORT, NetUtil.GROUPNAME));
-//        HttpManager.doPost(
-//                NetUtil.URL_FUNDSTURNEDOVER_GROUP_TABLE,
-//                list,
-//                Request.ContentType.KVP,
-//                new Callback() {
-//
-//                    @Override
-//                    public void onFailure(Call call, IOException e) {
-//                        e.printStackTrace();
-//                        sendEmptyMessage(MESSAGE_ERROR);
-//                    }
-//
-//                    @Override
-//                    public void onResponse(Call call, Response response) throws IOException {
-//                        String body = response.body().string();
-//
-//                        if (response.isSuccessful()) {
-//                            totalRows = GroupJsonParser.tableFromJson(body, tableData);
-//                            sendEmptyMessage(MESSAGE_TABLE);
-//
-//                        } else {
-//                            sendMessage(MESSAGE_FAILED, body);
-//                            throw new IOException("Unexpected code " + response);
-//                        }
-//                    }
-//                });
+        HttpManager.doPost(
+                NetUtil.URL_FUNDSTURNEDOVER_GROUP_TABLE,
+                list,
+                Request.ContentType.KVP,
+                new Callback() {
+
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                        sendEmptyMessage(MESSAGE_ERROR);
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String body = response.body().string();
+
+                        if (response.isSuccessful()) {
+                            totalRows = GroupJsonParser.fundsJson2HashMap(body, groups);
+                            sendEmptyMessage(MESSAGE_TABLE);
+
+                        } else {
+                            sendMessage(MESSAGE_FAILED, body);
+                            throw new IOException("Unexpected code " + response);
+                        }
+                    }
+                });
 
         /*** test ***/
-        File file = Environment.getExternalStorageDirectory();
-        String path = file.getAbsolutePath() + "/Download/newTable.txt";
-        String json = FileUtil.readToString(path);
-        GroupJsonParser.tableFromJson(json, tableData);
-        totalRows = GroupJsonParser.tableFromJson(json, chartData);
-        setSpinnerPagingInfo(); //绘制分页
-        setTableData();  //绘制表格
-//        setChartData(chartData);
-        setSpinnerGroupData();
+//        File file = Environment.getExternalStorageDirectory();
+//        String path = file.getAbsolutePath() + "/Download/newTable.txt";
+//        String json = FileUtil.readToString(path);
+//        GroupJsonParser.tableFromJson(json, tableData);
+//        totalRows = GroupJsonParser.tableFromJson(json, chartData);
+//        setSpinnerPagingInfo(); //绘制分页
+//        setTableData();  //绘制表格
+////        setChartData(chartData);
+//        setSpinnerGroupData();
+
+//        xGroup = new XGroup();
+//        HashMap<String, Object> hashMap = new HashMap<>();
+//
+//        String[] titles = {"title1", "title2", "title2"};
+//        int[] state = {1, 0, 0};
+//        int[] widths = {22, 33, 44};
+//        ArrayList<ArrayList<String>> glist = new ArrayList<>();
+//        ArrayList<String> g1 = new ArrayList<>();
+//        g1.add("01");
+//        g1.add("01t2");
+//        g1.add("01t3");
+//        g1.add("1");
+//        ArrayList<String> g2 = new ArrayList<>();
+//        g2.add("02");
+//        g2.add("02t2");
+//        g2.add("02t3");
+//        g2.add("2");
+//        ArrayList<String> g3 = new ArrayList<>();
+//        g3.add("03");
+//        g3.add("03t2");
+//        g3.add("03t3");
+//        g3.add("3");
+//        glist.add(g1);
+//        glist.add(g2);
+//        glist.add(g3);
+//        hashMap.put("title", titles);
+//        hashMap.put("state", state);
+//        hashMap.put("width", widths);
+//        hashMap.put("data", glist);
+//        setSpinnerPagingInfo(); //绘制分页
+//        setTableData(hashMap);  //绘制表格
         /*** test ***/
     }
 
@@ -188,18 +223,16 @@ public class GraphicActivity extends BaseActivity {
                             });
 
                     setSpinnerPagingInfo(); //绘制分页
-                    setTableData();  //绘制表格
+                    setTableData(groups);  //绘制表格
                 }
                 break;
 
-            case MESSAGE_PAGING:
+            case MESSAGE_GROUP_PAGING:
                 if (totalRows == 0) {
                     Toast.makeText(this, "已经到最后一页了", Toast.LENGTH_SHORT).show();
                 } else {
-                    ArrayList<Group> gList = (ArrayList<Group>) msg.obj;
-                    tableData.clear();
-                    tableData.addAll(gList);
-                    setTableData();
+                    groups = (HashMap<String, Object>) msg.obj;
+                    setTableData(groups);
                 }
                 break;
 
@@ -212,6 +245,92 @@ public class GraphicActivity extends BaseActivity {
                 break;
 
             case MESSAGE_FAILED:
+                break;
+
+            case 6: //获取集团下一级数据
+                t2 = (Tuple2<String, Integer>) msg.obj;
+                int groupId = t2._2;
+                ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
+                list.add(new NameValuePair<>(NetUtil.KEY_ORGID, String.valueOf(groupId)));
+                list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(10)));
+                list.add(new NameValuePair<>(NetUtil.KEY_OFFSET, String.valueOf(0)));
+                list.add(new NameValuePair<>(NetUtil.KEY_ORDER, "asc"));
+                list.add(new NameValuePair<>(NetUtil.KEY_SORT, NetUtil.COMPNAME));
+                HttpManager.doPost(NetUtil.URL_FUNDSTURNEDOVER_COMP_TABLE,
+                        list,
+                        Request.ContentType.KVP,
+                        new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+
+                            }
+
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                String body = response.body().string();
+
+                                if (response.isSuccessful()) {
+                                    totalRows = CompanyJsonParser.fundsJson2HashMap(body, companies);
+                                    sendEmptyMessage(7);
+
+                                } else {
+                                    throw new IOException("Unexpected code " + response);
+                                }
+                            }
+                        });
+                /*** test ***/
+//                HashMap<String, Object> hashMap = new HashMap<>();
+//                String[] titles = {"s1", "s2", "s3", "s4"};
+//                int[] state = {1, 0, 0, 0};
+//                int[] widths = {22, 33, 44, 33};
+//                ArrayList<ArrayList<String>> glist = new ArrayList<>();
+//                ArrayList<String> g1 = new ArrayList<>();
+//                g1.add("01");
+//                g1.add("01s2");
+//                g1.add("01s3");
+//                g1.add("01s4");
+//                g1.add("1");
+//                ArrayList<String> g2 = new ArrayList<>();
+//                g2.add("02");
+//                g2.add("02s2");
+//                g2.add("02s3");
+//                g2.add("02s4");
+//                g2.add("2");
+//                ArrayList<String> g3 = new ArrayList<>();
+//                g3.add("03");
+//                g3.add("03s2");
+//                g3.add("03s3");
+//                g3.add("03s4");
+//                g3.add("3");
+//                glist.add(g1);
+//                glist.add(g2);
+//                glist.add(g3);
+//                hashMap.put("title", titles);
+//                hashMap.put("state", state);
+//                hashMap.put("width", widths);
+//                hashMap.put("data", glist);
+//                setSpinnerPagingInfo(); //绘制分页
+//                setTableData(hashMap);  //绘制表格
+                /*** test ***/
+
+                break;
+
+            case 7: //展示集团下一级数据
+                if (totalRows == 0) {
+                    Toast.makeText(this, "已经到最后一页了", Toast.LENGTH_SHORT).show();
+                } else {
+                    setTableData(companies);
+                    String name = t2._1;
+                    txtLabel.setVisibility(View.VISIBLE);
+                    txtLabel.setText(name);
+                    txtLabel.setOnClickListener(new View.OnClickListener() { //回退到上一级
+                        @Override
+                        public void onClick(View v) {
+                            setTableData(groups);
+                            txtLabel.setVisibility(View.GONE);
+                        }
+                    });
+                }
                 break;
         }
     }
@@ -254,16 +373,19 @@ public class GraphicActivity extends BaseActivity {
                 }
 
                 @Override
-                public void onNothingSelected(AdapterView<?> parent) {}
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
             });
         }
     }
 
-    private void setTableData() {
+    private void setTableData(HashMap<String, Object> maps) {
         if (tableAdapter == null) {
-            tableAdapter = new FundsTableAdapter(this, tableData);
+//            tableAdapter = new TableAdapter(this, tableData);
+            tableAdapter = new TableAdapter(this, maps);
             table.setAdapter(tableAdapter);
         } else {
+            tableAdapter.setData(maps);
             tableAdapter.notifyDataSetChanged();
         }
     }
@@ -282,7 +404,7 @@ public class GraphicActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int curr = (int) parent.getItemAtPosition(position);
-//                if (pageIndex == curr) return;
+                if (pageIndex == curr) return;
 
                 pageIndex = curr;
                 offset = pageSize * (pageIndex - 1);
@@ -310,9 +432,9 @@ public class GraphicActivity extends BaseActivity {
                                 String body = response.body().string();
 
                                 if (response.isSuccessful()) {
-                                    ArrayList<Group> gList = new ArrayList<>();
-                                    totalRows = GroupJsonParser.tableFromJson(body, gList);
-                                    sendMessage(MESSAGE_PAGING, gList);
+                                    HashMap<String, Object> map = new HashMap<>();
+                                    totalRows = GroupJsonParser.fundsJson2HashMap(body, map);
+                                    sendMessage(MESSAGE_GROUP_PAGING, map);
 
                                 } else {
                                     sendMessage(MESSAGE_FAILED, body);
@@ -320,6 +442,9 @@ public class GraphicActivity extends BaseActivity {
                                 }
                             }
                         });
+                /***text****/
+//                setTableData();
+                /***text****/
             }
 
             @Override

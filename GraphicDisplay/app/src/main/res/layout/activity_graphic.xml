@@ -42,23 +42,31 @@
             android:layout_width="match_parent"
             android:layout_height="450dp"
             android:layout_below="@id/linechart" />
-
+        <Spinner
+            android:id="@+id/spinner_pagenum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/barchart"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            >
+        </Spinner>
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignLeft="@id/spinner_pagenum"
+            android:visibility="gone"
+            />
         <com.inqbarna.tablefixheaders.TableFixHeaders
             android:id="@+id/table_funds"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/barchart"
             android:scrollbars="horizontal|vertical" />
-        <Spinner
-                android:id="@+id/spinner_pagenum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/table_funds"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-        >
-        </Spinner>
+
 
     </RelativeLayout>
 </ScrollView>

@@ -2,6 +2,7 @@ package com.js.graphicdisplay.data;
 
 import com.js.graphicdisplay.api.Infermation;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by js_gg on 2017/6/18.
@@ -18,6 +19,9 @@ public class Company implements Infermation {
 
     private FundsData fundsData;
 
+    private HashMap<String, Object> data;
+
+    private ArrayList<>
 
 
 
@@ -60,5 +64,13 @@ public class Company implements Infermation {
 
     public void setFundsData(FundsData fundsData) {
         this.fundsData = fundsData;
+    }
+
+    public HashMap<String, Object> getData() {
+        return data;
+    }
+
+    public void setData(HashMap<String, Object> data) {
+        this.data = data;
     }
 }

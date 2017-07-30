@@ -4,4 +4,5 @@
     <item type="id" name="header_column"/>
     <item type="id" name="child"/>
     <item type="id" name="item_value"/>
+    <item type="id" name="what"/>
 </resources>

@@ -20,11 +20,13 @@ import static com.js.graphicdisplay.util.SortState.SORTED_DESC;
 public class SortHeaderListener implements View.OnClickListener {
 
     private final SparseArray<ImageView> sortViews;
-    private final FundsTableMateData tableData;
+    private int[] widths;
+    private int[] sortState;
 
-    public SortHeaderListener(SparseArray<ImageView> views, FundsTableMateData tableData) {
+    public SortHeaderListener(SparseArray<ImageView> views, int[] s, int[] w) {
         sortViews = views;
-        this.tableData = tableData;
+        sortState = s;
+        widths = w;
     }
 
     @Override
@@ -33,35 +35,28 @@ public class SortHeaderListener implements View.OnClickListener {
 
         for (int i = 0; i < sortViews.size(); i++) {
             int key = sortViews.keyAt(i);
-            ImageView sortView = sortViews.get(key);
+            ImageView view = sortViews.get(key);
 
-            if (key == columnIndex) {
-//                SortState sortState = tableData.getSortState(columnIndex + 1);
-                SortState sortState = (SortState) sortView.getTag(R.id.sort_state);
-                if (sortState == SORTED_ASC) {
-                    sortView.setImageResource(SortStateViewProvider.getSortStateViewResource(SORTED_DESC));
-                    sortView.setTag(R.id.sort_state, SORTED_DESC);
-                    tableData.setSortState(key + 1, SORTED_DESC);
-
-                } else if (sortState == SORTED_DESC) {
-                    sortView.setImageResource(SortStateViewProvider.getSortStateViewResource(SORTED_ASC));
-                    sortView.setTag(R.id.sort_state, SORTED_ASC);
-                    tableData.setSortState(key + 1, SORTED_ASC);
+            if (columnIndex == key) {
+                int sort = sortState[columnIndex + 1]; //columnIndex起始为-1
+                if (sort == 1) { //升序
+                    view.setImageResource(R.mipmap.ic_dark_sorted_desc);
+                    sortState[columnIndex + 1] = 2;
+                } else if (sort == 2) { //降序
+                    view.setImageResource(R.mipmap.ic_dark_sorted_asc);
+                    sortState[columnIndex + 1] = 1;
                 }
             } else {
-                sortView.setImageResource(SortStateViewProvider.getSortStateViewResource(SORTABLE));
-                sortView.setTag(R.id.sort_state, SORTABLE);
+                view.setImageResource(R.mipmap.ic_dark_sortable);
+                sortState[columnIndex + 1] = 0; //没有排序状态
                 sortViews.remove(key);
-                tableData.setSortState(key + 1, SORTABLE);
             }
         }
-
         if (sortViews.get(columnIndex) == null) {
-            ImageView sortView = (ImageView) v.findViewById(R.id.img_sort);
-            sortView.setImageResource(SortStateViewProvider.getSortStateViewResource(SORTED_ASC));
-            sortView.setTag(R.id.sort_state, SORTED_ASC);
-            sortViews.put(columnIndex, sortView);
-            tableData.setSortState(columnIndex + 1, SORTED_ASC);
+            ImageView view = (ImageView) v.findViewById(R.id.img_sort);
+            sortViews.put(columnIndex, view);
+            view.setImageResource(R.mipmap.ic_dark_sorted_asc);
+            sortState[columnIndex + 1] = 1;
         }
 
         switch (columnIndex) {
@@ -83,10 +78,6 @@ public class SortHeaderListener implements View.OnClickListener {
             case 6:
                 break;
         }
-
-    }
-
-    private void resetSortViewState() {
 
     }
 }

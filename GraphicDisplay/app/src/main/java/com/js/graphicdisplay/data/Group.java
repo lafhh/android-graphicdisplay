@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by js_gg on 2017/6/18.
@@ -15,10 +16,7 @@ public class Group implements Infermation {
 
     private static final String TAG = "Group";
 
-    /**
-     * group id
-     */
-    private int id;
+    private int id; //group id
 
     private String groupName;
 
@@ -26,19 +24,12 @@ public class Group implements Infermation {
 
 //    private ArrayList<Company> child;
 
-    /**
-     * 集团上缴资金数据
-     */
     private FundsData fundsData;
 
-    /**
-     *
-     */
+    private HashMap<String, Object> data;
+
     private Object tag = null;
 
-    /**
-     *
-     */
     private int keyColor;
 
 
@@ -98,5 +89,22 @@ public class Group implements Infermation {
 
     public void setKeyColor(int keyColor) {
         this.keyColor = keyColor;
+    }
+
+//    public HashMap<String, ArrayList<Tuple3>> getMaps() {
+//        return maps;
+//    }
+//
+//    public void setMaps(HashMap<String, ArrayList<Tuple3>> maps) {
+//        this.maps = maps;
+//    }
+
+
+    public HashMap<String, Object> getData() {
+        return data;
+    }
+
+    public void setData(HashMap<String, Object> data) {
+        this.data = data;
     }
 }

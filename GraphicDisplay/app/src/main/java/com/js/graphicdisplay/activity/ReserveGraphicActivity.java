@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -15,10 +16,11 @@ import com.github.mikephil.charting.data.*;
 import com.inqbarna.tablefixheaders.TableFixHeaders;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
-import com.js.graphicdisplay.adapter.FundsTableAdapter;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
+import com.js.graphicdisplay.adapter.TableAdapter;
 import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
+import com.js.graphicdisplay.jsonutil.CompanyJsonParser;
 import com.js.graphicdisplay.jsonutil.GroupJsonParser;
 import com.js.graphicdisplay.mpchart.customization.BarChartCustomization;
 import com.js.graphicdisplay.mpchart.customization.LineChartCustomization;
@@ -26,14 +28,13 @@ import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
 import com.js.graphicdisplay.util.ColorTemplate;
-import com.js.graphicdisplay.util.FileUtil;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by js_gg on 2017/6/17.
@@ -48,6 +49,7 @@ public class ReserveGraphicActivity extends BaseActivity {
 //    private Spinner spinnerCompany;
 //    private Spinner spinnerDate;
 
+    private TextView txtLabel;
     private Spinner spinnerPageNum;
 
     private BarChart mBarChart;
@@ -58,11 +60,13 @@ public class ReserveGraphicActivity extends BaseActivity {
     private SpinnerAdapter<Group> groupAdapter;
     private SpinnerAdapter<Company> companyAdapter;
     private SpinnerAdapter<SpinnerDate> dateAdapter;
-    private FundsTableAdapter tableAdapter;
+    private TableAdapter tableAdapter;
 
     private ArrayList<Group> chartData = new ArrayList<>();
-    private ArrayList<Group> tableData = new ArrayList<>();
-    private ArrayList<Company> companies = new ArrayList<>();
+    //    private ArrayList<Group> tableData = new ArrayList<>();
+    private HashMap<String, Object> groups = new HashMap<>();
+    private HashMap<String, Object> companies = new HashMap<>();
+    private Tuple2<String, Integer> t2;
 
     private int totalRows;
     private final int pageSize = 10;
@@ -72,11 +76,10 @@ public class ReserveGraphicActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_graphic);
-
-
+        setContentView(R.layout.activity_reserve);
 
         spinnerGroup = (Spinner) findViewById(R.id.spinner_group);
+        txtLabel = (TextView) findViewById(R.id.txt_name);
         spinnerPageNum = (Spinner) findViewById(R.id.spinner_pagenum);
         mLineChart = (LineChart) findViewById(R.id.linechart);
         mBarChart = (BarChart) findViewById(R.id.barchart);
@@ -106,44 +109,44 @@ public class ReserveGraphicActivity extends BaseActivity {
         list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(pageSize)));
         list.add(new NameValuePair<>(NetUtil.KEY_OFFSET, String.valueOf(0)));
         list.add(new NameValuePair<>(NetUtil.KEY_ORDER, "asc"));
-        list.add(new NameValuePair<>(NetUtil.KEY_SORT, NetUtil.GROUPNAME));
-//        HttpManager.doPost(
-//                NetUtil.URL_FUNDSTURNEDOVER_GROUP_TABLE,
-//                list,
-//                Request.ContentType.KVP,
-//                new Callback() {
-//
-//                    @Override
-//                    public void onFailure(Call call, IOException e) {
-//                        e.printStackTrace();
-//                        sendEmptyMessage(MESSAGE_ERROR);
-//                    }
-//
-//                    @Override
-//                    public void onResponse(Call call, Response response) throws IOException {
-//                        String body = response.body().string();
-//
-//                        if (response.isSuccessful()) {
-//                            totalRows = GroupJsonParser.tableFromJson(body, tableData);
-//                            sendEmptyMessage(MESSAGE_TABLE);
-//
-//                        } else {
-//                            sendMessage(MESSAGE_FAILED, body);
-//                            throw new IOException("Unexpected code " + response);
-//                        }
-//                    }
-//                });
+        list.add(new NameValuePair<>(NetUtil.KEY_SORT, "orgName"));
+        HttpManager.doPost(
+                NetUtil.URL_LANDBANKING_QUERYITEM,
+                list,
+                Request.ContentType.KVP,
+                new Callback() {
+
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                        sendEmptyMessage(MESSAGE_ERROR);
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String body = response.body().string();
+
+                        if (response.isSuccessful()) {
+                            totalRows = GroupJsonParser.reserveJson2HashMap(body, groups);
+                            sendEmptyMessage(MESSAGE_TABLE);
+
+                        } else {
+                            sendMessage(MESSAGE_FAILED, body);
+                            throw new IOException("Unexpected code " + response);
+                        }
+                    }
+                });
 
         /*** test ***/
-        File file = Environment.getExternalStorageDirectory();
-        String path = file.getAbsolutePath() + "/Download/newTable.txt";
-        String json = FileUtil.readToString(path);
-        GroupJsonParser.tableFromJson(json, tableData);
-        totalRows = GroupJsonParser.tableFromJson(json, chartData);
-        setSpinnerPagingInfo(); //绘制分页
-        setTableData();  //绘制表格
-//        setChartData(chartData);
-        setSpinnerGroupData();
+//        File file = Environment.getExternalStorageDirectory();
+//        String path = file.getAbsolutePath() + "/Download/newTable.txt";
+//        String json = FileUtil.readToString(path);
+//        GroupJsonParser.tableFromJson(json, tableData);
+//        totalRows = GroupJsonParser.tableFromJson(json, chartData);
+//        setSpinnerPagingInfo(); //绘制分页
+//        setTableData();  //绘制表格
+////        setChartData(chartData);
+//        setSpinnerGroupData();
         /*** test ***/
     }
 
@@ -176,7 +179,7 @@ public class ReserveGraphicActivity extends BaseActivity {
                                     String body = response.body().string();
 
                                     if (response.isSuccessful()) {
-                                        totalRows = GroupJsonParser.tableFromJson(body, chartData);
+                                        totalRows = GroupJsonParser.tableFromJson(body, chartData); //znn
                                         sendEmptyMessage(MESSAGE_CHART);
 
                                     } else {
@@ -187,18 +190,16 @@ public class ReserveGraphicActivity extends BaseActivity {
                             });
 
                     setSpinnerPagingInfo(); //绘制分页
-                    setTableData();  //绘制表格
+                    setTableData(groups);  //绘制表格
                 }
                 break;
 
-            case MESSAGE_PAGING:
+            case MESSAGE_GROUP_PAGING:
                 if (totalRows == 0) {
                     Toast.makeText(this, "已经到最后一页了", Toast.LENGTH_SHORT).show();
                 } else {
-                    ArrayList<Group> gList = (ArrayList<Group>) msg.obj;
-                    tableData.clear();
-                    tableData.addAll(gList);
-                    setTableData();
+                    groups = (HashMap<String, Object>) msg.obj;
+                    setTableData(groups);
                 }
                 break;
 
@@ -211,6 +212,57 @@ public class ReserveGraphicActivity extends BaseActivity {
                 break;
 
             case MESSAGE_FAILED:
+                break;
+
+            case 6:
+                t2 = (Tuple2<String, Integer>) msg.obj;
+                int groupId = t2._2;
+                ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
+                list.add(new NameValuePair<>("cgId", String.valueOf(groupId)));
+                list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(10)));
+                list.add(new NameValuePair<>(NetUtil.KEY_OFFSET, String.valueOf(0)));
+                list.add(new NameValuePair<>(NetUtil.KEY_ORDER, "asc"));
+                list.add(new NameValuePair<>(NetUtil.KEY_SORT, "itemName"));
+                HttpManager.doPost(NetUtil.URL_LANDBANKING_QUERYITEM_COMP,
+                        list,
+                        Request.ContentType.KVP,
+                        new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+
+                            }
+
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                String body = response.body().string();
+
+                                if (response.isSuccessful()) {
+                                    totalRows = CompanyJsonParser.reserveJson2HashMap(body, companies);
+                                    sendEmptyMessage(7);
+
+                                } else {
+                                    throw new IOException("Unexpected code " + response);
+                                }
+                            }
+                        });
+                break;
+
+            case 7: //展示集团下一级数据
+                if (totalRows == 0) {
+                    Toast.makeText(this, "已经到最后一页了", Toast.LENGTH_SHORT).show();
+                } else {
+                    setTableData(companies);
+                    String name = t2._1;
+                    txtLabel.setVisibility(View.VISIBLE);
+                    txtLabel.setText(name);
+                    txtLabel.setOnClickListener(new View.OnClickListener() { //回退到上一级
+                        @Override
+                        public void onClick(View v) {
+                            setTableData(groups);
+                            txtLabel.setVisibility(View.GONE);
+                        }
+                    });
+                }
                 break;
         }
     }
@@ -258,11 +310,13 @@ public class ReserveGraphicActivity extends BaseActivity {
         }
     }
 
-    private void setTableData() {
+    private void setTableData(HashMap<String, Object> maps) {
         if (tableAdapter == null) {
-            tableAdapter = new FundsTableAdapter(this, tableData);
+//            tableAdapter = new TableAdapter(this, tableData);
+            tableAdapter = new TableAdapter(this, maps);
             table.setAdapter(tableAdapter);
         } else {
+            tableAdapter.setData(maps);
             tableAdapter.notifyDataSetChanged();
         }
     }
@@ -281,7 +335,7 @@ public class ReserveGraphicActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int curr = (int) parent.getItemAtPosition(position);
-//                if (pageIndex == curr) return;
+                if (pageIndex == curr) return;
 
                 pageIndex = curr;
                 offset = pageSize * (pageIndex - 1);
@@ -291,7 +345,7 @@ public class ReserveGraphicActivity extends BaseActivity {
                 list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(pageSize)));
                 list.add(new NameValuePair<>(NetUtil.KEY_OFFSET, String.valueOf(offset)));
                 list.add(new NameValuePair<>(NetUtil.KEY_ORDER, "asc"));
-                list.add(new NameValuePair<>(NetUtil.KEY_SORT, NetUtil.GROUPNAME));
+                list.add(new NameValuePair<>(NetUtil.KEY_SORT, "orgName"));
                 HttpManager.doPost(
                         NetUtil.URL_LANDBANKING_QUERYITEM,
                         list,
@@ -309,9 +363,9 @@ public class ReserveGraphicActivity extends BaseActivity {
                                 String body = response.body().string();
 
                                 if (response.isSuccessful()) {
-                                    ArrayList<Group> gList = new ArrayList<>();
-                                    totalRows = GroupJsonParser.tableFromJson(body, gList);
-                                    sendMessage(MESSAGE_PAGING, gList);
+                                    HashMap<String, Object> map = new HashMap<>();
+                                    totalRows = GroupJsonParser.fundsJson2HashMap(body, map);
+                                    sendMessage(MESSAGE_GROUP_PAGING, map);
 
                                 } else {
                                     sendMessage(MESSAGE_FAILED, body);

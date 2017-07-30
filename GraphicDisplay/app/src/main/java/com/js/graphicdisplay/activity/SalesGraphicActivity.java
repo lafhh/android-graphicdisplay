@@ -191,7 +191,7 @@ public class SalesGraphicActivity extends BaseActivity {
                 }
                 break;
 
-            case MESSAGE_PAGING:
+            case MESSAGE_GROUP_PAGING:
                 if (totalRows == 0) {
                     Toast.makeText(this, "已经到最后一页了", Toast.LENGTH_SHORT).show();
                 } else {
@@ -311,7 +311,7 @@ public class SalesGraphicActivity extends BaseActivity {
                                 if (response.isSuccessful()) {
                                     ArrayList<Group> gList = new ArrayList<>();
                                     totalRows = GroupJsonParser.tableFromJson(body, gList);
-                                    sendMessage(MESSAGE_PAGING, gList);
+                                    sendMessage(MESSAGE_GROUP_PAGING, gList);
 
                                 } else {
                                     sendMessage(MESSAGE_FAILED, body);

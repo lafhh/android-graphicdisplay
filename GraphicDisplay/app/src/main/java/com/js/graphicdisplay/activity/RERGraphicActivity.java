@@ -17,6 +17,7 @@ import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
 import com.js.graphicdisplay.adapter.FundsTableAdapter;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
+import com.js.graphicdisplay.adapter.TableAdapter;
 import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
 import com.js.graphicdisplay.jsonutil.GroupJsonParser;
@@ -41,7 +42,7 @@ import java.util.ArrayList;
  */
 public class RERGraphicActivity extends BaseActivity {
 
-    private static final String TAG = "GraphicActivity";
+    private static final String TAG = "RERGraphicActivity";
     private static final int BAR_CHART_MAX_VALUE_COUNT = 60;
 
     private Spinner spinnerGroup;
@@ -58,7 +59,7 @@ public class RERGraphicActivity extends BaseActivity {
     private SpinnerAdapter<Group> groupAdapter;
     private SpinnerAdapter<Company> companyAdapter;
     private SpinnerAdapter<SpinnerDate> dateAdapter;
-    private FundsTableAdapter tableAdapter;
+    private TableAdapter tableAdapter;
 
     private ArrayList<Group> chartData = new ArrayList<>();
     private ArrayList<Group> tableData = new ArrayList<>();
@@ -191,7 +192,7 @@ public class RERGraphicActivity extends BaseActivity {
                 }
                 break;
 
-            case MESSAGE_PAGING:
+            case MESSAGE_GROUP_PAGING:
                 if (totalRows == 0) {
                     Toast.makeText(this, "已经到最后一页了", Toast.LENGTH_SHORT).show();
                 } else {
@@ -260,7 +261,7 @@ public class RERGraphicActivity extends BaseActivity {
 
     private void setTableData() {
         if (tableAdapter == null) {
-            tableAdapter = new FundsTableAdapter(this, tableData);
+            tableAdapter = new TableAdapter(this, tableData);
             table.setAdapter(tableAdapter);
         } else {
             tableAdapter.notifyDataSetChanged();
@@ -311,7 +312,7 @@ public class RERGraphicActivity extends BaseActivity {
                                 if (response.isSuccessful()) {
                                     ArrayList<Group> gList = new ArrayList<>();
                                     totalRows = GroupJsonParser.tableFromJson(body, gList);
-                                    sendMessage(MESSAGE_PAGING, gList);
+                                    sendMessage(MESSAGE_GROUP_PAGING, gList);
 
                                 } else {
                                     sendMessage(MESSAGE_FAILED, body);

@@ -8,20 +8,20 @@ import com.js.graphicdisplay.R;
 
 public final class SortStateViewProvider {
 
-    private static int NO_IMAGE = 0;
+    private static int NO_IMAGE = -1;
 
     private SortStateViewProvider() {
         // no instance
     }
 
-    public static int getSortStateViewResource(final SortState state) {
+    public static int getSortStateViewResource(final int state) {
         switch (state) {
-            case SORTABLE:
-                return R.mipmap.ic_dark_sortable;
-            case SORTED_ASC:
-                return R.mipmap.ic_dark_sorted_asc;
-            case SORTED_DESC:
-                return R.mipmap.ic_dark_sorted_desc;
+            case 0:
+                return R.mipmap.ic_dark_sortable; //没有排序状态
+            case 1:
+                return R.mipmap.ic_dark_sorted_asc; //升序
+            case 2:
+                return R.mipmap.ic_dark_sorted_desc; //降序
             default:
                 return NO_IMAGE;
         }

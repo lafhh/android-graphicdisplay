@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by apple on 2017/7/26.
@@ -92,5 +93,83 @@ public class GroupJsonParser {
             group.setFundsData(fundsData);
         }
         FundsDataJsonParser.FundsDataFromJson(jGroup, fundsData);
+    }
+
+    public static int fundsJson2HashMap(String json, HashMap<String, Object> map) {
+        int totalRows;
+
+        try {
+            JSONObject obj = new JSONObject(json);
+            JSONArray rows = obj.getJSONArray("rows");
+            if (rows.length() == 0) return 0;
+
+            totalRows = obj.getInt("total");
+            String[] titles = { "集团", "年月", "当月指标(万)", "当月完成数(万)", "指标达成率", "累计指标(万)", "累计完成数(万)", "累计达成率", };
+            int[] width = { 120, 80, 110, 140, 110, 110, 140, 110, };
+            int[] sortState = { 1, 0, 0, 0, 0, 0, 0, 0 };
+            ArrayList<ArrayList<String>> data = new ArrayList<>();
+            for (int i = 0; i < rows.length(); i++) {
+                JSONObject o = rows.getJSONObject(i);
+                ArrayList<String> list = new ArrayList<>();
+                list.add(o.getString("groupName"));
+                list.add(o.getString("ym"));
+                list.add(o.getString("monthIndex"));
+                list.add(o.getString("monthFulfilQuantity"));
+                list.add(o.getString("monthAch"));
+                list.add(o.getString("cumulativeIndex"));
+                list.add(o.getString("cumulativeFulfilQuantity"));
+                list.add(o.getString("cumulativeAch"));
+                list.add(o.getString("incompleteDescription"));
+                list.add(String.valueOf(6)); // message.what 处理获取集团下公司数据的逻辑
+                list.add(String.valueOf(o.getInt("groupId"))); //如果有下一级，将id存入数组最后一个元素
+                data.add(list);
+            }
+            map.put("title", titles);
+            map.put("width", width);
+            map.put("sort", sortState);
+            map.put("data", data);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return 0;
+        }
+        return totalRows;
+    }
+
+    public static int reserveJson2HashMap(String json, HashMap<String, Object> map) {
+        int totalRows;
+
+        try {
+            JSONObject obj = new JSONObject(json);
+            JSONArray rows = obj.getJSONArray("rows");
+            if (rows.length() == 0) return 0;
+
+            totalRows = obj.getInt("total");
+            String[] titles = { "集团", "年月", "亩数(亩)", "总价(万)", "已付款(万)", "可建总面积", "储备建筑面积", };
+            int[] width = { 120, 80, 110, 140, 110, 110, 140, };
+            int[] sortState = { 1, 0, 0, 0, 0, 0, 0, 0 };
+            ArrayList<ArrayList<String>> data = new ArrayList<>();
+            for (int i = 0; i < rows.length(); i++) {
+                JSONObject o = rows.getJSONObject(i);
+                ArrayList<String> list = new ArrayList<>();
+                list.add(o.getString("orgName"));
+                list.add(o.getString("ym"));
+                list.add(o.getString("acre"));
+                list.add(o.getString("totalPrice"));
+                list.add(o.getString("paid"));
+                list.add(o.getString("buildableArea"));
+                list.add(o.getString("reserveBuildingArea"));
+                list.add(String.valueOf(6)); // message.what 处理获取集团下公司数据的逻辑
+                list.add(String.valueOf(o.getInt("orgId"))); //如果有下一级，将id存入数组最后一个元素
+                data.add(list);
+            }
+            map.put("title", titles);
+            map.put("width", width);
+            map.put("sort", sortState);
+            map.put("data", data);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return 0;
+        }
+        return totalRows;
     }
 }
