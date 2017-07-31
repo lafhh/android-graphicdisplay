@@ -62,12 +62,12 @@
         <TableRow
             android:layout_marginTop="8dp">
 
-            <CheckBox
-                android:id="@+id/chk_remember"
-                android:layout_gravity="left|center_vertical"
-                android:textColor="@color/titleSecondary"
-                android:text="remember me"
-                />
+            <!--<CheckBox-->
+                <!--android:id="@+id/chk_remember"-->
+                <!--android:layout_gravity="left|center_vertical"-->
+                <!--android:textColor="@color/titleSecondary"-->
+                <!--android:text="remember me"-->
+                <!--/>-->
             <Button
                 android:id="@+id/btn_login"
                 android:layout_height="48dp"

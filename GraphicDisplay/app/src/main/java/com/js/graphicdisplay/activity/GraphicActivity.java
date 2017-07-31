@@ -212,7 +212,7 @@ public class GraphicActivity extends BaseActivity {
                                     String body = response.body().string();
 
                                     if (response.isSuccessful()) {
-                                        totalRows = GroupJsonParser.tableFromJson(body, chartData);
+                                        totalRows = GroupJsonParser.tableFromJson(body, chartData, 0);
                                         sendEmptyMessage(MESSAGE_CHART);
 
                                     } else {

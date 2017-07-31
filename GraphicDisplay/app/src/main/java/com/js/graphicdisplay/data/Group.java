@@ -26,6 +26,7 @@ public class Group implements Infermation {
 
     private FundsData fundsData;
 
+    private ArrayList<ReserveData> reserveData;
     private HashMap<String, Object> data;
 
     private Object tag = null;
@@ -106,5 +107,13 @@ public class Group implements Infermation {
 
     public void setData(HashMap<String, Object> data) {
         this.data = data;
+    }
+
+    public ArrayList<ReserveData> getReserveData() {
+        return reserveData;
+    }
+
+    public void setReserveData(ArrayList<ReserveData> reserveData) {
+        this.reserveData = reserveData;
     }
 }

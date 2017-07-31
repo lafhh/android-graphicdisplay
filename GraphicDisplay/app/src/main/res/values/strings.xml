@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">GraphicDisplay</string>
+    <string name="label_funds">资金月度上缴</string>
+    <string name="label_reserve">土地存储分析</string>
+    <string name="label_rer">不动产出租</string>
+    <string name="label_rm">回款</string>
+    <string name="label_sales">销售</string>
 
     <string name="select_group">集团</string>
     <string name="select_company">公司</string>

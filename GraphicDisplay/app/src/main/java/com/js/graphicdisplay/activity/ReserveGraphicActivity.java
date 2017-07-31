@@ -179,7 +179,7 @@ public class ReserveGraphicActivity extends BaseActivity {
                                     String body = response.body().string();
 
                                     if (response.isSuccessful()) {
-                                        totalRows = GroupJsonParser.tableFromJson(body, chartData); //znn
+                                        totalRows = GroupJsonParser.tableFromJson(body, chartData, 1);
                                         sendEmptyMessage(MESSAGE_CHART);
 
                                     } else {
@@ -204,8 +204,10 @@ public class ReserveGraphicActivity extends BaseActivity {
                 break;
 
             case MESSAGE_CHART:
-                setChartData(chartData);
-                setSpinnerGroupData();
+                if (chartData.size() > 1) setChartData(chartData);
+                else setChartData(chartData.get(0)); //znn 重新整理
+
+                setSpinnerGroupData(); //znn
                 break;
 
             case MESSAGE_ERROR:
@@ -214,7 +216,7 @@ public class ReserveGraphicActivity extends BaseActivity {
             case MESSAGE_FAILED:
                 break;
 
-            case 6:
+            case 6: //请求集团下一级数据
                 t2 = (Tuple2<String, Integer>) msg.obj;
                 int groupId = t2._2;
                 ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
@@ -222,7 +224,7 @@ public class ReserveGraphicActivity extends BaseActivity {
                 list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(10)));
                 list.add(new NameValuePair<>(NetUtil.KEY_OFFSET, String.valueOf(0)));
                 list.add(new NameValuePair<>(NetUtil.KEY_ORDER, "asc"));
-                list.add(new NameValuePair<>(NetUtil.KEY_SORT, "itemName"));
+                list.add(new NameValuePair<>(NetUtil.KEY_SORT, "orgName"));
                 HttpManager.doPost(NetUtil.URL_LANDBANKING_QUERYITEM_COMP,
                         list,
                         Request.ContentType.KVP,
@@ -305,7 +307,8 @@ public class ReserveGraphicActivity extends BaseActivity {
                 }
 
                 @Override
-                public void onNothingSelected(AdapterView<?> parent) {}
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
             });
         }
     }
@@ -383,7 +386,6 @@ public class ReserveGraphicActivity extends BaseActivity {
 
     //group: a group of bars
     private void setChartData(ArrayList<Group> chartData) {
-        //indicatrixPerMonth & completionPerMonth, two bar per Group(集团)
         int barCountPerGroup = chartData.size();
 
         float groupSpace = 0.08f;
@@ -403,45 +405,29 @@ public class ReserveGraphicActivity extends BaseActivity {
             Group group = chartData.get(i);
             String name = group.getName();
             group.setKeyColor((i + 1) % ColorTemplate.TEMPLETE_COLOR.length);
-            FundsData fundsData = group.getFundsData();
-            ArrayList<Data4FundsPerMonth> datas = fundsData.getFundsPerMonth();
+            ArrayList<ReserveData> list = group.getReserveData();
 
             ArrayList<BarEntry> barEntries = new ArrayList<>();
             ArrayList<Entry> lineEntries = new ArrayList<>();
 
-            ArrayList<String> months = fundsData.getMonths();
-            if (maxSize < months.size()) maxSize = months.size();
-            for (int j = 0; j < months.size(); j++) {
-                int month = Integer.parseInt(months.get(j));
+            if (maxSize < list.size()) maxSize = list.size();
+            for (int j = 0; j < list.size(); j++) {
+                int month = Integer.parseInt(list.get(j).getDate());
 
-                //stack bar entry.y = val1 + val2,
-                // y 每月指标vs每月完成量的最大值
-                float val1 = datas.get(j).getCompletionPerMonth().floatValue();
-                float val2 = datas.get(j).getIndicatrixPerMonth().floatValue();
-                if (val1 < val2) {
-                    val2 = val2 - val1;
-                    barEntries.add(new BarEntry(month, new float[]{val1, val2}));
+                float val1 = list.get(j).getReserveBuildingArea();
+                float val2 = list.get(j).getBuildableArea();
 
-                } else if (val1 == val2) {
-                    val2 = 0;
-                    barEntries.add(new BarEntry(month, new float[]{val1, val2}));
-                } else {
-//                    float tmp = val1;
-//                    val1 = val2;
-//                    val2 = tmp - val2;
-//                    barEntries.add(new BarEntry(month, tmp));
-                }
+                //bar entry
+                barEntries.add(new BarEntry(month, val1));
 
                 //line entry
-                lineEntries.add(new Entry(month,
-                        datas.get(j).getRateCompletedPerMonth().floatValue()));
+                lineEntries.add(new Entry(month, val2));
             }
 
             BarDataSet barSet = new BarDataSet(barEntries, name);
 //            set.setBarBorderColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
 //            set.setBarBorderWidth(0.5f);
-            barSet.setColors(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()], ColorTemplate.TEMPLETE_COLOR[0]);
-            barSet.setStackLabels(new String[]{"已完成数额", "未完成数额",});
+            barSet.setColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
             barData.addDataSet(barSet);
 
             LineDataSet lineSet = new LineDataSet(lineEntries, name);
@@ -483,5 +469,76 @@ public class ReserveGraphicActivity extends BaseActivity {
         mLineChart.invalidate();
     }
 
+    private void setChartData(Group group) {
+        BarData barData = new BarData();
+        LineData lineData = new LineData();
 
+        int startMonth = 201701;
+
+        String name = group.getName();
+        group.setKeyColor(1);
+        ArrayList<ReserveData> list = group.getReserveData();
+
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        ArrayList<Entry> lineEntries = new ArrayList<>();
+
+        for (int j = 0; j < list.size(); j++) {
+            int month = Integer.parseInt(list.get(j).getDate());
+
+            float val1 = list.get(j).getReserveBuildingArea();
+            float val2 = list.get(j).getBuildableArea();
+
+            //bar entry
+            barEntries.add(new BarEntry(month, val1));
+
+            //line entry
+            lineEntries.add(new Entry(month, val2));
+        }
+
+        //bar dataset
+        BarDataSet barSet = new BarDataSet(barEntries, name);
+        barSet.setColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
+        barData.addDataSet(barSet);
+
+        //line dataset
+        LineDataSet lineSet = new LineDataSet(lineEntries, name);
+        lineSet.setLineWidth(2.5f);
+        lineSet.setCircleRadius(4f);
+        lineSet.setColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
+        lineSet.setCircleColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
+        lineData.addDataSet(lineSet);
+
+        mBarChart.setData(barData);
+
+        barData.setBarWidth(0.9f);
+        barData.setValueTypeface(mTfLight);
+        barData.setDrawValues(false); //不显示y轴的值
+
+//        BarData data = new BarData(dataSets);
+//        data.setValueTextSize(10f);
+//        data.setValueTypeface(mTfLight);
+//        data.setBarWidth(0.9f);
+
+//        mBarChart.setDrawGridBackground(true); //设置网格线的背景，好像不能按照分组设置不同颜色
+//        mBarChart.setDrawValueAboveBar(false);
+
+//        float groupWidth = mBarChart.getBarData().getGroupWidth(groupSpace, barSpace); //groupwidth = 1
+        mBarChart.getXAxis().setAxisMinimum(startMonth);
+//        mBarChart.getXAxis().setAxisMaximum(startMonth + groupWidth * maxSize);
+
+        mBarChart.animateXY(2500, 2500);
+        mBarChart.invalidate();
+
+        mLineChart.setData(lineData);
+        int width = mLineChart.getMeasuredWidth();
+//        Log.d(TAG, "linechart width======" + width);
+
+        lineData.setValueTypeface(mTfLight);
+//        mLineChart.getXAxis().setAxisMinimum(startMonth);
+//        mLineChart.getXAxis().setAxisMaximum(startMonth + mBarChart.getBarData().getGroupWidth(groupSpace, barSpace) * months.size() - 1);
+//        mLineChart.getXAxis().setSpaceMax(22f);
+
+        mLineChart.animateX(300);
+        mLineChart.invalidate();
+    }
 }

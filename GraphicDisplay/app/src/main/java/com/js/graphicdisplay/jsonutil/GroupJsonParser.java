@@ -4,6 +4,7 @@ import android.util.Log;
 import com.js.graphicdisplay.data.FundsData;
 import com.js.graphicdisplay.data.Group;
 
+import com.js.graphicdisplay.data.ReserveData;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,13 +47,57 @@ public class GroupJsonParser {
         return groups;
     }
 
+    private static ArrayList<Group> parseReserveFromJson(String json, ArrayList<Group> groups) {
+        try {
+            JSONArray jsonArray = new JSONArray(json);
+            if (jsonArray.length() == 0) return null;
+
+            int preOrgId = -1;
+            Group group = null;
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject o = (JSONObject) jsonArray.get(i);
+                int orgId = o.getInt("orgId");
+
+                if (orgId != preOrgId) {
+                    preOrgId = orgId;
+                    group = new Group();
+                    groups.add(group);
+                }
+
+                String orgName = o.getString("orgName");
+                group.setId(orgId);
+                group.setGroupName(orgName);
+
+                ArrayList<ReserveData> list = group.getReserveData();
+                if (list == null) {
+                    list = new ArrayList<>();
+                    group.setReserveData(list);
+                }
+                ReserveData data = new ReserveData();
+                data.setDate(o.getString("ym"));
+                data.setAcre(Float.valueOf(o.getString("acre")));
+                data.setTotalPrice(Float.valueOf(o.getString("totalPrice")));
+                data.setPaid(Float.valueOf(o.getString("paid")));
+                data.setBuildableArea(Float.valueOf(o.getString("buildableArea")));
+                data.setReserveBuildingArea(Float.valueOf(o.getString("reserveBuildingArea")));
+                list.add(data);
+            }
+
+//            Log.d("laf", "end"); //检查数据结构
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return groups;
+    }
+
     /**
      *
      * @param json
      * @param groups
      * @return 返回json当中保存总记录数的total字段的值；0:如果没有返回任何数据;
      */
-    public static int tableFromJson(String json, ArrayList<Group> groups) {
+    public static int tableFromJson(String json, ArrayList<Group> groups, int flag) {
         int totalRows;
 
         try {
@@ -63,7 +108,8 @@ public class GroupJsonParser {
             totalRows = obj.getInt("total");
             String jsonString = rows.toString();
             Log.d(TAG, "tableFromJson() json = " + json);
-            parseJsonArray(jsonString, groups);
+            if (flag == 0) parseJsonArray(jsonString, groups); //解析资金上缴数据
+            else if (flag == 1) parseReserveFromJson(jsonString, groups); //解析土地存储数据
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -94,6 +140,7 @@ public class GroupJsonParser {
         }
         FundsDataJsonParser.FundsDataFromJson(jGroup, fundsData);
     }
+
 
     public static int fundsJson2HashMap(String json, HashMap<String, Object> map) {
         int totalRows;
@@ -144,7 +191,7 @@ public class GroupJsonParser {
             if (rows.length() == 0) return 0;
 
             totalRows = obj.getInt("total");
-            String[] titles = { "集团", "年月", "亩数(亩)", "总价(万)", "已付款(万)", "可建总面积", "储备建筑面积", };
+            String[] titles = { "集团", "年月", "亩数(亩)", "总价(万)", "已付款(万)", "可建总面积(m²)", "储备建筑面积(m²)", };
             int[] width = { 120, 80, 110, 140, 110, 110, 140, };
             int[] sortState = { 1, 0, 0, 0, 0, 0, 0, 0 };
             ArrayList<ArrayList<String>> data = new ArrayList<>();

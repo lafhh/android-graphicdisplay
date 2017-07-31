@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -49,51 +50,53 @@ public class LoginActivity extends BaseActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                account = editAccount.getText().toString();
-                password = editPassword.getText().toString();
-                isRemember = chkRemember.isChecked();
 
-                if (StringUtil.isNotEmpty(account) && StringUtil.isNotEmpty(password)) {
-                    //请求登录
-                    //znn 不会工厂模式，先手动new
-                    ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
-                    list.add(new NameValuePair<>("account", account));
-                    list.add(new NameValuePair<>("password", password));
-//                    HttpManager.doPost("url", list, ContentType.KVP);
+                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                startActivity(intent);
+                return;
 
-                    //错误还没有处理,callback的调用全部在子线程中
-                    //错误信息只能这么处理
-                    HttpManager.doGet("http://baidu.com",
-                            new Callback() {
-                                Message msg;
-
-                                @Override
-                                public void onFailure(Call call, IOException e) {
-                                    e.printStackTrace();
-                                    msg = Message.obtain();
-                                    msg.what = MESSAGE_ERROR;
-                                    mHandler.sendMessage(msg);
-                                }
-
-                                @Override
-                                public void onResponse(Call call, Response response) throws IOException {
-                                    if (response.isSuccessful()) {
-                                        Log.d(TAG, "request successful");
-                                        msg = Message.obtain();
-                                        msg.what = MESSAGE_SUCCESS;
-                                        msg.obj = response.body().string();
-                                        mHandler.sendMessage(msg);
-                                    } else {
-                                        msg = Message.obtain();
-                                        msg.what = MESSAGE_FAILED;
-                                        msg.obj = response.body().string();
-                                        mHandler.sendMessage(msg);
-                                        //试一下response.message()是什么
-                                        throw new IOException("Unexpected code " + response);
-                                    }
-                                }
-                            });
-                }
+//                account = editAccount.getText().toString();
+//                password = editPassword.getText().toString();
+//                isRemember = chkRemember.isChecked();
+//
+//                if (StringUtil.isNotEmpty(account) && StringUtil.isNotEmpty(password)) {
+//                    //请求登录
+//                    ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
+//                    list.add(new NameValuePair<>("account", account));
+//                    list.add(new NameValuePair<>("password", password));
+////                    HttpManager.doPost("url", list, ContentType.KVP);
+//
+//                    HttpManager.doGet("http://baidu.com",
+//                            new Callback() {
+//                                Message msg;
+//
+//                                @Override
+//                                public void onFailure(Call call, IOException e) {
+//                                    e.printStackTrace();
+//                                    msg = Message.obtain();
+//                                    msg.what = MESSAGE_ERROR;
+//                                    mHandler.sendMessage(msg);
+//                                }
+//
+//                                @Override
+//                                public void onResponse(Call call, Response response) throws IOException {
+//                                    if (response.isSuccessful()) {
+//                                        Log.d(TAG, "request successful");
+//                                        msg = Message.obtain();
+//                                        msg.what = MESSAGE_SUCCESS;
+//                                        msg.obj = response.body().string();
+//                                        mHandler.sendMessage(msg);
+//                                    } else {
+//                                        msg = Message.obtain();
+//                                        msg.what = MESSAGE_FAILED;
+//                                        msg.obj = response.body().string();
+//                                        mHandler.sendMessage(msg);
+//                                        //试一下response.message()是什么
+//                                        throw new IOException("Unexpected code " + response);
+//                                    }
+//                                }
+//                            });
+//                }
             }
         });
 

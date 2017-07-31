@@ -12,6 +12,7 @@
     <color name="btnLoginSelected">#885cd3b4</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="hint_of_red">#F9F9F9</color>
 
     <color name="table_header_text">#CCFFFFFF</color>
     <color name="table_data_row_even">#11C5CAE9</color>

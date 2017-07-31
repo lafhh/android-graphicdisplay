@@ -145,13 +145,14 @@ public class CompanyJsonParser {
             if (rows.length() == 0) return 0;
 
             totalRows = obj.getInt("total");
-            String[] titles = { "区域公司", "年月", "亩数(亩)", "总价(万)", "已付款(万)", "可建总面积", "储备建筑面积", };
-            int[] width = { 160, 80, 110, 140, 110, 110, 140, };
+            String[] titles = { "公司", "项目名称", "年月", "亩数(亩)", "总价(万)", "已付款(万)", "可建总面积(m²)", "储备建筑面积(m²)", };
+            int[] width = { 160, 130, 110, 140, 110, 110, 140, 140 };
             int[] sortState = { 1, 0, 0, 0, 0, 0, 0, 0 };
             ArrayList<ArrayList<String>> data = new ArrayList<>();
             for (int i = 0; i < rows.length(); i++) {
                 JSONObject o = rows.getJSONObject(i);
                 ArrayList<String> list = new ArrayList<>();
+                list.add(o.getString("orgName"));
                 list.add(o.getString("itemName"));
                 list.add(o.getString("ym"));
                 list.add(o.getString("acre"));
