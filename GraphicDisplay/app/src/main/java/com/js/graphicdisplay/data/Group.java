@@ -1,10 +1,7 @@
 package com.js.graphicdisplay.data;
 
 import com.js.graphicdisplay.api.Infermation;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,24 +13,54 @@ public class Group implements Infermation {
 
     private static final String TAG = "Group";
 
+    /**
+     * 集团id
+     */
     private int id; //group id
 
+    /**
+     * 集团名称
+     */
     private String groupName;
 
+    /**
+     * 集团code
+     */
     private String groupCode;
 
-//    private ArrayList<Company> child;
-
+    /**
+     * 集团上缴资金数据 (用于图)
+     */
     private FundsData fundsData;
 
+    /**
+     * 集团土地存储数据 (用于图)
+     */
     private ArrayList<ReserveData> reserveData;
+
+    /**
+     * 集团回款达成率数据 (用于图)
+     */
+    private ArrayList<ReturnedMoneyData> rmData;
+
+    /**
+     * 集团销售日数据 (用于图)
+     */
+    private ArrayList<SalesData> salesData;
+
+    /**
+     * 不动产出租数据 (用于图)
+     */
+    private ArrayList<RERData> rerData;
+
+    /**
+     * 集团所有相关数据(用于表格)
+     */
     private HashMap<String, Object> data;
 
     private Object tag = null;
 
     private int keyColor;
-
-
 
 
 
@@ -115,5 +142,29 @@ public class Group implements Infermation {
 
     public void setReserveData(ArrayList<ReserveData> reserveData) {
         this.reserveData = reserveData;
+    }
+
+    public ArrayList<ReturnedMoneyData> getRmData() {
+        return rmData;
+    }
+
+    public void setRmData(ArrayList<ReturnedMoneyData> rmData) {
+        this.rmData = rmData;
+    }
+
+    public ArrayList<SalesData> getSalesData() {
+        return salesData;
+    }
+
+    public void setSalesData(ArrayList<SalesData> salesData) {
+        this.salesData = salesData;
+    }
+
+    public ArrayList<RERData> getRerData() {
+        return rerData;
+    }
+
+    public void setRerData(ArrayList<RERData> rerData) {
+        this.rerData = rerData;
     }
 }

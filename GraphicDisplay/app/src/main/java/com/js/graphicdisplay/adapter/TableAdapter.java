@@ -1,6 +1,7 @@
 package com.js.graphicdisplay.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -8,17 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.inqbarna.tablefixheaders.adapters.BaseTableAdapter;
 import com.js.graphicdisplay.R;
-import com.js.graphicdisplay.data.FundsTableMateData;
-import com.js.graphicdisplay.data.Group;
 import com.js.graphicdisplay.data.Tuple2;
 import com.js.graphicdisplay.impl.FirstColumnOnClickListener;
 import com.js.graphicdisplay.impl.SortHeaderListener;
-import com.js.graphicdisplay.util.SortState;
 import com.js.graphicdisplay.util.SortStateViewProvider;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,26 +33,28 @@ public class TableAdapter extends BaseTableAdapter {
     private int[] widths;
     private int[] sortState;
 
-    private Context context;
     private float density;
+    private Context context;
     private LayoutInflater inflater;
 
-    private final SparseArray<ImageView> sortViews = new SparseArray<>();
+    //    private SparseArray<ImageView> sortViews;
+    private ArrayList<View> headerViews;
     private SortHeaderListener listener;
+    private View convertView4FirstHeader;
 
     public TableAdapter(Context context, HashMap<String, Object> maps) {
+        super();
+        setData(maps);
         this.context = context;
         density = context.getResources().getDisplayMetrics().density;
-        listener = new SortHeaderListener(sortViews, sortState, widths);
         inflater = LayoutInflater.from(context);
-        setData(maps);
     }
 
     int _2;
 
     @Override
     public int getRowCount() {
-        Log.d(TAG, "getRowCount() " + ++_2);
+//        Log.d(TAG, "getRowCount() " + ++_2);
         int size = data.size();
         return size;
     }
@@ -63,7 +63,7 @@ public class TableAdapter extends BaseTableAdapter {
 
     @Override
     public int getColumnCount() {
-        Log.d(TAG, "getColumnCount() " + ++_1);
+//        Log.d(TAG, "getColumnCount() " + ++_1);
         return titles.length - 1;
     }
 
@@ -127,25 +127,35 @@ public class TableAdapter extends BaseTableAdapter {
         return 4;
     }
 
+    int i;
+
+    //-1,-1 会执行两次，并且convertView = null,
     private View getFirstHeader(int column, View convertView, ViewGroup parent) {
-        convertView = inflater.inflate(R.layout.item_table_header_first, parent, false);
-        convertView.setOnClickListener(listener);
-        convertView.setTag(R.id.header_column, column);
+        if (convertView4FirstHeader == null) {
+            convertView4FirstHeader = inflater.inflate(R.layout.item_table_header_first, parent, false);
+            convertView4FirstHeader.setOnClickListener(listener);
+            ImageView sortView = (ImageView) convertView4FirstHeader.findViewById(R.id.img_sort);
+            TextView txtView = (TextView) convertView4FirstHeader.findViewById(R.id.txt_header_first);
 
-        ImageView sortView = (ImageView) convertView.findViewById(R.id.img_sort);
-        sortView.setImageResource(SortStateViewProvider.getSortStateViewResource(sortState[0]));
-        sortViews.put(column, sortView);
+            convertView4FirstHeader.setTag(R.id.child,
+                    new ViewHolder()
+                            .setImgView(sortView)
+                            .setTxtView(txtView));
 
-        TextView txtView = (TextView) convertView.findViewById(R.id.txt_header_first);
-        txtView.setText(titles[0]);
-        convertView.setTag(R.id.child,
-                new ViewHolder()
-                        .setImgView(sortView)
-                        .setTxtView(txtView));
-        return convertView;
+            headerViews.add(convertView4FirstHeader);
+        }
+        Log.d(TAG, "first header is =====" + convertView4FirstHeader.hashCode() + " " + ++i);
+        convertView4FirstHeader.setTag(R.id.header_column, column);
+        ViewHolder holder = (ViewHolder) convertView4FirstHeader.getTag(R.id.child);
+        sortState[column + 1] = 1;
+        holder.getImgView().setImageResource(SortStateViewProvider.getSortStateViewResource(sortState[column + 1])); //znn
+        holder.getTxtView().setText(titles[column + 1]);
+
+        return convertView4FirstHeader;
     }
 
     private View getHeader(int row, int column, View convertView, ViewGroup parent) {
+        Log.d(TAG, " header column is " + column);
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_table_header, parent, false);
             convertView.setOnClickListener(listener);
@@ -160,15 +170,17 @@ public class TableAdapter extends BaseTableAdapter {
         }
         convertView.setTag(R.id.header_column, column);
         ViewHolder holder = (ViewHolder) convertView.getTag(R.id.child);
-        holder.getTxtView().setText(titles[column + 1]);
+        holder.getTxtView().setText(titles[column + 1]);  //列名
 
-        int sort = sortState[column + 1];
+        int sort = sortState[column + 1]; //排序状态
         holder.getImgView().setImageResource(SortStateViewProvider.getSortStateViewResource(sort));
+
         return convertView;
     }
 
     //从标题往下的第一列，row 起始为 0, column = -1
     private View getFirstBody(int row, int column, View convertView, ViewGroup parent) {
+
         int size = data.get(row).size();
         int value = Integer.parseInt(data.get(row).get(size - 1));
 
@@ -184,18 +196,19 @@ public class TableAdapter extends BaseTableAdapter {
                             .setTxtView(txtView));
         }
 
-        if (value == -1) {
-
+        //没在这处理第一列不用点击的情况，而是在监听里处理  znn
+        if (value != -1) {
         }
 
-
         ViewHolder holder = (ViewHolder) convertView.getTag(R.id.child);
+        if (value != -1) holder.getTxtView().setTextColor(Color.parseColor("#FF3F51B5"));
         holder.getTxtView().setText(data.get(row).get(column + 1));
 
+        // _1: 名称(集团/公司/项目); _2: 对应_1的id
         Tuple2<String, Integer> t2 = new Tuple2<>(
                 data.get(row).get(column + 1),
                 Integer.parseInt(data.get(row).get(size - 1)));
-        convertView.setTag(R.id.item_value, t2); //name , id
+        convertView.setTag(R.id.item_value, t2);
         convertView.setTag(R.id.what, data.get(row).get(size - 2)); //message.what
 
         return convertView;
@@ -246,5 +259,12 @@ public class TableAdapter extends BaseTableAdapter {
         widths = (int[]) maps.get("width");
         sortState = (int[]) maps.get("state");
         data = (ArrayList<ArrayList<String>>) maps.get("data");
+
+        if (listener == null) {
+//            sortViews = new SparseArray<>();
+//            listener = new SortHeaderListener(sortViews, sortState);
+        } else {
+            listener.setSortState(sortState);
+        }
     }
 }

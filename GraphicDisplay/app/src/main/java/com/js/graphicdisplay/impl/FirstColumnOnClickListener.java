@@ -21,9 +21,10 @@ public class FirstColumnOnClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        int id =(int) ((Tuple2) v.getTag(R.id.item_value))._2;
-        int what = Integer.parseInt((String) v.getTag(R.id.what));
+        int id = (int) ((Tuple2) v.getTag(R.id.item_value))._2;
         if (id == -1) return;
+
+        int what = Integer.parseInt((String) v.getTag(R.id.what));
         ((BaseActivity) context).sendMessage(what, v.getTag(R.id.item_value));
     }
 }

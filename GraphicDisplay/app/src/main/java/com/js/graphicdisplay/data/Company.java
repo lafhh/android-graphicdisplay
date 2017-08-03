@@ -15,13 +15,16 @@ public class Company implements Infermation {
 
     private String companyCode;
 
-//    private ArrayList<Project> child;
-
+    /**
+     * 公司上缴资金数据 (用于图)
+     */
     private FundsData fundsData;
 
+    /**
+     * 公司所有相关数据(用于表格)
+     */
     private HashMap<String, Object> data;
 
-    private ArrayList<>
 
 
 

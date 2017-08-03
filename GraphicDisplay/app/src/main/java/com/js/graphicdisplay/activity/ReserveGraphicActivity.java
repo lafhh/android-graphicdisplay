@@ -63,7 +63,6 @@ public class ReserveGraphicActivity extends BaseActivity {
     private TableAdapter tableAdapter;
 
     private ArrayList<Group> chartData = new ArrayList<>();
-    //    private ArrayList<Group> tableData = new ArrayList<>();
     private HashMap<String, Object> groups = new HashMap<>();
     private HashMap<String, Object> companies = new HashMap<>();
     private Tuple2<String, Integer> t2;
@@ -221,7 +220,7 @@ public class ReserveGraphicActivity extends BaseActivity {
                 int groupId = t2._2;
                 ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
                 list.add(new NameValuePair<>("cgId", String.valueOf(groupId)));
-                list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(10)));
+                list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(pageSize)));
                 list.add(new NameValuePair<>(NetUtil.KEY_OFFSET, String.valueOf(0)));
                 list.add(new NameValuePair<>(NetUtil.KEY_ORDER, "asc"));
                 list.add(new NameValuePair<>(NetUtil.KEY_SORT, "orgName"));
@@ -230,9 +229,7 @@ public class ReserveGraphicActivity extends BaseActivity {
                         Request.ContentType.KVP,
                         new Callback() {
                             @Override
-                            public void onFailure(Call call, IOException e) {
-
-                            }
+                            public void onFailure(Call call, IOException e) {}
 
                             @Override
                             public void onResponse(Call call, Response response) throws IOException {
@@ -325,7 +322,8 @@ public class ReserveGraphicActivity extends BaseActivity {
     }
 
     private void setSpinnerPagingInfo() {
-        int totalPages = totalRows / pageSize + 1;
+        int num = totalRows % pageSize;
+        int totalPages = num == 0 ? totalRows / pageSize : totalRows / pageSize + 1;
         Integer[] pageIndexs = new Integer[totalPages];
         for (int i = 0; i < totalPages; i++) {
             pageIndexs[i] = i + 1;
@@ -367,7 +365,7 @@ public class ReserveGraphicActivity extends BaseActivity {
 
                                 if (response.isSuccessful()) {
                                     HashMap<String, Object> map = new HashMap<>();
-                                    totalRows = GroupJsonParser.fundsJson2HashMap(body, map);
+                                    totalRows = GroupJsonParser.reserveJson2HashMap(body, map);
                                     sendMessage(MESSAGE_GROUP_PAGING, map);
 
                                 } else {
@@ -398,7 +396,7 @@ public class ReserveGraphicActivity extends BaseActivity {
         BarData barData = new BarData();
         LineData lineData = new LineData();
 
-        int startMonth = 201701;
+        int startMonth = 0;
         int maxSize = 0;
 
         for (int i = 0; i < chartData.size(); i++) {
@@ -413,6 +411,7 @@ public class ReserveGraphicActivity extends BaseActivity {
             if (maxSize < list.size()) maxSize = list.size();
             for (int j = 0; j < list.size(); j++) {
                 int month = Integer.parseInt(list.get(j).getDate());
+                if (startMonth > month) startMonth = month;
 
                 float val1 = list.get(j).getReserveBuildingArea();
                 float val2 = list.get(j).getBuildableArea();
@@ -473,7 +472,7 @@ public class ReserveGraphicActivity extends BaseActivity {
         BarData barData = new BarData();
         LineData lineData = new LineData();
 
-        int startMonth = 201701;
+        int startMonth = 0;
 
         String name = group.getName();
         group.setKeyColor(1);
@@ -484,6 +483,7 @@ public class ReserveGraphicActivity extends BaseActivity {
 
         for (int j = 0; j < list.size(); j++) {
             int month = Integer.parseInt(list.get(j).getDate());
+            if (startMonth > month) startMonth = month;
 
             float val1 = list.get(j).getReserveBuildingArea();
             float val2 = list.get(j).getBuildableArea();
@@ -513,14 +513,6 @@ public class ReserveGraphicActivity extends BaseActivity {
         barData.setBarWidth(0.9f);
         barData.setValueTypeface(mTfLight);
         barData.setDrawValues(false); //不显示y轴的值
-
-//        BarData data = new BarData(dataSets);
-//        data.setValueTextSize(10f);
-//        data.setValueTypeface(mTfLight);
-//        data.setBarWidth(0.9f);
-
-//        mBarChart.setDrawGridBackground(true); //设置网格线的背景，好像不能按照分组设置不同颜色
-//        mBarChart.setDrawValueAboveBar(false);
 
 //        float groupWidth = mBarChart.getBarData().getGroupWidth(groupSpace, barSpace); //groupwidth = 1
         mBarChart.getXAxis().setAxisMinimum(startMonth);

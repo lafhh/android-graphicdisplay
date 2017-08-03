@@ -10,6 +10,7 @@
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:supportsRtl="true"
+            android:label="aa"
             android:theme="@style/AppTheme">
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
@@ -18,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MenuActivity">
+        <activity android:name=".activity.MenuActivity"
+                  android:label="@string/menu"
+            >
         </activity>
         <activity android:name=".activity.GraphicActivity"
                   android:label="@string/label_funds"

@@ -1,10 +1,13 @@
 package com.js.graphicdisplay.adapter;
 
 import android.content.Context;
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.js.graphicdisplay.R;
@@ -48,7 +51,13 @@ public class GridMenuAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_gridmenu, parent, false);
+            GridView gridView = (GridView) parent;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) { //获取gridview#columnWidth赋给item#height, 以显示为正方形
+                ViewGroup.LayoutParams params = convertView.getLayoutParams();
+                params.height = gridView.getColumnWidth(); //417
+            }
         }
+
         ImageView imgView = (ImageView) convertView.findViewById(R.id.img_graph);
         TextView txtView = (TextView) convertView.findViewById(R.id.txt_graph);
 

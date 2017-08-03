@@ -10,6 +10,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical|left"
             android:paddingLeft="10dip"
+            android:ellipsize="end"
     />
     <ImageView
             android:id="@+id/img_sort"

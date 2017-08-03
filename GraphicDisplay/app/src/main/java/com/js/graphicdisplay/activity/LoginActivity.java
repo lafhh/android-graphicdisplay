@@ -45,7 +45,7 @@ public class LoginActivity extends BaseActivity {
 
         editAccount = (EditText) findViewById(R.id.edit_account);
         editPassword = (EditText) findViewById(R.id.edit_pwd);
-        chkRemember = (CheckBox) findViewById(R.id.chk_remember);
+//        chkRemember = (CheckBox) findViewById(R.id.chk_remember);
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

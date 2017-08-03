@@ -6,13 +6,6 @@ package com.js.graphicdisplay.data;
 
 public class ReserveData {
 
-//     list.add(o.getString("ym"));
-//                list.add(o.getString("acre"));
-//                list.add(o.getString("totalPrice"));
-//                list.add(o.getString("paid"));
-//                list.add(o.getString("buildableArea"));
-//                list.add(o.getString("reserveBuildingArea"));
-
     /**
      * 年月
      */

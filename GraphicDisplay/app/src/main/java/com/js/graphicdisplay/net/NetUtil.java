@@ -5,8 +5,10 @@ package com.js.graphicdisplay.net;
  */
 
 public class NetUtil {
-    public static final String IP        = "192.168.1.193";
-    public static final String PORT      = ":8081";
+    //106.14.172.38:8080
+    //192.168.1.193:8081
+    public static final String IP        = "106.14.172.38";
+    public static final String PORT      = ":8080";
     public static final String HTTP_PREF = "http://" + IP + PORT;
     public static final String BASE_URL  = HTTP_PREF + "/jsbi/";
 
@@ -60,9 +62,9 @@ public class NetUtil {
     /**
      * 查询各[公司]资金资金月度上缴情况表(用于表格展示数据)
      * 
-     * orgId=4&compId=68&ym=&limit=5&offset=0&order=&sort=
+     * groupId=4&compId=68&ym=&limit=5&offset=0&order=&sort=
      *
-     * curl -X POST --data "orgId=2&ym=201701&limit=10&offset=0&order=asc&sort=compName" http://192.168.1.193:8081/jsbi/fundsTurnedOver/getFundsTurnedOverForComTable.do
+     * curl -X POST --data "groupId=3&limit=10&offset=0&order=asc&sort=compName" http://192.168.1.193:8081/jsbi/fundsTurnedOver/getFundsTurnedOverForComTable.do
      {
          "total": 2,
          "rows": [
@@ -187,7 +189,7 @@ public class NetUtil {
      * orgId=&ym=&limit=5&offset=0&order=&sort=
      * 按集团排序 sort=orgName
      *
-     * curl -X POST --data "limit=5&offset=0&order=asc&sort=orgName" http://192.168.1.193:8081/jsbi/landbanking/queryItems.do
+     * curl -X POST --data "orgId=2&limit=5&offset=0&order=asc&sort=orgName" http://192.168.1.193:8081/jsbi/landbanking/queryItems.do
      {
          "total": 3,
          "rows": [
@@ -240,7 +242,7 @@ public class NetUtil {
      * 查询各[公司]土地储备情况表数据(用于表格展示)
      * cgId=&comId=&ym=&limit=5&offset=0&order=&sort=
      *
-     * curl -X POST --data "limit=5&offset=0&order=asc&sort=orgName" http://192.168.1.193:8081/jsbi/landbanking/queryItemsForCom.do
+     * curl -X POST --data "cgId=2&limit=5&offset=0&order=asc&sort=orgName" http://192.168.1.193:8081/jsbi/landbanking/queryItemsForCom.do
      {
          "total": 5,
          "rows": [
@@ -328,7 +330,6 @@ public class NetUtil {
      * orgId=&ym=&limit=&offset=&sort=&order=
      *
      * curl -X POST --data "limit=10&offset=0&order=asc&sort=orgName" http://192.168.1.193:8081/jsbi/receivedPayments/queryItems.do
-     *
      {
          "total": 2,
          "rows": [
@@ -363,7 +364,7 @@ public class NetUtil {
      * 查询各[公司]回款达成率数据(用于表格展示)
      * 
      * compId=&ym=&limit=10&offset=0&sort=orgName&order=asc&groupId=2
-     * curl -X POST --data "limit=10&offset=0&order=asc&sort=orgName" http://192.168.1.193:8081/jsbi/receivedPayments/queryItemsForCom.do
+     * curl -X POST --data "groupId=2&limit=10&offset=0&order=asc&sort=orgName" http://192.168.1.193:8081/jsbi/receivedPayments/queryItemsForCom.do
      {
          "total": 3,
          "rows": [
@@ -476,7 +477,7 @@ public class NetUtil {
      * 查询各[公司]销售情况表数据(用于表格展示)
      * 
      * groupId=2&compId=&ymd=&limit=10&offset=0&order=&sort=
-     * curl -X POST --data "limit=10&offset=0" http://192.168.1.193:8081/jsbi/sales/getSalesForComTable.do
+     * curl -X POST --data "compId=14&groupId=2&limit=10&offset=0" http://192.168.1.193:8081/jsbi/sales/getSalesForComTable.do
      {
          "total": 3,
          "rows": [
@@ -592,8 +593,12 @@ public class NetUtil {
     public static final String URL_REALESTATERENTAL_TABLE_GROUP = URL_REALESTATERENTAL + "getRealEstateRentalForGroupTable.do";
 
     /**
-     * 查询各[公司]不动产出租情况表数据(用于表格展示)
+     * 查询各[物业]不动产出租情况表数据(用于表格展示)
      * groupId=&ym=&limit=10&offset=0&order=&sort=&propertyType=0&fmt=house
+     * propertyType: 物业类型 0:自有物业;1:酒店
+     * fmt: 物业业态
+     * 自有物业: 住宅(house)、会所(club)、商业(business)、办公用房(office_room)、厂房(workshop)、车位(parking_lot)
+     * 酒店: 对应的为该集团下的项目，传递的参数为项目CODE
      * curl -X POST --data "limit=10&offset=0" http://192.168.1.193:8081/jsbi/realEstateRental/queryRealEstateRentalForFmtTable.do
      {
          "total": 10,
@@ -633,6 +638,7 @@ public class NetUtil {
     public static final String URL_REALESTATERENTAL_TABLE_FMT = URL_REALESTATERENTAL + "queryRealEstateRentalForFmtTable.do";
 
     /**
+     * 查询所有集团信息接口
      * curl http://192.168.1.193:8081/jsbi/main/queryOrg.do
      [
          {
@@ -653,6 +659,7 @@ public class NetUtil {
     public static final String URL_MAIN_QUERYORG = URL_MAIN + "queryOrg.do";
 
     /**
+     * 查询某集团下所有的公司信息
      * orgId=4
      * curl -X POST --data "orgId=4" http://192.168.1.193:8081/jsbi/main/queryOrgWithParam.do
      [
@@ -674,8 +681,9 @@ public class NetUtil {
     public static final String URL_MAIN_QUERYORGWITHPARAM = URL_MAIN + "queryOrgWithParam.do";
 
     /**
+     * 查询某公司下所有的项目信息
      * compId=14
-     * curl -X POST --data "compId=14" http://192.168.1.193:8081/jsbi/main/queryItemByCompId.do
+     * curl -X POST --data "compId=1&itemId=1" http://192.168.1.193:8081/jsbi/main/queryItemByCompId.do
      [
          {
              "itemId": 1,
@@ -694,6 +702,7 @@ public class NetUtil {
     public static final String URL_QUERYITEMBYCOMPID = URL_MAIN + "queryItemByCompId.do";
 
     /**
+     * 查询自有物业下的所有业态信息
      *  curl http://192.168.1.193:8081/jsbi/main/queryOwnProperty.do
      [
          {
@@ -737,7 +746,7 @@ public class NetUtil {
     public static final String URL_QUERYOWNPROPERTY = URL_MAIN + "queryOwnProperty.do";
 
     /**
-     * 
+     * 查询某集团下所有的项目信息
      * groupId=4
      * curl -X POST --data "groupId=4" http://192.168.1.193:8081/jsbi/main/queryItemsByGroupId.do
      [

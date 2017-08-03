@@ -9,7 +9,6 @@ import android.widget.GridView;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
 import com.js.graphicdisplay.adapter.GridMenuAdapter;
-import com.js.graphicdisplay.data.Tuple2;
 import com.js.graphicdisplay.data.Tuple3;
 
 import java.util.ArrayList;

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">GraphicDisplay</string>
+    <string name="menu">menu</string>
     <string name="label_funds">资金月度上缴</string>
     <string name="label_reserve">土地存储分析</string>
     <string name="label_rer">不动产出租</string>

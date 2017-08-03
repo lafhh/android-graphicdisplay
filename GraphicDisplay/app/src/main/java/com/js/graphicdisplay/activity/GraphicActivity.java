@@ -3,12 +3,9 @@ package com.js.graphicdisplay.activity;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -85,6 +82,7 @@ public class GraphicActivity extends BaseActivity {
         mLineChart = (LineChart) findViewById(R.id.linechart);
         mBarChart = (BarChart) findViewById(R.id.barchart);
         table = (TableFixHeaders) findViewById(R.id.table_funds);
+        setTableOnTouchLisenter();
 
 //        groupAdapter = new SpinnerAdapter<>(this, chartData);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -251,8 +249,8 @@ public class GraphicActivity extends BaseActivity {
                 t2 = (Tuple2<String, Integer>) msg.obj;
                 int groupId = t2._2;
                 ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
-                list.add(new NameValuePair<>(NetUtil.KEY_ORGID, String.valueOf(groupId)));
-                list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(10)));
+                list.add(new NameValuePair<>("groupId", String.valueOf(groupId)));
+                list.add(new NameValuePair<>(NetUtil.KEY_LIMIT, String.valueOf(pageSize)));
                 list.add(new NameValuePair<>(NetUtil.KEY_OFFSET, String.valueOf(0)));
                 list.add(new NameValuePair<>(NetUtil.KEY_ORDER, "asc"));
                 list.add(new NameValuePair<>(NetUtil.KEY_SORT, NetUtil.COMPNAME));
@@ -391,7 +389,8 @@ public class GraphicActivity extends BaseActivity {
     }
 
     private void setSpinnerPagingInfo() {
-        int totalPages = totalRows / pageSize + 1;
+        int num = totalRows % pageSize;
+        int totalPages = num == 0 ? totalRows / pageSize : totalRows / pageSize + 1;
         Integer[] pageIndexs = new Integer[totalPages];
         for (int i = 0; i < totalPages; i++) {
             pageIndexs[i] = i + 1;
@@ -513,7 +512,7 @@ public class GraphicActivity extends BaseActivity {
 //            set.setBarBorderColor(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()]);
 //            set.setBarBorderWidth(0.5f);
             barSet.setColors(ColorTemplate.TEMPLETE_COLOR[group.getKeyColor()], ColorTemplate.TEMPLETE_COLOR[0]);
-            barSet.setStackLabels(new String[]{"已完成数额", "未完成数额",});
+            barSet.setStackLabels(new String[]{"已完成指标", "已完成与计划的差额",});
             barData.addDataSet(barSet);
 
             LineDataSet lineSet = new LineDataSet(lineEntries, name);
@@ -556,4 +555,13 @@ public class GraphicActivity extends BaseActivity {
     }
 
 
+    private void setTableOnTouchLisenter() {
+        table.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                ScrollView scrollView = (ScrollView) GraphicActivity.this.findViewById(R.id.scrollview);
+                scrollView.requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+    }
 }

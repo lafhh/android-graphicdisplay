@@ -9,7 +9,10 @@
         android:layout_width="0dip"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center" />
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="end"
+    />
 
     <View
         android:layout_width="1dip"

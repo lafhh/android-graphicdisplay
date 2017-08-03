@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.js.graphicdisplay.R;
+import com.js.graphicdisplay.data.FundsData;
 import com.js.graphicdisplay.data.FundsTableMateData;
 import com.js.graphicdisplay.util.SortState;
 import com.js.graphicdisplay.util.SortStateViewProvider;
@@ -20,13 +21,11 @@ import static com.js.graphicdisplay.util.SortState.SORTED_DESC;
 public class SortHeaderListener implements View.OnClickListener {
 
     private final SparseArray<ImageView> sortViews;
-    private int[] widths;
     private int[] sortState;
 
-    public SortHeaderListener(SparseArray<ImageView> views, int[] s, int[] w) {
+    public SortHeaderListener(SparseArray<ImageView> views, int[] s) {
         sortViews = views;
         sortState = s;
-        widths = w;
     }
 
     @Override
@@ -37,6 +36,7 @@ public class SortHeaderListener implements View.OnClickListener {
             int key = sortViews.keyAt(i);
             ImageView view = sortViews.get(key);
 
+            //如果上一次点击列与当前一致，只是升序变为降序/降序变为升序
             if (columnIndex == key) {
                 int sort = sortState[columnIndex + 1]; //columnIndex起始为-1
                 if (sort == 1) { //升序
@@ -48,11 +48,11 @@ public class SortHeaderListener implements View.OnClickListener {
                 }
             } else {
                 view.setImageResource(R.mipmap.ic_dark_sortable);
-                sortState[columnIndex + 1] = 0; //没有排序状态
+                sortState[key + 1] = 0; //没有排序状态
                 sortViews.remove(key);
             }
         }
-        if (sortViews.get(columnIndex) == null) {
+        if (sortViews.get(columnIndex) == null) { //每一列第一次被点击默认是升序
             ImageView view = (ImageView) v.findViewById(R.id.img_sort);
             sortViews.put(columnIndex, view);
             view.setImageResource(R.mipmap.ic_dark_sorted_asc);
@@ -79,5 +79,17 @@ public class SortHeaderListener implements View.OnClickListener {
                 break;
         }
 
+    }
+
+    public SparseArray<ImageView> getSortViews() {
+        return sortViews;
+    }
+
+    public int[] getSortState() {
+        return sortState;
+    }
+
+    public void setSortState(int[] sortState) {
+        this.sortState = sortState;
     }
 }

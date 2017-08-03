@@ -4,13 +4,13 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:gravity="center"
-              android:background="@color/white"
+              android:background="@drawable/grid_menu"
 >
 
     <ImageView
             android:id="@+id/img_graph"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
             android:layout_marginBottom="8dp"
@@ -19,6 +19,7 @@
             android:id="@+id/txt_graph"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="14sp"
+            android:textColor="@color/black"
     />
 </LinearLayout>

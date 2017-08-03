@@ -10,7 +10,10 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center_vertical|left"
-        android:paddingLeft="10dip" />
+        android:paddingLeft="10dip"
+        android:singleLine="true"
+        android:ellipsize="end"
+    />
 
     <View
         android:layout_width="1.5dip"
