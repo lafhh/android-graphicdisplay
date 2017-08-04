@@ -22,6 +22,10 @@ public class BaseActivity extends AppCompatActivity {
     public static final int MESSAGE_GROUP_PAGING = 4;
     public static final int MESSAGE_CHART = 5;
 
+    public static final int FLOOR_GROUP = 1;
+    public static final int FLOOR_COMPANY = 2;
+    public static final int FLOOR_ITEM = 3;
+
     protected Typeface mTfLight;
     protected Handler mHandler = new MHandler(this);
 

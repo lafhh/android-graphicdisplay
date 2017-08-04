@@ -37,7 +37,7 @@ import java.util.HashMap;
  * Created by js_gg on 2017/6/17.
  * 销售情况表
  */
-public class SalesGraphicActivity extends BaseActivity {
+public class SalesGraphicActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "GraphicActivity";
     private static final int BAR_CHART_MAX_VALUE_COUNT = 60;
@@ -66,6 +66,8 @@ public class SalesGraphicActivity extends BaseActivity {
     private Tuple2<String, Integer> groupT2;
     private Tuple2<String, Integer> companyT2;
 
+    private int flag = FLOOR_GROUP;
+
     private int totalRows;
     private final int pageSize = 10;
     private int pageIndex = 1;
@@ -82,6 +84,8 @@ public class SalesGraphicActivity extends BaseActivity {
         mLineChart = (LineChart) findViewById(R.id.linechart);
         mBarChart = (BarChart) findViewById(R.id.barchart);
         table = (TableFixHeaders) findViewById(R.id.table_funds);
+
+        txtLabel.setOnClickListener(this);
 
 //        groupAdapter = new SpinnerAdapter<>(this, chartData);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -251,17 +255,11 @@ public class SalesGraphicActivity extends BaseActivity {
                 if (totalRows == 0) {
                     Toast.makeText(this, "已经到最后一页了", Toast.LENGTH_SHORT).show();
                 } else {
+                    flag = FLOOR_COMPANY;
                     setTableData(companies);
                     String name = groupT2._1;
                     txtLabel.setVisibility(View.VISIBLE);
                     txtLabel.setText(name);
-                    txtLabel.setOnClickListener(new View.OnClickListener() { //回退到上一级
-                        @Override
-                        public void onClick(View v) {
-                            setTableData(groups);
-                            txtLabel.setVisibility(View.GONE);
-                        }
-                    });
                 }
                 break;
 
@@ -299,16 +297,10 @@ public class SalesGraphicActivity extends BaseActivity {
                 if (totalRows == 0) {
                     Toast.makeText(this, "已经到最后一页了", Toast.LENGTH_SHORT).show();
                 } else {
+                    flag = FLOOR_ITEM;
                     setTableData(items);
                     String name = companyT2._1;
                     txtLabel.setText(name);
-                    txtLabel.setOnClickListener(new View.OnClickListener() { //回退到上一级
-                        @Override
-                        public void onClick(View v) {
-                            setTableData(companies);
-                            txtLabel.setText(groupT2._1);
-                        }
-                    });
                 }
                 break;
         }
@@ -352,7 +344,8 @@ public class SalesGraphicActivity extends BaseActivity {
                 }
 
                 @Override
-                public void onNothingSelected(AdapterView<?> parent) {}
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
             });
         }
     }
@@ -591,4 +584,23 @@ public class SalesGraphicActivity extends BaseActivity {
         mLineChart.invalidate();
     }
 
+
+    @Override
+    public void onClick(View v) {
+        switch(flag) {
+            case FLOOR_COMPANY:
+                //return group floor
+                setTableData(groups);
+                v.setVisibility(View.GONE);
+                flag = FLOOR_GROUP;
+                break;
+
+            case FLOOR_ITEM:
+                //return company floor
+                setTableData(companies);
+                ((TextView) v).setText(groupT2._1);
+                flag = FLOOR_COMPANY;
+                break;
+        }
+    }
 }
