@@ -13,6 +13,7 @@ import com.github.mikephil.charting.data.*;
 import com.inqbarna.tablefixheaders.TableFixHeaders;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
+import com.js.graphicdisplay.adapter.SpinnerPagingAdapter;
 import com.js.graphicdisplay.adapter.TableAdapter;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
 import com.js.graphicdisplay.api.Infermation;
@@ -39,7 +40,7 @@ import java.util.HashMap;
  * Created by js_gg on 2017/6/17.
  */
 
-public class GraphicActivity extends BaseActivity {
+public class GraphicActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "GraphicActivity";
     private static final int BAR_CHART_MAX_VALUE_COUNT = 60;
@@ -47,6 +48,9 @@ public class GraphicActivity extends BaseActivity {
     private Spinner spinnerGroup;
 //    private Spinner spinnerCompany;
 //    private Spinner spinnerDate;
+
+    private TextView labelLineChart;
+    private TextView labelBarChart;
 
     private TextView txtLabel;
     private Spinner spinnerPageNum;
@@ -62,10 +66,11 @@ public class GraphicActivity extends BaseActivity {
     private TableAdapter tableAdapter;
 
     private ArrayList<Group> chartData = new ArrayList<>();
-    //    private ArrayList<Group> tableData = new ArrayList<>();
     private HashMap<String, Object> groups = new HashMap<>();
     private HashMap<String, Object> companies = new HashMap<>();
     private Tuple2<String, Integer> t2;
+
+    private int flag = FLOOR_GROUP;
 
     private int totalRows;
     private final int pageSize = 10;
@@ -77,6 +82,8 @@ public class GraphicActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphic);
 
+        labelLineChart = (TextView) findViewById(R.id.label_linechart);
+        labelBarChart = (TextView) findViewById(R.id.label_barchart);
         spinnerGroup = (Spinner) findViewById(R.id.spinner_group);
         txtLabel = (TextView) findViewById(R.id.txt_name);
         spinnerPageNum = (Spinner) findViewById(R.id.spinner_pagenum);
@@ -84,6 +91,10 @@ public class GraphicActivity extends BaseActivity {
         mBarChart = (BarChart) findViewById(R.id.barchart);
         table = (TableFixHeaders) findViewById(R.id.table_funds);
         setTableOnTouchLisenter();
+        txtLabel.setOnClickListener(this);
+
+        labelLineChart.setText("资金月度上缴完成率--2017");
+        labelBarChart.setText("资金月度上缴实际完成情况--2017");
 
 //        groupAdapter = new SpinnerAdapter<>(this, chartData);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -397,9 +408,9 @@ public class GraphicActivity extends BaseActivity {
         for (int i = 0; i < totalPages; i++) {
             pageIndexs[i] = i + 1;
         }
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, pageIndexs);
+        SpinnerPagingAdapter adapter = new SpinnerPagingAdapter(this, pageIndexs);
         spinnerPageNum.setAdapter(adapter);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerPageNum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -567,5 +578,18 @@ public class GraphicActivity extends BaseActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(flag) {
+            case FLOOR_COMPANY:
+                //return group floor
+                setTableData(groups);
+                v.setVisibility(View.GONE);
+                flag = FLOOR_GROUP;
+                break;
+
+        }
     }
 }

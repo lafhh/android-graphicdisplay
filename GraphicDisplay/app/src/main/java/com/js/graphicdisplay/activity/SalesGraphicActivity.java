@@ -12,6 +12,7 @@ import com.inqbarna.tablefixheaders.TableFixHeaders;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
+import com.js.graphicdisplay.adapter.SpinnerPagingAdapter;
 import com.js.graphicdisplay.adapter.TableAdapter;
 import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
@@ -21,6 +22,7 @@ import com.js.graphicdisplay.jsonutil.ItemJsonParser;
 import com.js.graphicdisplay.mpchart.components.SalesMarkerView;
 import com.js.graphicdisplay.mpchart.customization.BarChartCustomization;
 import com.js.graphicdisplay.mpchart.customization.LineChartCustomization;
+import com.js.graphicdisplay.mpchart.formatter.XAxisValueFormatter;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
@@ -45,6 +47,9 @@ public class SalesGraphicActivity extends BaseActivity implements View.OnClickLi
     private Spinner spinnerGroup;
 //    private Spinner spinnerCompany;
 //    private Spinner spinnerDate;
+
+    private TextView labelLineChart;
+    private TextView labelBarChart;
 
     private TextView txtLabel;
     private Spinner spinnerPageNum;
@@ -78,6 +83,8 @@ public class SalesGraphicActivity extends BaseActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphic);
 
+        labelLineChart = (TextView) findViewById(R.id.label_linechart);
+        labelBarChart = (TextView) findViewById(R.id.label_barchart);
         spinnerGroup = (Spinner) findViewById(R.id.spinner_group);
         txtLabel = (TextView) findViewById(R.id.txt_name);
         spinnerPageNum = (Spinner) findViewById(R.id.spinner_pagenum);
@@ -86,6 +93,9 @@ public class SalesGraphicActivity extends BaseActivity implements View.OnClickLi
         table = (TableFixHeaders) findViewById(R.id.table_funds);
 
         txtLabel.setOnClickListener(this);
+
+        labelLineChart.setText("日签约套数展示--2017");
+        labelBarChart.setText("日签约金额与回款金额展示--2017");
 
 //        groupAdapter = new SpinnerAdapter<>(this, chartData);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -366,9 +376,9 @@ public class SalesGraphicActivity extends BaseActivity implements View.OnClickLi
         for (int i = 0; i < totalPages; i++) {
             pageIndexs[i] = i + 1;
         }
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, pageIndexs);
+        SpinnerPagingAdapter adapter = new SpinnerPagingAdapter(this, pageIndexs);
         spinnerPageNum.setAdapter(adapter);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerPageNum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -420,6 +430,7 @@ public class SalesGraphicActivity extends BaseActivity implements View.OnClickLi
         });
     }
 
+    String[] date = {"20170701", "20170702", "20170801"};
     //group: a group of bars
     private void setChartData(ArrayList<Group> chartData) {
         int barCountPerGroup = chartData.size();
@@ -514,7 +525,8 @@ public class SalesGraphicActivity extends BaseActivity implements View.OnClickLi
         BarData barData = new BarData();
         LineData lineData = new LineData();
 
-        int startMonth = Integer.parseInt(group.getSalesData().get(0).getDate());
+//        int startMonth = Integer.parseInt(group.getSalesData().get(0).getDate()); 修改x轴的分段
+        int start = 0;
 
         String name = group.getName();
         group.setKeyColor(1);
@@ -525,8 +537,7 @@ public class SalesGraphicActivity extends BaseActivity implements View.OnClickLi
 
         for (int j = 0; j < list.size(); j++) {
             int month = Integer.parseInt(list.get(j).getDate());
-            if (startMonth > month) startMonth = month;
-
+//            if (startMonth > month) startMonth = month;
             //stack bar entry.y = val1 + val2,
             float val1 = list.get(j).getDayIncome(); //日回款金额
             float val2 = list.get(j).getDayContractedAmount(); //日签约金额
@@ -536,10 +547,10 @@ public class SalesGraphicActivity extends BaseActivity implements View.OnClickLi
             } else if (val1 == val2) {
                 val2 = 0;
             }
-            barEntries.add(new BarEntry(month, new float[]{val1, val2}));
+            barEntries.add(new BarEntry(j, new float[]{val1, val2}));
 
             //line entry
-            lineEntries.add(new Entry(month,
+            lineEntries.add(new Entry(j,
                     list.get(j).getDayContractedQuantity()));
         }
 
@@ -559,12 +570,12 @@ public class SalesGraphicActivity extends BaseActivity implements View.OnClickLi
 
         mBarChart.setData(barData);
 
-        barData.setBarWidth(0.9f);
+//        barData.setBarWidth(0.4f); //设bar的宽度并不会影响到x轴的分段
         barData.setValueTypeface(mTfLight);
         barData.setDrawValues(false); //不显示y轴的值
 
-//        float groupWidth = mBarChart.getBarData().getGroupWidth(groupSpace, barSpace); //groupwidth = 1
-        mBarChart.getXAxis().setAxisMinimum(startMonth);
+//        mBarChart.getXAxis().setAxisMinimum(0); // 修改x轴的分段,不使用startMonth
+        mBarChart.getXAxis().setValueFormatter(new XAxisValueFormatter(date));
 //        mBarChart.getXAxis().setAxisMaximum(startMonth + groupWidth * maxSize);
 
         mBarChart.setFitBars(true);
@@ -572,6 +583,7 @@ public class SalesGraphicActivity extends BaseActivity implements View.OnClickLi
         mBarChart.invalidate();
 
         mLineChart.setData(lineData);
+        mLineChart.getXAxis().setValueFormatter(new XAxisValueFormatter(date));
         int width = mLineChart.getMeasuredWidth();
 //        Log.d(TAG, "linechart width======" + width);
 

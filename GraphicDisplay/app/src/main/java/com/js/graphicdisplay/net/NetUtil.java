@@ -7,8 +7,8 @@ package com.js.graphicdisplay.net;
 public class NetUtil {
     //106.14.172.38:8080
     //192.168.1.193:8081
-    public static final String IP        = "192.168.1.193";
-    public static final String PORT      = ":8081";
+    public static final String IP        = "106.14.172.38";
+    public static final String PORT      = ":8080";
     public static final String HTTP_PREF = "http://" + IP + PORT;
     public static final String BASE_URL  = HTTP_PREF + "/jsbi/";
 

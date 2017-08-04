@@ -12,6 +12,7 @@ import com.inqbarna.tablefixheaders.TableFixHeaders;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
+import com.js.graphicdisplay.adapter.SpinnerPagingAdapter;
 import com.js.graphicdisplay.adapter.TableAdapter;
 import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
@@ -20,6 +21,7 @@ import com.js.graphicdisplay.jsonutil.GroupJsonParser;
 import com.js.graphicdisplay.mpchart.components.RmMarkerView;
 import com.js.graphicdisplay.mpchart.customization.BarChartCustomization;
 import com.js.graphicdisplay.mpchart.customization.LineChartCustomization;
+import com.js.graphicdisplay.mpchart.formatter.XAxisValueFormatter;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
@@ -36,7 +38,7 @@ import java.util.HashMap;
  * Created by js_gg on 2017/6/17.
  * returned money 回款
  */
-public class RMGraphicActivity extends BaseActivity {
+public class RMGraphicActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "GraphicActivity";
     private static final int BAR_CHART_MAX_VALUE_COUNT = 60;
@@ -44,6 +46,9 @@ public class RMGraphicActivity extends BaseActivity {
     private Spinner spinnerGroup;
 //    private Spinner spinnerCompany;
 //    private Spinner spinnerDate;
+
+    private TextView labelLineChart;
+    private TextView labelBarChart;
 
     private TextView txtLabel;
     private Spinner spinnerPageNum;
@@ -62,6 +67,7 @@ public class RMGraphicActivity extends BaseActivity {
     private HashMap<String, Object> groups = new HashMap<>();
     private HashMap<String, Object> companies = new HashMap<>();
     private Tuple2<String, Integer> groupT2;
+    private int flag = FLOOR_GROUP;
 
     private int totalRows;
     private final int pageSize = 10;
@@ -73,6 +79,8 @@ public class RMGraphicActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphic);
 
+        labelLineChart = (TextView) findViewById(R.id.label_linechart);
+        labelBarChart = (TextView) findViewById(R.id.label_barchart);
         spinnerGroup = (Spinner) findViewById(R.id.spinner_group);
         txtLabel = (TextView) findViewById(R.id.txt_name);
         spinnerPageNum = (Spinner) findViewById(R.id.spinner_pagenum);
@@ -80,6 +88,10 @@ public class RMGraphicActivity extends BaseActivity {
         mBarChart = (BarChart) findViewById(R.id.barchart);
         table = (TableFixHeaders) findViewById(R.id.table_funds);
 
+        txtLabel.setOnClickListener(this);
+
+        labelLineChart.setText("月回款达成率--2017");
+        labelBarChart.setText("月实际回款情况--2017");
 //        groupAdapter = new SpinnerAdapter<>(this, chartData);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        spinnerGroup.setAdapter(groupAdapter);
@@ -302,7 +314,8 @@ public class RMGraphicActivity extends BaseActivity {
                 }
 
                 @Override
-                public void onNothingSelected(AdapterView<?> parent) {}
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
             });
         }
     }
@@ -323,9 +336,9 @@ public class RMGraphicActivity extends BaseActivity {
         for (int i = 0; i < totalPages; i++) {
             pageIndexs[i] = i + 1;
         }
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, pageIndexs);
+        SpinnerPagingAdapter adapter = new SpinnerPagingAdapter(this, pageIndexs);
         spinnerPageNum.setAdapter(adapter);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerPageNum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -365,8 +378,8 @@ public class RMGraphicActivity extends BaseActivity {
 
                                 } else {
                                     sendMessage(MESSAGE_FAILED, body);
-                                throw new IOException("Unexpected code " + response);
-                            }
+                                    throw new IOException("Unexpected code " + response);
+                                }
                             }
                         });
             }
@@ -468,11 +481,13 @@ public class RMGraphicActivity extends BaseActivity {
         mLineChart.invalidate();
     }
 
+    String[] date = {"201707", "201708"};
+
     private void setChartData(Group group) {
         BarData barData = new BarData();
         LineData lineData = new LineData();
 
-        int startMonth = Integer.parseInt(group.getRmData().get(0).getDate());
+//        int startMonth = Integer.parseInt(group.getRmData().get(0).getDate());
 
         String name = group.getName();
         group.setKeyColor(1);
@@ -483,7 +498,7 @@ public class RMGraphicActivity extends BaseActivity {
 
         for (int j = 0; j < list.size(); j++) {
             int month = Integer.parseInt(list.get(j).getDate());
-            if (startMonth > month) startMonth = month;
+//            if (startMonth > month) startMonth = month;
 
             float val1 = list.get(j).getMonthIncomeReal();
             float val2 = list.get(j).getMonthIncomePlan();
@@ -493,10 +508,10 @@ public class RMGraphicActivity extends BaseActivity {
             } else if (val1 == val2) {
                 val2 = 0;
             }
-            barEntries.add(new BarEntry(month, new float[]{val1, val2}));
+            barEntries.add(new BarEntry(j, new float[]{val1, val2}));
 
             //line entry
-            lineEntries.add(new Entry(month,
+            lineEntries.add(new Entry(j,
                     list.get(j).getMonthIncomeAch()));
         }
 
@@ -516,14 +531,14 @@ public class RMGraphicActivity extends BaseActivity {
 
         mBarChart.setData(barData);
 
-        barData.setBarWidth(0.9f);
+//        barData.setBarWidth(0.9f);
         barData.setValueTypeface(mTfLight);
         barData.setDrawValues(false); //不显示y轴的值
 
 //        float groupWidth = mBarChart.getBarData().getGroupWidth(groupSpace, barSpace); //groupwidth = 1
-        mBarChart.getXAxis().setAxisMinimum(startMonth);
+//        mBarChart.getXAxis().setAxisMinimum(startMonth);
 //        mBarChart.getXAxis().setAxisMaximum(startMonth + groupWidth * maxSize);
-
+        mBarChart.getXAxis().setValueFormatter(new XAxisValueFormatter(date));
         mBarChart.setFitBars(true);
         mBarChart.animateXY(2500, 2500);
         mBarChart.invalidate();
@@ -531,7 +546,7 @@ public class RMGraphicActivity extends BaseActivity {
         mLineChart.setData(lineData);
         int width = mLineChart.getMeasuredWidth();
 //        Log.d(TAG, "linechart width======" + width);
-
+        mLineChart.getXAxis().setValueFormatter(new XAxisValueFormatter(date));
         lineData.setValueTypeface(mTfLight);
 //        mLineChart.getXAxis().setAxisMinimum(startMonth);
 //        mLineChart.getXAxis().setAxisMaximum(startMonth + mBarChart.getBarData().getGroupWidth(groupSpace, barSpace) * months.size() - 1);
@@ -539,5 +554,17 @@ public class RMGraphicActivity extends BaseActivity {
 
         mLineChart.animateX(300);
         mLineChart.invalidate();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (flag) {
+            case FLOOR_COMPANY:
+                //return group floor
+                setTableData(groups);
+                v.setVisibility(View.GONE);
+                flag = FLOOR_GROUP;
+                break;
+        }
     }
 }

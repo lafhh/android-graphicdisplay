@@ -10,7 +10,7 @@
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:supportsRtl="true"
-            android:label="aa"
+            android:label="BI demo"
             android:theme="@style/AppTheme">
         <activity android:name=".activity.LoginActivity">
             <intent-filter>

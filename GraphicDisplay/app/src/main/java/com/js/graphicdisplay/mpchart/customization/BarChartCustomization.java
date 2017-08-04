@@ -60,13 +60,13 @@ public class BarChartCustomization {
         xAxis.setGridColor(Color.parseColor("#ECEFF0"));
         xAxis.setDrawAxisLine(false);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setValueFormatter(new IAxisValueFormatter() {
-            @Override
-            public String getFormattedValue(float v, AxisBase axisBase) {
-//                Log.d("laf", String.valueOf((int) v));
-                return String.valueOf((int) v);
-            }
-        });
+//        xAxis.setValueFormatter(new IAxisValueFormatter() {
+//            @Override
+//            public String getFormattedValue(float v, AxisBase axisBase) {
+////                Log.d("laf", String.valueOf((int) v));
+//                return String.valueOf((int) v);
+//            }
+//        });
 
         YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setTypeface(typeface);
@@ -95,5 +95,5 @@ public class BarChartCustomization {
 
         return chart;
     }
-
 }
+

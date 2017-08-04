@@ -19,6 +19,10 @@
 
     <string name="paging">显示第%1$d到第%2$d条记录，一共%3$d条记录</string>
 
+    <string name="spinner_page">第%1$s页</string>
+
+
+
     <!--<string name="title_activity_main">SortableTableView Example</string>-->
 
     <!--<string name="default_text_ps">180PS</string>-->

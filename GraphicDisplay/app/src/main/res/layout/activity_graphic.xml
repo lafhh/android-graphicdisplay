@@ -32,17 +32,39 @@
             <!--android:layout_height="wrap_content" />-->
         </LinearLayout>
 
+        <TextView
+                android:id="@+id/label_linechart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_spinners"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+        />
         <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/linechart"
                 android:layout_width="match_parent"
                 android:layout_height="450dp"
-                android:layout_below="@id/layout_spinners"/>
+                android:layout_below="@id/label_linechart"/>
+
+        <TextView
+                android:id="@+id/label_barchart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linechart"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+        />
 
         <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barchart"
                 android:layout_width="match_parent"
                 android:layout_height="450dp"
-                android:layout_below="@id/linechart"/>
+                android:layout_below="@id/label_barchart"/>
         <Spinner
                 android:id="@+id/spinner_pagenum"
                 android:layout_width="wrap_content"
@@ -59,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignBottom="@id/spinner_pagenum"
+                android:layout_marginLeft="8dp"
                 android:textColor="@color/primary"
                 android:textSize="14sp"
                 android:visibility="gone"
@@ -70,6 +93,19 @@
                 android:layout_below="@id/spinner_pagenum"
                 android:layout_marginTop="8dp"
                 android:scrollbars="horizontal|vertical"/>
+
+        <TextView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/table_funds"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:text="BI.demo"
+        />
 
     </RelativeLayout>
 </ScrollView>
