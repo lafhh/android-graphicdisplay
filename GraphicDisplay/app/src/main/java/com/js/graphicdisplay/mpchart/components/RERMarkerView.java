@@ -2,6 +2,7 @@ package com.js.graphicdisplay.mpchart.components;
 
 import android.content.Context;
 import android.widget.TextView;
+
 import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
@@ -13,10 +14,10 @@ import com.js.graphicdisplay.R;
  * Created by apple on 2017/7/6.
  */
 
-public class FundsMarkerView extends MarkerView {
+public class RERMarkerView extends MarkerView {
 
 
-    public FundsMarkerView(Context context, int layoutResource) {
+    public RERMarkerView(Context context, int layoutResource) {
         super(context, layoutResource);
     }
 
@@ -32,12 +33,12 @@ public class FundsMarkerView extends MarkerView {
         TextView tvBalance = (TextView) findViewById(R.id.tv_funds_balance);
         tvIndicatrix.setText(String.format(
                 getResources().getString(R.string.funds_indicatrix_permonth),
-                "计划上缴",
+                "可出租面积",
                 String.valueOf(entry.getY())
         ));
         tvCompletion.setText(String.format(
                 getResources().getString(R.string.funds_completion_permonth),
-                "实际上缴",
+                "累计已出租面积",
                 String.valueOf(yVals[0])
         ));
         tvBalance.setText(String.format(

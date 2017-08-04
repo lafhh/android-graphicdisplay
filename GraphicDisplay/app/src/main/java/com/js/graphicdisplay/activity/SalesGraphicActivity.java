@@ -18,6 +18,7 @@ import com.js.graphicdisplay.data.*;
 import com.js.graphicdisplay.jsonutil.CompanyJsonParser;
 import com.js.graphicdisplay.jsonutil.GroupJsonParser;
 import com.js.graphicdisplay.jsonutil.ItemJsonParser;
+import com.js.graphicdisplay.mpchart.components.SalesMarkerView;
 import com.js.graphicdisplay.mpchart.customization.BarChartCustomization;
 import com.js.graphicdisplay.mpchart.customization.LineChartCustomization;
 import com.js.graphicdisplay.net.HttpManager;
@@ -95,11 +96,12 @@ public class SalesGraphicActivity extends BaseActivity {
 //        spinnerCompany.setOnItemSelectedListener(this);
 
         //line chart
-        LineChartCustomization.customLineChart(mLineChart, mTfLight);
+        LineChartCustomization.customLineChart(mLineChart, mTfLight, 2);
 //        mLineChart.setOnChartGestureListener(new OnChartGestureImpl());
 
         //bar chart
-        BarChartCustomization.customBarChart(mBarChart, mTfLight);
+        SalesMarkerView mv = new SalesMarkerView(this, R.layout.markerview_funds);
+        BarChartCustomization.customBarChart(mBarChart, mTfLight, mv);
 
         //请求表格接口，拿到总记录数后，再次请求获取全部数据
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
@@ -439,7 +441,7 @@ public class SalesGraphicActivity extends BaseActivity {
         BarData barData = new BarData();
         LineData lineData = new LineData();
 
-        int startMonth = 0;
+        int startMonth = Integer.parseInt(chartData.get(0).getSalesData().get(0).getDate());
         int maxSize = 0;
 
         for (int i = 0; i < chartData.size(); i++) {
@@ -519,7 +521,7 @@ public class SalesGraphicActivity extends BaseActivity {
         BarData barData = new BarData();
         LineData lineData = new LineData();
 
-        int startMonth = 0;
+        int startMonth = Integer.parseInt(group.getSalesData().get(0).getDate());
 
         String name = group.getName();
         group.setKeyColor(1);

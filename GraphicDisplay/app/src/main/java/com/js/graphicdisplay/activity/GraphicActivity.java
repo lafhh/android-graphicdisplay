@@ -19,6 +19,7 @@ import com.js.graphicdisplay.api.Infermation;
 import com.js.graphicdisplay.data.*;
 import com.js.graphicdisplay.jsonutil.CompanyJsonParser;
 import com.js.graphicdisplay.jsonutil.GroupJsonParser;
+import com.js.graphicdisplay.mpchart.components.FundsMarkerView;
 import com.js.graphicdisplay.mpchart.customization.BarChartCustomization;
 import com.js.graphicdisplay.mpchart.customization.LineChartCustomization;
 import com.js.graphicdisplay.net.HttpManager;
@@ -97,11 +98,12 @@ public class GraphicActivity extends BaseActivity {
 //        spinnerCompany.setOnItemSelectedListener(this);
 
         //line chart
-        LineChartCustomization.customLineChart(mLineChart, mTfLight);
+        LineChartCustomization.customLineChart(mLineChart, mTfLight, 1);
 //        mLineChart.setOnChartGestureListener(new OnChartGestureImpl());
 
         //bar chart
-        BarChartCustomization.customBarChart(mBarChart, mTfLight);
+        FundsMarkerView mv = new FundsMarkerView(this, R.layout.markerview_funds);
+        BarChartCustomization.customBarChart(mBarChart, mTfLight, mv);
 
         //请求表格接口，拿到总记录数后，再次请求获取全部数据
         ArrayList<NameValuePair<String, String>> list = new ArrayList<>();
@@ -467,7 +469,7 @@ public class GraphicActivity extends BaseActivity {
         BarData barData = new BarData();
         LineData lineData = new LineData();
 
-        int startMonth = 201701;
+        int startMonth = Integer.parseInt(chartData.get(0).getFundsData().getMonths().get(0));
         int maxSize = 0;
 
         for (int i = 0; i < chartData.size(); i++) {
@@ -484,7 +486,9 @@ public class GraphicActivity extends BaseActivity {
             if (maxSize < months.size()) maxSize = months.size();
             for (int j = 0; j < months.size(); j++) {
                 int month = Integer.parseInt(months.get(j));
-
+                if (startMonth > month) {
+                    startMonth = month;
+                }
                 //stack bar entry.y = val1 + val2,
                 // y 每月指标vs每月完成量的最大值
                 float val1 = datas.get(j).getCompletionPerMonth().floatValue();

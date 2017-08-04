@@ -16,7 +16,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 public class LineChartCustomization {
 
-    public static LineChart customLineChart(LineChart chart, Typeface typeface) {
+    public static LineChart customLineChart(LineChart chart, Typeface typeface, final int fomatter) {
 
         chart.getDescription().setEnabled(false);
         // scaling can now only be done on x- and y-axis separately
@@ -60,8 +60,19 @@ public class LineChartCustomization {
         leftAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float v, AxisBase axisBase) {
-//                Log.d("laf", String.valueOf((int) v));
-                return String.valueOf((int) v + "%");
+
+                String value;
+                switch (fomatter) {
+                    case 1:
+                        value =  String.valueOf((int) v + "%");
+                        break;
+                    case 2:
+                        value = String.valueOf((int) v);
+                        break;
+                    default:
+                        value = "";
+                }
+                return value;
             }
         });
         leftAxis.setGridColor(Color.parseColor("#DCC6D1")); //设置水平网格线
@@ -70,7 +81,7 @@ public class LineChartCustomization {
         leftAxis.setZeroLineWidth(1f);
         leftAxis.setAxisLineColor(Color.parseColor("#DCC6D1"));
         leftAxis.setAxisLineWidth(1f);
-        leftAxis.setLabelCount(10, false);
+        leftAxis.setLabelCount(8, false);
 //        leftAxis.setSpaceTop(35f);
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 

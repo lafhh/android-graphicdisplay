@@ -142,12 +142,12 @@ public class TableAdapter extends BaseTableAdapter {
                             .setImgView(sortView)
                             .setTxtView(txtView));
 
-            headerViews.add(convertView4FirstHeader);
+//            headerViews.add(convertView4FirstHeader)convertView4FirstHeader;
+            sortState[column + 1] = 1; //初始默认名称排序
         }
         Log.d(TAG, "first header is =====" + convertView4FirstHeader.hashCode() + " " + ++i);
         convertView4FirstHeader.setTag(R.id.header_column, column);
         ViewHolder holder = (ViewHolder) convertView4FirstHeader.getTag(R.id.child);
-        sortState[column + 1] = 1;
         holder.getImgView().setImageResource(SortStateViewProvider.getSortStateViewResource(sortState[column + 1])); //znn
         holder.getTxtView().setText(titles[column + 1]);
 
@@ -169,9 +169,9 @@ public class TableAdapter extends BaseTableAdapter {
                             .setTxtView(txtView));
         }
         convertView.setTag(R.id.header_column, column);
+
         ViewHolder holder = (ViewHolder) convertView.getTag(R.id.child);
         holder.getTxtView().setText(titles[column + 1]);  //列名
-
         int sort = sortState[column + 1]; //排序状态
         holder.getImgView().setImageResource(SortStateViewProvider.getSortStateViewResource(sort));
 

@@ -11,9 +11,11 @@
     <string name="select_company">公司</string>
     <string name="select_date">年月</string>
 
-    <string name="funds_indicatrix_permonth">计划上缴：%1$s</string>
-    <string name="funds_completion_permonth">实际上缴：%1$s</string>
+    <string name="funds_indicatrix_permonth">%1$s：%2$s</string>
+    <string name="funds_completion_permonth">%1$s：%2$s</string>
     <string name="funds_balance_permonth">差额：%1$s</string>
+
+    <string name="reserve_building_area">%1$s：%2$s</string>
 
     <string name="paging">显示第%1$d到第%2$d条记录，一共%3$d条记录</string>
 

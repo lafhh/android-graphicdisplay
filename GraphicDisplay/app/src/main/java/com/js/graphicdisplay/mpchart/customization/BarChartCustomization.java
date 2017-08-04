@@ -6,6 +6,7 @@ import android.util.Log;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
@@ -18,7 +19,7 @@ import com.js.graphicdisplay.mpchart.components.FundsMarkerView;
 
 public class BarChartCustomization {
 
-    public static BarChart customBarChart(BarChart chart, Typeface typeface) {
+    public static BarChart customBarChart(BarChart chart, Typeface typeface, MarkerView mv) {
         chart.getDescription().setEnabled(false);
 
         // scaling can now only be done on x- and y-axis separately
@@ -29,7 +30,8 @@ public class BarChartCustomization {
         chart.setDrawGridBackground(false);
 
 
-        FundsMarkerView mv = new FundsMarkerView(chart.getContext(), R.layout.markerview_funds);
+//        FundsMarkerView mv = new FundsMarkerView(chart.getContext(), R.layout.markerview_funds);
+
         mv.setChartView(chart); // For bounds control
         chart.setMarker(mv); // Set the marker to the chart
 
@@ -49,6 +51,7 @@ public class BarChartCustomization {
 //        l.setXEntrySpace(4f);
 
         XAxis xAxis = chart.getXAxis();
+//        xAxis.setLabelCount(3);
         xAxis.setLabelRotationAngle(33f);
         xAxis.setTypeface(typeface);
         xAxis.setGranularity(1f);
@@ -84,7 +87,7 @@ public class BarChartCustomization {
         leftAxis.setZeroLineWidth(1f);
         leftAxis.setAxisLineColor(Color.parseColor("#DCC6D1"));
         leftAxis.setAxisLineWidth(1f);
-        leftAxis.setLabelCount(18, false);
+        leftAxis.setLabelCount(10, false);
 //        leftAxis.setSpaceTop(35f);
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
