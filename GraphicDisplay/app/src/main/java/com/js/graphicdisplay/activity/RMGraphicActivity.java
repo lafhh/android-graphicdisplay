@@ -394,6 +394,7 @@ public class RMGraphicActivity extends BaseActivity implements View.OnClickListe
     private void setChartData(ArrayList<Group> chartData) {
         int barCountPerGroup = chartData.size();
 
+        //chart 分组的尺寸，每组之间的间隔，柱子之间的间隔
         float groupSpace = 0.08f;
         float perBarSpaceWidth = (1.00f - groupSpace) / barCountPerGroup;
         float barSpace = 0.00f;
