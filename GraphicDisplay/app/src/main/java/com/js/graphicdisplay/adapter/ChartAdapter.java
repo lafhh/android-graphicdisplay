@@ -2,6 +2,7 @@ package com.js.graphicdisplay.adapter;
 
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.js.graphicdisplay.util.ColorTemplate;
 
 import java.util.ArrayList;
@@ -12,13 +13,36 @@ import java.util.ArrayList;
 
 public class ChartAdapter {
 
-    private ArrayList<BarDataSet> data;
+    private ArrayList<IBarDataSet> data;
 
-    public ChartAdapter(ArrayList<BarDataSet> list) {
+    public ChartAdapter(ArrayList<IBarDataSet> list) {
         data = list;
     }
 
     public BarData getData() {
+        int size = data.size();
+
+        if (size == 0) {
+            return getOneGroup();
+        } else {
+            return getGroups();
+        }
+   }
+
+    public BarData getOneGroup() {
+        BarDataSet barDataSet = (BarDataSet) data.get(0);
+        barDataSet.setColors(
+                ColorTemplate.TEMPLETE_COLOR1[0],
+                ColorTemplate.COLOR_YELLOW);
+//            barDataSet.setStackLabels();
+
+        BarData barData = new BarData(barDataSet);
+//        barData.setValueTypeface(mTfLight);
+        barData.setDrawValues(false); //不显示y轴的值
+        return barData;
+    }
+
+    public BarData getGroups() {
 
         int barCountPerGroup = data.size();
 
@@ -27,17 +51,19 @@ public class ChartAdapter {
         float barSpace = 0.00f;
         float barWidth = perBarSpaceWidth - barSpace;
 
-        BarData barData = new BarData();
-
         for (int i = 0; i < data.size(); i++) {
-            BarDataSet barDataSet = data.get(i);
+            BarDataSet barDataSet = (BarDataSet) data.get(i);
             barDataSet.setColors(
                     ColorTemplate.TEMPLETE_COLOR1[i % ColorTemplate.TEMPLETE_COLOR1.length],
                     ColorTemplate.COLOR_YELLOW);
-            barDataSet.setStackLabels();
+//            barDataSet.setStackLabels();
         }
 
-        barData.
+        BarData barData = new BarData(data);
+        barData.setBarWidth(barWidth);
+//        barData.setValueTypeface(mTfLight);
+        barData.setDrawValues(false); //不显示y轴的值
+        return barData;
     }
 
 }

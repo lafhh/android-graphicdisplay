@@ -10,6 +10,7 @@ import android.widget.*;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.*;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.inqbarna.tablefixheaders.TableFixHeaders;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
@@ -470,15 +471,17 @@ public class GraphicActivity extends BaseActivity implements View.OnClickListene
 
     void initGroupChartData(ArrayList<Group> data) {
         ChartModel chartModel = new ChartModel();
-        ArrayList<BarDataSet> sets = chartModel.getDataSets(data);
+        ArrayList<IBarDataSet> sets = chartModel.getDataSets(data);
         ChartAdapter chartAdapter = new ChartAdapter(sets);
-
+        BarData d = chartAdapter.getData();
     }
 
     void initChartData(Group data) {
         ChartModel chartModel = new ChartModel();
-        BarDataSet barDataSet = chartModel.getDataSet(data);
+        ArrayList<IBarDataSet> barDataSet = chartModel.getDataSet(data);
         ChartAdapter chartAdapter = new ChartAdapter(barDataSet);
+        BarData d = chartAdapter.getData();
+
     }
 
 

@@ -2,6 +2,7 @@ package com.js.graphicdisplay.data;
 
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.js.graphicdisplay.util.ColorTemplate;
 
 import java.util.ArrayList;
@@ -19,9 +20,9 @@ public class ChartModel {
     //ArrayList<BarDataSet> groups
     //BarData
 
-    private BarDataSet dataSet;
+//    private BarDataSet dataSet;
 
-    private ArrayList<BarDataSet> dataSets;
+    private ArrayList<IBarDataSet> dataSets;
 
     private int stackSize = 1;
 
@@ -31,7 +32,8 @@ public class ChartModel {
 
 
     String[] date = {"201707", "201708"}; //回款
-    public BarDataSet getDataSet(Group data) {
+    public ArrayList<IBarDataSet> getDataSet(Group data) {
+        dataSets = new ArrayList<>();
         String name = data.getName();
         data.setKeyColor(1);
 
@@ -42,13 +44,14 @@ public class ChartModel {
             entry = get2StacksBarEntry(j, list.get(j));
             barEntries.add(entry);
         }
-        dataSet = new BarDataSet(barEntries, name);
+        BarDataSet dataSet = new BarDataSet(barEntries, name);
+        dataSets.add(dataSet);
 
-        return dataSet;
+        return dataSets;
     }
 
     //资金上缴
-    public ArrayList<BarDataSet> getDataSets(ArrayList<Group> datas) {
+    public ArrayList<IBarDataSet> getDataSets(ArrayList<Group> datas) {
         dataSets = new ArrayList<>();
 
         for (int i = 0; i < datas.size(); i++) {
