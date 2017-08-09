@@ -17,4 +17,15 @@ public class ColorTemplate {
             Color.rgb(189, 219, 127),
             Color.rgb(239, 140, 136)
     };
+
+    public static final int[] TEMPLETE_COLOR1 = {
+//            Color.rgb(233, 210, 188),
+//            Color.rgb(205, 214, 222),
+            Color.rgb(101, 201, 228),
+            Color.rgb(174, 151, 206),
+            Color.rgb(189, 219, 127),
+            Color.rgb(239, 140, 136)
+    };
+
+    public static final int COLOR_YELLOW = Color.rgb(255, 210, 139);
 }

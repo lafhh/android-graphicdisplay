@@ -13,6 +13,7 @@ import com.github.mikephil.charting.data.*;
 import com.inqbarna.tablefixheaders.TableFixHeaders;
 import com.js.graphicdisplay.R;
 import com.js.graphicdisplay.activity.base.BaseActivity;
+import com.js.graphicdisplay.adapter.ChartAdapter;
 import com.js.graphicdisplay.adapter.SpinnerPagingAdapter;
 import com.js.graphicdisplay.adapter.TableAdapter;
 import com.js.graphicdisplay.adapter.SpinnerAdapter;
@@ -464,6 +465,24 @@ public class GraphicActivity extends BaseActivity implements View.OnClickListene
             }
         });
     }
+
+
+
+    void initGroupChartData(ArrayList<Group> data) {
+        ChartModel chartModel = new ChartModel();
+        ArrayList<BarDataSet> sets = chartModel.getDataSets(data);
+        ChartAdapter chartAdapter = new ChartAdapter(sets);
+
+    }
+
+    void initChartData(Group data) {
+        ChartModel chartModel = new ChartModel();
+        BarDataSet barDataSet = chartModel.getDataSet(data);
+        ChartAdapter chartAdapter = new ChartAdapter(barDataSet);
+    }
+
+
+
 
     //group: a group of bars
     private void setChartData(ArrayList<Group> chartData) {

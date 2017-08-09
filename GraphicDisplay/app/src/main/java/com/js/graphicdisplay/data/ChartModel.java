@@ -23,8 +23,6 @@ public class ChartModel {
 
     private ArrayList<BarDataSet> dataSets;
 
-    String[] date = {"201707", "201708"};
-
     private int stackSize = 1;
 
     public boolean isStacked() {
@@ -32,6 +30,7 @@ public class ChartModel {
     }
 
 
+    String[] date = {"201707", "201708"}; //回款
     public BarDataSet getDataSet(Group data) {
         String name = data.getName();
         data.setKeyColor(1);
@@ -48,6 +47,7 @@ public class ChartModel {
         return dataSet;
     }
 
+    //资金上缴
     public ArrayList<BarDataSet> getDataSets(ArrayList<Group> datas) {
         dataSets = new ArrayList<>();
 
@@ -65,6 +65,7 @@ public class ChartModel {
             }
 
             BarDataSet dataSet = new BarDataSet(barEntries, name);
+            dataSet.setStackLabels();
             dataSets.add(dataSet);
         }
 
