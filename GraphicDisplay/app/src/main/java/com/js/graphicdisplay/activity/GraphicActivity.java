@@ -481,7 +481,6 @@ public class GraphicActivity extends BaseActivity implements View.OnClickListene
         ArrayList<IBarDataSet> barDataSet = chartModel.getDataSet(data);
         ChartAdapter chartAdapter = new ChartAdapter(barDataSet);
         BarData d = chartAdapter.getData();
-
     }
 
 

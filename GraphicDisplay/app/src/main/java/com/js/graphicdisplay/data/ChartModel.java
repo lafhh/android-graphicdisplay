@@ -32,6 +32,13 @@ public class ChartModel {
 
 
     String[] date = {"201707", "201708"}; //回款
+
+    /**
+     *
+     * 数据不分组的情况
+     * @param data
+     * @return
+     */
     public ArrayList<IBarDataSet> getDataSet(Group data) {
         dataSets = new ArrayList<>();
         String name = data.getName();
@@ -51,6 +58,12 @@ public class ChartModel {
     }
 
     //资金上缴
+    /**
+     *
+     * 数据分组
+     * @param datas
+     * @return
+     */
     public ArrayList<IBarDataSet> getDataSets(ArrayList<Group> datas) {
         dataSets = new ArrayList<>();
 

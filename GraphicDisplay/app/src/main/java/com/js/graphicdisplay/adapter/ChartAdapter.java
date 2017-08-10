@@ -27,8 +27,12 @@ public class ChartAdapter {
         } else {
             return getGroups();
         }
-   }
+    }
 
+    /**
+     * 没有分组的柱状图也可以设置柱子的尺寸，每个间隔里只有一根柱子
+     * @return
+     */
     public BarData getOneGroup() {
         BarDataSet barDataSet = (BarDataSet) data.get(0);
         barDataSet.setColors(
@@ -42,6 +46,10 @@ public class ChartAdapter {
         return barData;
     }
 
+    /**
+     * 通过bardataset获取柱状图每个间隔内的柱子，和柱子间的间隔的尺寸,柱子的颜色
+     * @return
+     */
     public BarData getGroups() {
 
         int barCountPerGroup = data.size();
@@ -66,4 +74,7 @@ public class ChartAdapter {
         return barData;
     }
 
+    public float getSegmentSpace() {
+        return 0.08f;
+    }
 }

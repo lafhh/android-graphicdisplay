@@ -1,40 +1,62 @@
 package com.js.graphicdisplay.mpchart.customization;
 
+import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.*;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.js.graphicdisplay.adapter.ChartAdapter;
 
 /**
- * Created by apple on 2017/7/11.
+ * Created by apple on 2017/8/10.
  */
 
-public class BarChartCustomization {
+public class MyBarChart extends BarChart {
 
-    public static BarChart customBarChart(BarChart chart, Typeface typeface, MarkerView mv) {
-        chart.getDescription().setEnabled(false);
+    private ChartAdapter adapter;
+
+    public MyBarChart(Context context, ChartAdapter adapter) {
+        this(context);
+        this.adapter = adapter;
+    }
+
+    public MyBarChart(Context context) {
+        super(context);
+    }
+
+    public void setChart() {
+        getDescription().setEnabled(false);
 
         // scaling can now only be done on x- and y-axis separately
-        chart.setPinchZoom(false);
-
-        chart.setDrawBarShadow(false);
-
-        chart.setDrawGridBackground(false);
-
-
+        setPinchZoom(false);
+        setDrawBarShadow(false);
+        setDrawGridBackground(false);
 //        FundsMarkerView mv = new FundsMarkerView(chart.getContext(), R.layout.markerview_funds);
-
         mv.setChartView(chart); // For bounds control
         chart.setMarker(mv); // Set the marker to the chart
 
-        Legend l = chart.getLegend();
+        setData(adapter.getData());
+        float groupWidth = getBarData().getGroupWidth(groupSpace, barSpace); //groupwidth = 1
+        getXAxis().setAxisMinimum(startMonth);
+        getXAxis().setAxisMaximum(startMonth + groupWidth * maxSize);
+
+        groupBars(startMonth, groupSpace, barSpace);
+        setFitBars(true);//stack bar
+        animateXY(2500, 2500);
+        invalidate();
+    }
+
+    private void setLegend() {
+        Legend l = getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setForm(Legend.LegendForm.SQUARE);
         l.setDrawInside(false);
-        l.setTypeface(typeface);
+//        l.setTypeface(typeface);
         l.setYOffset(2f);
         l.setYEntrySpace(0f);
         l.setTextSize(10f);
@@ -42,27 +64,25 @@ public class BarChartCustomization {
         l.setMaxSizePercent(0.88f);
 //        l.setFormSize(9f);
 //        l.setXEntrySpace(4f);
+    }
 
-        XAxis xAxis = chart.getXAxis();
+    private void setXAxis() {
+        XAxis xAxis =getXAxis();
 //        xAxis.setLabelCount(3);
         xAxis.setLabelRotationAngle(33f);
-        xAxis.setTypeface(typeface);
+//        xAxis.setTypeface(typeface);
         xAxis.setGranularity(1f);
         xAxis.setCenterAxisLabels(true);
 //        xAxis.setDrawGridLines(false); //设置垂直网格线
         xAxis.setGridColor(Color.parseColor("#ECEFF0"));
         xAxis.setDrawAxisLine(false);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-//        xAxis.setValueFormatter(new IAxisValueFormatter() {
-//            @Override
-//            public String getFormattedValue(float v, AxisBase axisBase) {
-////                Log.d("laf", String.valueOf((int) v));
-//                return String.valueOf((int) v);
-//            }
-//        });
 
-        YAxis leftAxis = chart.getAxisLeft();
-        leftAxis.setTypeface(typeface);
+    }
+
+    private void setYAxis() {
+        YAxis leftAxis = getAxisLeft();
+//        leftAxis.setTypeface(typeface);
 //        leftAxis.setValueFormatter(new LargeValueFormatter());
 
         leftAxis.setValueFormatter(new IAxisValueFormatter() {
@@ -84,11 +104,6 @@ public class BarChartCustomization {
 //        leftAxis.setSpaceTop(35f);
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
-        chart.getAxisRight().setEnabled(false);
-
-        return chart;
+        getAxisRight().setEnabled(false);
     }
-
-
 }
-
