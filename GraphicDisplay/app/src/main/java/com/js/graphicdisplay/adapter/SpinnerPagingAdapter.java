@@ -71,7 +71,7 @@ public class SpinnerPagingAdapter extends BaseAdapter {
 //        mData = list;
 //    }
 
-//    public ArrayList<T> getData() {
+//    public ArrayList<T> getiBarDataSets() {
 //        return mData;
 //    }
 }

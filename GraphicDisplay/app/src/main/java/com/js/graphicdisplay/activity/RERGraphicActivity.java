@@ -290,7 +290,7 @@ public class RERGraphicActivity extends BaseActivity implements View.OnClickList
 
                     if (o instanceof Group) {
 //            //month
-//            ArrayList<SpinnerDate> sdate = dateAdapter.getData();
+//            ArrayList<SpinnerDate> sdate = dateAdapter.getiBarDataSets();
 //            SpinnerDate.replace(((Group) o).getMonths(), sdate);
 //            dateAdapter.notifyDataSetChanged();
                         //month selection

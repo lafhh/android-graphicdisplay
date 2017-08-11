@@ -39,8 +39,7 @@ public class ChartModel {
      * @param data
      * @return
      */
-    public ArrayList<IBarDataSet> getDataSet(Group data) {
-        dataSets = new ArrayList<>();
+    public BarDataSet getDataSet(Group data) {
         String name = data.getName();
         data.setKeyColor(1);
 
@@ -52,9 +51,8 @@ public class ChartModel {
             barEntries.add(entry);
         }
         BarDataSet dataSet = new BarDataSet(barEntries, name);
-        dataSets.add(dataSet);
-
-        return dataSets;
+        dataSet.isStacked();
+        return dataSet;
     }
 
     //资金上缴
@@ -81,7 +79,7 @@ public class ChartModel {
             }
 
             BarDataSet dataSet = new BarDataSet(barEntries, name);
-            dataSet.setStackLabels();
+//            dataSet.setStackLabels();
             dataSets.add(dataSet);
         }
 

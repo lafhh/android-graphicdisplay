@@ -7,6 +7,7 @@ import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.js.graphicdisplay.adapter.ChartAdapter;
 
@@ -17,11 +18,6 @@ import com.js.graphicdisplay.adapter.ChartAdapter;
 public class MyBarChart extends BarChart {
 
     private ChartAdapter adapter;
-
-    public MyBarChart(Context context, ChartAdapter adapter) {
-        this(context);
-        this.adapter = adapter;
-    }
 
     public MyBarChart(Context context) {
         super(context);
@@ -38,13 +34,22 @@ public class MyBarChart extends BarChart {
         mv.setChartView(chart); // For bounds control
         chart.setMarker(mv); // Set the marker to the chart
 
-        setData(adapter.getData());
-        float groupWidth = getBarData().getGroupWidth(groupSpace, barSpace); //groupwidth = 1
-        getXAxis().setAxisMinimum(startMonth);
-        getXAxis().setAxisMaximum(startMonth + groupWidth * maxSize);
+        setLegend();
+        setXAxis();
+        setYAxis();
 
-        groupBars(startMonth, groupSpace, barSpace);
-        setFitBars(true);//stack bar
+        BarData barData = adapter.getBarData();
+        setData(barData);
+
+        if (adapter.isGroups()) {
+            float groupWidth = barData.getGroupWidth(adapter.getGroupSpace(), adapter.getBarSpace());
+            XAxis xAxis = getXAxis();
+            xAxis.setAxisMinimum(0);
+            xAxis.setAxisMaximum(groupWidth * adapter.getMaxEntryCount());
+            groupBars(0f, adapter.getGroupSpace(), adapter.getBarSpace());
+        }
+
+        if (adapter.isStacked()) setFitBars(true);//stack bar
         animateXY(2500, 2500);
         invalidate();
     }
@@ -105,5 +110,9 @@ public class MyBarChart extends BarChart {
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         getAxisRight().setEnabled(false);
+    }
+
+    public void setAdapter(ChartAdapter adapter) {
+        this.adapter = adapter;
     }
 }

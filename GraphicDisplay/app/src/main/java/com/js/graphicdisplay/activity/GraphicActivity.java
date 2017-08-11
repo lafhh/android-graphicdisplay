@@ -25,6 +25,7 @@ import com.js.graphicdisplay.jsonutil.GroupJsonParser;
 import com.js.graphicdisplay.mpchart.components.FundsMarkerView;
 import com.js.graphicdisplay.mpchart.customization.BarChartCustomization;
 import com.js.graphicdisplay.mpchart.customization.LineChartCustomization;
+import com.js.graphicdisplay.mpchart.customization.MyBarChart;
 import com.js.graphicdisplay.net.HttpManager;
 import com.js.graphicdisplay.net.NetUtil;
 import com.js.graphicdisplay.net.Request;
@@ -360,7 +361,7 @@ public class GraphicActivity extends BaseActivity implements View.OnClickListene
 
                     if (o instanceof Group) {
 //            //month
-//            ArrayList<SpinnerDate> sdate = dateAdapter.getData();
+//            ArrayList<SpinnerDate> sdate = dateAdapter.getiBarDataSets();
 //            SpinnerDate.replace(((Group) o).getMonths(), sdate);
 //            dateAdapter.notifyDataSetChanged();
                         //month selection
@@ -471,18 +472,18 @@ public class GraphicActivity extends BaseActivity implements View.OnClickListene
 
     void initGroupChartData(ArrayList<Group> data) {
         ChartModel chartModel = new ChartModel();
-        ArrayList<IBarDataSet> sets = chartModel.getDataSets(data);
-        ChartAdapter chartAdapter = new ChartAdapter(sets);
-        BarData d = chartAdapter.getData();
+        ArrayList<IBarDataSet> barDataSets = chartModel.getDataSets(data);
+        ChartAdapter adapter = new ChartAdapter(barDataSets);
+        MyBarChart chart = new MyBarChart(this);
+        chart.setAdapter(adapter);
+        chart.setChart();
     }
 
     void initChartData(Group data) {
         ChartModel chartModel = new ChartModel();
-        ArrayList<IBarDataSet> barDataSet = chartModel.getDataSet(data);
+        BarDataSet barDataSet = chartModel.getDataSet(data);
         ChartAdapter chartAdapter = new ChartAdapter(barDataSet);
-        BarData d = chartAdapter.getData();
     }
-
 
 
 
