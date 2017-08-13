@@ -83,6 +83,7 @@ public class ChartAdapter {
         }
 
         BarData barData = new BarData(iBarDataSets);
+        
         barData.setBarWidth(getBarWidth());
 //        barData.setValueTypeface(mTfLight);
         barData.setDrawValues(false); //不显示y轴的值
