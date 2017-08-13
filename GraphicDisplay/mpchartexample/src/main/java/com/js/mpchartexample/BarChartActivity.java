@@ -218,7 +218,7 @@ public class BarChartActivity extends DemoBase implements SeekBar.OnSeekBarChang
         tvX.setText("" + (mSeekBarX.getProgress() + 2));
         tvY.setText("" + (mSeekBarY.getProgress()));
 
-        setData(mSeekBarX.getProgress() + 1 , mSeekBarY.getProgress());
+        setData(mSeekBarX.getProgress() + 1, mSeekBarY.getProgress());
         mChart.invalidate();
     }
 
@@ -300,5 +300,6 @@ public class BarChartActivity extends DemoBase implements SeekBar.OnSeekBarChang
     }
 
     @Override
-    public void onNothingSelected() { }
+    public void onNothingSelected() {
+    }
 }

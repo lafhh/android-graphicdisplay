@@ -23,6 +23,8 @@ public class MyBarChart extends BarChart {
         super(context);
     }
 
+    public void
+
     public void setChart() {
         getDescription().setEnabled(false);
 
@@ -114,5 +116,9 @@ public class MyBarChart extends BarChart {
 
     public void setAdapter(ChartAdapter adapter) {
         this.adapter = adapter;
+    }
+
+    public void updateChart() {
+
     }
 }

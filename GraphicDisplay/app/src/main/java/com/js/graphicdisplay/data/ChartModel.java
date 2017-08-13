@@ -84,7 +84,7 @@ public class ChartModel {
         }
 
         return dataSets;
-    }
+   }
 
     private BarEntry get2StacksBarEntry(int x, ReturnedMoneyData data) {
         float val1 = data.getMonthIncomeReal();

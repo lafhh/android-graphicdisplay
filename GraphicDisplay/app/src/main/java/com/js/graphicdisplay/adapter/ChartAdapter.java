@@ -115,6 +115,14 @@ public class ChartAdapter {
         return max;
     }
 
+    public void setBarDataSets(ArrayList<IBarDataSet> sets) {
+        iBarDataSets = sets;
+    }
+
+    public void setBarDataSet(BarDataSet dataSet) {
+        this.dataSet = dataSet;
+    }
+
 //    public int getGroupWidth() {
 //
 //    }
