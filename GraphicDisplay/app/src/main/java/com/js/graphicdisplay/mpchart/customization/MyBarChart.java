@@ -18,6 +18,7 @@ import com.js.graphicdisplay.adapter.ChartAdapter;
 public class MyBarChart extends BarChart {
 
     private ChartAdapter adapter;
+    private BarData data;
 
     public MyBarChart(Context context) {
         super(context);
@@ -40,8 +41,10 @@ public class MyBarChart extends BarChart {
         setXAxis();
         setYAxis();
 
-        BarData barData = adapter.getBarData();
-        setData(barData);
+        if (data == null) {
+            data = adapter.getBarData();
+            setData(data);
+        }
 
         if (adapter.isGroups()) {
             float groupWidth = barData.getGroupWidth(adapter.getGroupSpace(), adapter.getBarSpace());

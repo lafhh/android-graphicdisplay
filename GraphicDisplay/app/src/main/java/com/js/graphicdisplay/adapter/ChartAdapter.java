@@ -6,27 +6,30 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.js.graphicdisplay.util.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by apple on 2017/8/9.
  */
 public class ChartAdapter {
 
-    private ArrayList<IBarDataSet> iBarDataSets; //分组数据
+//    private ArrayList<IBarDataSet> iBarDataSets; //分组数据
+//
+//    private BarDataSet dataSet; //未分组数据
 
-    private BarDataSet dataSet; //未分组数据
+    private BarData barData;
 
     private boolean isGroups = false; //是否分组
 
     private boolean isStacked = false;
 
     public ChartAdapter(ArrayList<IBarDataSet> list) {
-        iBarDataSets = list;
+        barData = new BarData(list);
         isGroups = true;
     }
 
-    public ChartAdapter(BarDataSet dataSet) {
-        this.dataSet = dataSet;
+    public ChartAdapter(IBarDataSet dataSet) {
+        barData = new BarData(dataSet);
         isGroups = false;
     }
 
@@ -54,13 +57,15 @@ public class ChartAdapter {
      * @return
      */
     public BarData getOneGroup() {
+        BarDataSet dataSet = (BarDataSet) barData.getDataSets();
+        List<IBarDataSet> list = new ArrayList<>();
+        BarDataSet set = (BarDataSet) list;
         dataSet.setColors(
                 ColorTemplate.TEMPLETE_COLOR1[0],
                 ColorTemplate.COLOR_YELLOW);
 //            barDataSet.setStackLabels();
         isStacked = dataSet.isStacked();
 
-        BarData barData = new BarData(dataSet);
 //        barData.setValueTypeface(mTfLight);
         barData.setDrawValues(false); //不显示y轴的值
         return barData;
@@ -72,6 +77,7 @@ public class ChartAdapter {
      * @return
      */
     public BarData getGroups() {
+        barData.getDataSets();
         for (int i = 0; i < iBarDataSets.size(); i++) {
             BarDataSet barDataSet = (BarDataSet) iBarDataSets.get(i);
             barDataSet.setColors(
@@ -82,7 +88,7 @@ public class ChartAdapter {
             if (b) isStacked = b;
         }
 
-        BarData barData = new BarData(iBarDataSets);
+        barData = new BarData(iBarDataSets);
         
         barData.setBarWidth(getBarWidth());
 //        barData.setValueTypeface(mTfLight);
